@@ -1,24 +1,26 @@
 .hero {
   position: relative;
-  height: 100vh;
-  background: url("https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752042709/Sbridge_b1mjoy.png") no-repeat center center/cover;
+  min-height: 100vh; /* ✅ allows growth instead of fixed 100vh */
+  background: url("../../public/bridge.jpeg") no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: #fff;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .overlay {
   width: 100%;
   height: 100%;
-  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .content {
+  width: 100%;
   max-width: 800px;
   padding: 40px;
   background: rgba(255, 255, 255, 0.12);
@@ -27,6 +29,7 @@
   backdrop-filter: blur(15px);
   animation: fadeIn 1.5s ease-in-out;
   font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -52,30 +55,29 @@ p {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .enquiry-form input,
 .enquiry-form textarea {
+  width: 100%;
   padding: 14px 16px;
   font-size: 1rem;
   border-radius: 10px;
   border: 1px solid rgba(63, 108, 128, 0.25);
-  /* soft bluish-gray border */
-  font-family: "Segoe UI", sans-serif;
   background: rgba(255, 255, 255, 0.95);
   color: #2f4858;
-  /* deep blue-gray for consistency */
   box-shadow: 0 2px 8px rgba(47, 72, 88, 0.08);
-  /* soft shadow */
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .enquiry-form input:focus,
 .enquiry-form textarea:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(0, 191, 170, 0.5);
-  /* teal focus glow */
   border: 1px solid #00bfa6;
 }
 
@@ -86,7 +88,6 @@ p {
 
 .enquiry-form button {
   background: linear-gradient(90deg, #00bfa6, #009688);
-  /* vibrant teal gradient */
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -95,33 +96,27 @@ p {
   border-radius: 30px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 191, 170, 0.3);
-  /* subtle glow */
   transition: background 0.3s ease-in-out;
 }
 
 .enquiry-form button:hover {
   background: linear-gradient(90deg, #009688, #00796b);
-  /* deep teal hover */
 }
 
 .error {
   color: #f44336;
-  /* accessible red */
   font-size: 0.9rem;
   text-align: left;
 }
 
 .success {
   background-color: #d0f2ec;
-  /* light teal success box */
   color: #155f5a;
-  /* rich teal text */
   padding: 10px 15px;
   border-radius: 10px;
   margin-top: 10px;
   font-weight: 500;
 }
-
 
 /* Animation */
 @keyframes fadeIn {
@@ -136,14 +131,23 @@ p {
   }
 }
 
-/* Mobile responsiveness */
+/* ✅ Tablet view */
 @media screen and (max-width: 768px) {
+  .hero {
+    padding: 30px 15px;
+  }
+
   h1 {
     font-size: 2rem;
   }
 
+  p {
+    font-size: 1rem;
+  }
+
   .content {
-    padding: 30px;
+    padding: 25px;
+    border-radius: 15px;
   }
 
   .enquiry-form {
@@ -151,22 +155,51 @@ p {
   }
 }
 
+/* ✅ Mobile view fix */
 @media screen and (max-width: 480px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 10px;
+    text-align: left;
+  }
+
   .content {
-    padding: 20px;
+    padding: 15px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.95rem;
+    text-align: center;
   }
 
   .enquiry-form {
     padding: 15px;
+    gap: 12px;
   }
 
   .enquiry-form input,
   .enquiry-form textarea {
     font-size: 0.95rem;
+    padding: 12px;
   }
 
   .enquiry-form button {
-    font-size: 1rem;
+    font-size: 0.95rem;
     padding: 10px;
+  }
+
+  .success {
+    font-size: 0.9rem;
+    text-align: center;
   }
 }

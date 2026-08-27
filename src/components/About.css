@@ -1,205 +1,74 @@
 .hero {
-  position: relative;
-  min-height: 100vh; /* ✅ allows growth instead of fixed 100vh */
   background: url("../../public/bridge.jpeg") no-repeat center center/cover;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   color: #fff;
-  padding: 40px 20px;
-  box-sizing: border-box;
 }
 
 .overlay {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .content {
-  width: 100%;
-  max-width: 800px;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-  animation: fadeIn 1.5s ease-in-out;
-  font-family: "Segoe UI", sans-serif;
-  box-sizing: border-box;
+  max-width: 600px;
+  text-align: center;
 }
 
-h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
+.content h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-p {
+.content p {
   font-size: 1.2rem;
-  color: #f2f2f2;
-  margin-bottom: 25px;
+  color: #f0e68c;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.6;
 }
 
 .enquiry-form {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 25px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
+  gap: 1rem;
 }
 
 .enquiry-form input,
 .enquiry-form textarea {
-  width: 100%;
-  padding: 14px 16px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(63, 108, 128, 0.25);
-  background: rgba(255, 255, 255, 0.95);
-  color: #2f4858;
-  box-shadow: 0 2px 8px rgba(47, 72, 88, 0.08);
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.enquiry-form input:focus,
-.enquiry-form textarea:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(0, 191, 170, 0.5);
-  border: 1px solid #00bfa6;
-}
-
-.enquiry-form textarea {
-  resize: vertical;
-  min-height: 100px;
 }
 
 .enquiry-form button {
-  background: linear-gradient(90deg, #00bfa6, #009688);
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 12px;
+  padding: 0.8rem;
+  background: #007373;
+  color: #fff;
   border: none;
-  border-radius: 30px;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 191, 170, 0.3);
-  transition: background 0.3s ease-in-out;
+  font-size: 1rem;
 }
 
 .enquiry-form button:hover {
-  background: linear-gradient(90deg, #009688, #00796b);
+  background: #0056b3;
 }
 
 .error {
-  color: #f44336;
+  color: #ff4d4d;
   font-size: 0.9rem;
-  text-align: left;
 }
 
 .success {
-  background-color: #d0f2ec;
-  color: #155f5a;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-top: 10px;
-  font-weight: 500;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ✅ Tablet view */
-@media screen and (max-width: 768px) {
-  .hero {
-    padding: 30px 15px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .content {
-    padding: 25px;
-    border-radius: 15px;
-  }
-
-  .enquiry-form {
-    padding: 20px;
-  }
-}
-
-/* ✅ Mobile view fix */
-@media screen and (max-width: 480px) {
-  .hero {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 20px 10px;
-    text-align: left;
-  }
-
-  .content {
-    padding: 15px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-
-  p {
-    font-size: 0.95rem;
-    text-align: center;
-  }
-
-  .enquiry-form {
-    padding: 15px;
-    gap: 12px;
-  }
-
-  .enquiry-form input,
-  .enquiry-form textarea {
-    font-size: 0.95rem;
-    padding: 12px;
-  }
-
-  .enquiry-form button {
-    font-size: 0.95rem;
-    padding: 10px;
-  }
-
-  .success {
-    font-size: 0.9rem;
-    text-align: center;
-  }
+  color: #28a745;
+  font-size: 1rem;
+  margin-top: 1rem;
 }

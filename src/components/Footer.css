@@ -1,32 +1,33 @@
 /* General Footer Styling */
 .footer {
   text-align: center;
-  background: linear-gradient(135deg, #222, #444);
-  /* Smooth gradient */
+  background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
   color: #fff;
-  padding: 20px;
+  padding: 25px 20px;
   font-size: 0.95rem;
-  border-top: 3px solid #3f6c80;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.15);
+  border-top: 4px solid #3f6c80;
+  box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.2);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 /* Footer Content */
 .footer-content p {
   margin: 5px 0;
+  font-size: 1rem;
+  color: #d1d1d1;
 }
 
 /* Flex container for links */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 /* WhatsApp Link */
@@ -37,46 +38,49 @@
   display: inline-flex;
   align-items: center;
   background: #25d366;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
   transition: all 0.3s ease-in-out;
   font-size: 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .whatsapp-link .icon {
-  margin-right: 8px;
-  font-size: 1.2rem;
+  margin-right: 10px;
+  font-size: 1.3rem;
 }
 
 .whatsapp-link:hover {
   background: #128c7e;
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Google Review Link */
 .review-link {
   color: #fff;
   background: #4285f4;
-  /* Google blue */
   text-decoration: none;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
   transition: all 0.3s ease-in-out;
   font-size: 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .review-link .icon.star {
-  margin-right: 8px;
+  margin-right: 10px;
   color: gold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .review-link:hover {
   background: #3367d6;
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Icon styling for hover effects */
@@ -101,17 +105,26 @@
   transform: scale(1.2);
 }
 
+/* Footer Bottom Text */
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #a1a1a1;
+  border-top: 1px solid #555;
+  padding-top: 10px;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .footer {
-    padding: 15px;
+    padding: 20px;
     font-size: 0.85rem;
   }
 
   .whatsapp-link,
   .review-link {
     font-size: 0.9rem;
-    padding: 8px 12px;
+    padding: 10px 15px;
   }
 
   .icon {

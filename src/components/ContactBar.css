@@ -1,27 +1,38 @@
 /* src/components/ContactBar.css */
 
 .contact-bar {
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
-    gap: 30px;
-  }
-  
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .contact-icon {
-    color: darkgreen;
-    font-size: 18px;
-  }
-  
-  .contact-text {
-    color: #000;
-    font-weight: 600;
-  }
-  
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  gap: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center; /* Ensures the icon and text are vertically aligned */
+  gap: 8px; /* Adds spacing between the icon and the text */
+}
+
+.contact-icon {
+  color: darkgreen;
+  font-size: 18px;
+}
+
+.contact-text {
+  color: #000;
+  font-weight: 600;
+  font-size: 16px; /* Ensures the text size matches the icon size */
+}
+
+.contact-link {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Ensures the text color matches the parent element */
+  display: flex; /* Ensures the link behaves as a flex container */
+  align-items: center; /* Aligns the icon and text vertically */
+}
+
+.contact-link:hover {
+  text-decoration: none; /* Ensures no underline on hover */
+}

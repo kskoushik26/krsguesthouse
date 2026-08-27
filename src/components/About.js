@@ -15,11 +15,13 @@ const About = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Validate form fields
   const validateForm = () => {
     const newErrors = {};
     const today = new Date().toISOString().split("T")[0];
@@ -28,21 +30,18 @@ const About = () => {
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
     if (!formData.email.trim()) newErrors.email = "Email address is required.";
 
-    // ✅ Check-in validation
     if (!formData.checkin.trim()) {
       newErrors.checkin = "Check-in date is required.";
     } else if (formData.checkin < today) {
       newErrors.checkin = "Check-in date cannot be in the past.";
     }
 
-    // ✅ Check-out validation
     if (!formData.checkout.trim()) {
       newErrors.checkout = "Check-out date is required.";
     } else if (formData.checkout < formData.checkin) {
       newErrors.checkout = "Check-out date cannot be before check-in.";
     }
 
-    // ✅ Members validation
     if (!formData.members.trim() || isNaN(formData.members) || formData.members <= 0) {
       newErrors.members = "Number of members must be a positive number.";
     }
@@ -51,6 +50,7 @@ const About = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -79,7 +79,6 @@ const About = () => {
     }
   };
 
-
   const todayDate = new Date().toISOString().split("T")[0];
 
   return (
@@ -101,6 +100,7 @@ const About = () => {
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
+              aria-label="Name"
               required
             />
             {errors.name && <p className="error">{errors.name}</p>}
@@ -111,6 +111,7 @@ const About = () => {
               placeholder="Phone Number"
               value={formData.phone}
               onChange={handleChange}
+              aria-label="Phone Number"
               required
             />
             {errors.phone && <p className="error">{errors.phone}</p>}
@@ -121,17 +122,15 @@ const About = () => {
               placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
+              aria-label="Email Address"
               required
             />
             {errors.email && <p className="error">{errors.email}</p>}
 
-
-
-            {/* ✅ Check-in Date Field */}
             <input
               type="text"
               name="checkin"
-              placeholder="Please select Check-in Date"
+              placeholder="Check-in Date"
               value={formData.checkin}
               onFocus={(e) => {
                 e.target.type = "date";
@@ -142,6 +141,7 @@ const About = () => {
               }}
               min={todayDate}
               onChange={handleChange}
+              aria-label="Check-in Date"
               required
             />
             {errors.checkin && <p className="error">{errors.checkin}</p>}
@@ -149,7 +149,7 @@ const About = () => {
             <input
               type="text"
               name="checkout"
-              placeholder="Please select Check-out Date"
+              placeholder="Check-out Date"
               value={formData.checkout}
               onFocus={(e) => {
                 e.target.type = "date";
@@ -160,6 +160,7 @@ const About = () => {
               }}
               min={formData.checkin || todayDate}
               onChange={handleChange}
+              aria-label="Check-out Date"
               required
             />
             {errors.checkout && <p className="error">{errors.checkout}</p>}
@@ -170,6 +171,7 @@ const About = () => {
               placeholder="Number of Members"
               value={formData.members}
               onChange={handleChange}
+              aria-label="Number of Members"
               required
             />
             {errors.members && <p className="error">{errors.members}</p>}
@@ -179,6 +181,7 @@ const About = () => {
               placeholder="Additional Question"
               value={formData.question}
               onChange={handleChange}
+              aria-label="Additional Question"
             />
             {errors.question && <p className="error">{errors.question}</p>}
 
@@ -186,7 +189,7 @@ const About = () => {
             {submitted && (
               <p className="success">
                 Thank you! We will get back to you soon. Please check your email
-                for our response. if its urgent please call us to 9448734152
+                for our response. If it's urgent, please call us at 9448734152.
               </p>
             )}
           </form>

@@ -21,7 +21,6 @@ const Details = () => {
     <li>Smoking is strictly prohibited inside the rooms.</li>
     <li>Alcohol consumption is not allowed on the premises.</li>
     <li>Guests must carry a valid ID proof at the time of check-in.</li>
-    <li>.</li>
      </ul>
       </div>
     </div>

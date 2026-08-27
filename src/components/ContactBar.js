@@ -7,12 +7,16 @@ const ContactBar = () => {
   return (
     <div className="contact-bar">
       <div className="contact-item">
-        <FaPhoneAlt className="contact-icon" />
-        <span className="contact-text">9448734152</span>
+        <a href="tel:9448734152" className="contact-link">
+          <FaPhoneAlt className="contact-icon" />
+          <span className="contact-text">9448734152</span>
+        </a>
       </div>
       <div className="contact-item">
-        <FaWhatsapp className="contact-icon" />
-        <span className="contact-text">9448734152</span>
+        <a href="https://wa.me/9448734152" className="contact-link" target="_blank" rel="noopener noreferrer">
+          <FaWhatsapp className="contact-icon" />
+          <span className="contact-text">9448734152</span>
+        </a>
       </div>
     </div>
   );

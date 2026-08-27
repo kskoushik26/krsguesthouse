@@ -1,74 +1,94 @@
+/* General container styling */
 .instruction-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+/* Header styling */
+.instruction-container h2 {
   text-align: center;
+  color: #007373;
+  font-size: 32px;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #3498db;
+  display: inline-block;
+  padding-bottom: 8px;
+  font-weight: 700;
 }
 
-h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
+/* Section styling */
 .instruction-section {
-  background: white;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
-h3 {
-  color: #444;
-  font-size: 20px;
-  margin-bottom: 10px;
+.instruction-section h3 {
+  color: #3498db;
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-p,
-li {
-  font-size: 16px;
+/* Text styling */
+.timing-text {
+  font-size: 18px;
+  color: #34495e;
+  margin: 8px 0;
   line-height: 1.6;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background: white;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
 .instruction-text {
-  color: red;
+  font-size: 18px;
+  color: #34495e;
+  line-height: 1.6;
 }
 
-.timing-text {
-  color: black;
+/* List styling */
+ul {
+  list-style-type: disc;
+  padding-left: 25px;
 }
 
+ul li {
+  margin: 12px 0;
+  font-size: 18px;
+  color: #007373;
+  line-height: 1.8;
+}
+
+ul li b {
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* Add hover effect for list items */
+ul li:hover {
+  color: #3498db;
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
   .instruction-container {
-    max-width: 90%;
-    padding: 15px;
+    padding: 20px;
   }
 
-  h2 {
+  .instruction-container h2 {
+    font-size: 28px;
+  }
+
+  .instruction-section h3 {
     font-size: 22px;
   }
 
-  h3 {
-    font-size: 18px;
-  }
-
-  p,
-  li {
-    font-size: 14px;
+  ul li {
+    font-size: 16px;
   }
 }

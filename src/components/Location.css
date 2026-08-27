@@ -1,90 +1,110 @@
 .location {
-  padding: 20px;
+  padding: 2rem;
   background-color: #f9f9f9;
+  color: #333;
+  font-family: "Arial", sans-serif;
 }
 
 .location h2 {
-  color: #2980b9;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
   text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #007373;
+  font-weight: bold;
 }
 
 .location-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: stretch;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
-.map-container,
-.review-section {
-  flex: 1 1 45%;
-  min-width: 300px;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.map-container iframe {
+.map-container {
+  border: 2px solid #007373;
   border-radius: 10px;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  font-style: italic;
 }
 
 .review-section {
-  background-color: #fff;
-  padding: 20px;
+  background: #fff;
+  padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .review-section h3 {
-  color: #2980b9;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #007373;
+  font-weight: bold;
+  text-align: center;
 }
 
 .review {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .review-name {
   font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 
 .review-text {
-  margin: 5px 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
   color: #555;
+  line-height: 1.5;
 }
 
 .review-rating {
-  color: #f39c12;
+  color: #ffc107;
   font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
-.loading-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Mobile responsiveness */
+/* Add responsiveness for smaller screens */
 @media (max-width: 768px) {
   .location-grid {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  .map-container,
+  .map-container {
+    height: 300px;
+  }
+
   .review-section {
-    height: auto;
+    padding: 1.5rem;
+  }
+
+  .review {
+    padding: 1rem;
   }
 }

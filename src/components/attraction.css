@@ -3,52 +3,58 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
-  padding: 20px;
-  background: linear-gradient(135deg, #f3f4f7, #e1e9f1);
+  gap: 24px; /* Slightly increased gap for better spacing */
+  padding: 30px; /* Increased padding for a more spacious layout */
+  background: linear-gradient(135deg, #eef2f7, #d9e4f5); /* Softer gradient */
   font-family: 'Arial', sans-serif;
 }
 
 .attraction-card {
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Slightly larger border radius for a smoother look */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
   overflow: hidden;
-  width: 300px;
+  width: 320px; /* Slightly wider cards */
   display: flex;
   flex-direction: column;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .attraction-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Slightly stronger hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
 
 .attraction-image {
   width: 100%;
-  height: 200px;
+  height: 220px; /* Slightly taller image for better visuals */
   object-fit: cover;
+  border-bottom: 2px solid #f0f0f0; /* Added a subtle border for separation */
 }
 
 .attraction-info {
-  padding: 15px;
+  padding: 20px; /* Increased padding for better spacing */
 }
 
 .attraction-title {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 10px;
+  font-size: 1.6rem; /* Slightly larger title font */
+  color: #2c3e50; /* Darker, more modern color */
+  margin-bottom: 12px;
+  font-weight: bold; /* Added bold for emphasis */
 }
 
 .attraction-description {
   font-size: 1rem;
-  color: #555;
-  margin-bottom: 10px;
+  color: #7f8c8d; /* Softer gray for better readability */
+  margin-bottom: 15px; /* Increased margin for better spacing */
+  line-height: 1.5; /* Improved readability with line height */
 }
 
 .attraction-distance {
   font-size: 0.9rem;
-  color: #777;
+  color: #95a5a6; /* Softer gray for less emphasis */
   font-weight: bold;
+  text-transform: uppercase; /* Added uppercase for a modern look */
+  letter-spacing: 0.5px; /* Slight letter spacing for better readability */
 }

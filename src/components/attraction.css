@@ -1,60 +1,726 @@
-.attraction-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 24px; /* Slightly increased gap for better spacing */
-  padding: 30px; /* Increased padding for a more spacious layout */
-  background: linear-gradient(135deg, #eef2f7, #d9e4f5); /* Softer gradient */
-  font-family: 'Arial', sans-serif;
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  box-sizing: border-box;
 }
 
-.attraction-card {
-  background-color: #ffffff;
-  border-radius: 12px; /* Slightly larger border radius for a smoother look */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+.attractions-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8f6f1;
+  color: #26352d;
+  font-family:
+    "Noto Sans Kannada",
+    "Tunga",
+    "Nirmala UI",
+    Arial,
+    sans-serif;
   overflow: hidden;
-  width: 320px; /* Slightly wider cards */
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.attractions-hero {
+  position: relative;
+  min-height: 470px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 52, 38, 0.92),
+      rgba(26, 76, 51, 0.72)
+    ),
+    url("https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752042705/kodachadri_gqgvgc.avif")
+      center / cover no-repeat;
+
+  isolation: isolate;
+}
+
+.attractions-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 211, 104, 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 255, 255, 0.08),
+      transparent 35%
+    );
+
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(900px, 90%);
+  color: white;
+
+  animation: heroFade 1s ease forwards;
+}
+
+.hero-small-title {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  color: #f4cf72;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero-content h1 {
+  margin: 0;
+
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.15;
+  font-weight: 800;
+
+  text-shadow:
+    0 3px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+  max-width: 650px;
+  margin: 25px auto 0;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.9;
+}
+
+.hero-line {
+  width: 80px;
+  height: 3px;
+
+  margin: 28px auto 0;
+
+  background: #f4cf72;
+  border-radius: 10px;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.attractions-intro {
+  width: min(850px, 90%);
+  margin: 0 auto;
+
+  padding: 85px 0 55px;
+
+  text-align: center;
+}
+
+.section-label {
+  color: #a77924;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.attractions-intro h2 {
+  margin: 12px 0 18px;
+
+  color: #1e382b;
+
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.35;
+}
+
+.attractions-intro h2 span {
+  color: #a77924;
+}
+
+.attractions-intro p {
+  margin: 0 auto;
+
+  max-width: 700px;
+
+  color: #69736d;
+
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.attractions-grid {
+  width: min(1250px, 92%);
+  margin: 0 auto;
+
+  padding: 20px 0 100px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.attraction-card {
+  position: relative;
+
+  background: #ffffff;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(38, 53, 45, 0.07);
+
+  box-shadow:
+    0 12px 35px rgba(35, 55, 44, 0.08);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .attraction-card:hover {
-  transform: scale(1.08); /* Slightly stronger hover effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 25px 55px rgba(35, 55, 44, 0.16);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.image-wrapper {
+  position: relative;
+
+  height: 255px;
+
+  overflow: hidden;
+
+  background: #dfe5df;
 }
 
 .attraction-image {
   width: 100%;
-  height: 220px; /* Slightly taller image for better visuals */
+  height: 100%;
+
+  display: block;
+
   object-fit: cover;
-  border-bottom: 2px solid #f0f0f0; /* Added a subtle border for separation */
+
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+.attraction-card:hover .attraction-image {
+  transform: scale(1.08);
+}
+
+.image-gradient {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08),
+      transparent 45%,
+      rgba(0, 0, 0, 0.45)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   NUMBER
+========================================= */
+
+.attraction-number {
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #244734;
+
+  font-size: 0.85rem;
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   DISTANCE BADGE
+========================================= */
+
+.distance-badge {
+  position: absolute;
+
+  right: 16px;
+  bottom: 16px;
+
+  padding: 8px 13px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  color: #2f543d;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.15);
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
 
 .attraction-info {
-  padding: 20px; /* Increased padding for better spacing */
+  padding: 26px 25px 22px;
 }
 
-.attraction-title {
-  font-size: 1.6rem; /* Slightly larger title font */
-  color: #2c3e50; /* Darker, more modern color */
-  margin-bottom: 12px;
-  font-weight: bold; /* Added bold for emphasis */
+.attraction-info h3 {
+  margin: 0;
+
+  color: #20392c;
+
+  font-size: 1.35rem;
+  line-height: 1.55;
+  font-weight: 800;
 }
 
-.attraction-description {
-  font-size: 1rem;
-  color: #7f8c8d; /* Softer gray for better readability */
-  margin-bottom: 15px; /* Increased margin for better spacing */
-  line-height: 1.5; /* Improved readability with line height */
+.title-line {
+  width: 45px;
+  height: 3px;
+
+  margin: 13px 0 15px;
+
+  background: #c89a3d;
+
+  border-radius: 10px;
+
+  transition: width 0.3s ease;
 }
 
-.attraction-distance {
-  font-size: 0.9rem;
-  color: #95a5a6; /* Softer gray for less emphasis */
-  font-weight: bold;
-  text-transform: uppercase; /* Added uppercase for a modern look */
-  letter-spacing: 0.5px; /* Slight letter spacing for better readability */
+.attraction-card:hover .title-line {
+  width: 75px;
+}
+
+.attraction-info p {
+  margin: 0;
+
+  color: #68746d;
+
+  font-size: 0.95rem;
+  line-height: 1.85;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 23px;
+  padding-top: 17px;
+
+  border-top: 1px solid #edf0ec;
+
+  color: #9a7440;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  letter-spacing: 0.6px;
+}
+
+.explore-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #edf4ee;
+
+  color: #2d573e;
+
+  font-size: 1.1rem;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.attraction-card:hover .explore-arrow {
+  background: #2d573e;
+  color: white;
+
+  transform: translateX(4px);
+}
+
+
+/* =========================================
+   BOTTOM SECTION
+========================================= */
+
+.attractions-bottom {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: min(1250px, 92%);
+
+  margin: 0 auto 60px;
+
+  padding: 45px 55px;
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      120deg,
+      #173c29,
+      #28563c
+    );
+
+  box-shadow:
+    0 20px 50px rgba(23, 60, 41, 0.18);
+}
+
+.attractions-bottom::after {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  right: -80px;
+  top: -100px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.attractions-bottom span {
+  color: #e4c16b;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.attractions-bottom h2 {
+  margin: 10px 0 0;
+
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+.bottom-decoration {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 80px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  border-radius: 50%;
+
+  color: #e4c16b;
+
+  font-size: 2rem;
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+  .attractions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .attractions-hero {
+    min-height: 430px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .attractions-page {
+    width: 100%;
+  }
+
+  .attractions-hero {
+    min-height: 420px;
+
+    padding: 50px 20px;
+
+    background-position: center;
+  }
+
+  .hero-small-title {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.65rem;
+  }
+
+  .hero-content p {
+    margin-top: 18px;
+
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .hero-line {
+    margin-top: 22px;
+  }
+
+
+  /* Intro */
+
+  .attractions-intro {
+    width: 88%;
+
+    padding: 55px 0 35px;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+  }
+
+  .attractions-intro h2 {
+    font-size: 1.9rem;
+  }
+
+  .attractions-intro p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+
+  /* Grid */
+
+  .attractions-grid {
+    width: 90%;
+
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+
+    padding-bottom: 65px;
+  }
+
+
+  /* Cards */
+
+  .attraction-card {
+    border-radius: 18px;
+  }
+
+  .image-wrapper {
+    height: 235px;
+  }
+
+  .attraction-info {
+    padding: 22px 20px 19px;
+  }
+
+  .attraction-info h3 {
+    font-size: 1.22rem;
+  }
+
+  .attraction-info p {
+    font-size: 0.91rem;
+    line-height: 1.8;
+
+    -webkit-line-clamp: 6;
+  }
+
+  .card-footer {
+    margin-top: 18px;
+  }
+
+
+  /* Bottom */
+
+  .attractions-bottom {
+    width: 90%;
+
+    margin-bottom: 30px;
+
+    padding: 32px 25px;
+
+    border-radius: 20px;
+  }
+
+  .attractions-bottom h2 {
+    font-size: 1.4rem;
+
+    line-height: 1.5;
+  }
+
+  .bottom-decoration {
+    width: 55px;
+    height: 55px;
+
+    font-size: 1.4rem;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+  .attractions-hero {
+    min-height: 390px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-content p {
+    font-size: 0.88rem;
+  }
+
+  .image-wrapper {
+    height: 215px;
+  }
+
+  .attraction-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .attraction-info p {
+    font-size: 0.87rem;
+  }
+
+  .distance-badge {
+    font-size: 0.7rem;
+  }
+
+  .attractions-bottom {
+    padding: 28px 20px;
+  }
+
+  .bottom-decoration {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

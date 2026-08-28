@@ -1,46 +1,475 @@
-/* General styling for gallery */
+/* ================================
+   GALLERY
+================================ */
+
 .gallery {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #f9f9f9;
-  /* Light background */
+  position: relative;
+  padding: 100px 6%;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 190, 120, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(120, 140, 255, 0.10), transparent 30%),
+    #faf9f7;
+  overflow: hidden;
 }
 
-.image-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  /* Responsive grid */
-  gap: 20px;
-  justify-items: center;
+
+/* ================================
+   HEADER
+================================ */
+
+.gallery-header {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
 }
+
+.gallery-subtitle {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #b4844c;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.gallery-header h2 {
+  margin: 0;
+  color: #1d1d1d;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.gallery-header h2 span {
+  color: #b4844c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.gallery-header p {
+  max-width: 560px;
+  margin: 20px auto 0;
+  color: #777;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+
+/* ================================
+   MASONRY GRID
+================================ */
+
+.image-container {
+  max-width: 1400px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 250px;
+  gap: 18px;
+}
+
+
+/* ================================
+   IMAGE CARD
+================================ */
+
+.gallery-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  background: #ddd;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.45s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.45s ease;
+}
+
+
+/* Different sizes create the premium masonry effect */
+
+.card-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card-2 {
+  grid-row: span 1;
+}
+
+.card-3 {
+  grid-row: span 2;
+}
+
+.card-4 {
+  grid-row: span 1;
+}
+
+.card-5 {
+  grid-column: span 2;
+}
+
+.card-6 {
+  grid-row: span 2;
+}
+
+.card-7 {
+  grid-row: span 1;
+}
+
+.card-8 {
+  grid-row: span 1;
+}
+
+
+/* ================================
+   IMAGE
+================================ */
 
 .gallery-image {
   width: 100%;
-  height: 250px;
-  /* Ensures uniform height */
+  height: 100%;
+
+  display: block;
+
   object-fit: cover;
-  /* Maintains aspect ratio and fills container */
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  transition:
+    transform 0.8s cubic-bezier(.2,.8,.2,1),
+    filter 0.5s ease;
 }
 
-.gallery-image:hover {
-  transform: scale(1.05);
-  /* Zoom effect on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  /* Enhanced shadow on hover */
+
+/* ================================
+   HOVER
+================================ */
+
+.gallery-card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.05) 60%,
+      transparent
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
 }
 
-/* Optional - Adjust spacing for smaller screens */
-@media (max-width: 600px) {
+.gallery-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.18);
+}
+
+.gallery-card:hover::after {
+  opacity: 1;
+}
+
+.gallery-card:hover .gallery-image {
+  transform: scale(1.08);
+  filter: brightness(0.82);
+}
+
+
+/* ================================
+   OVERLAY CONTENT
+================================ */
+
+.image-overlay {
+  position: absolute;
+  z-index: 2;
+
+  left: 25px;
+  right: 25px;
+  bottom: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.gallery-card:hover .image-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image-overlay span {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.view-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+
+  font-size: 20px;
+
+  backdrop-filter: blur(8px);
+
+  background: rgba(255,255,255,0.12);
+}
+
+
+/* ================================
+   LIGHTBOX
+================================ */
+
+.lightbox {
+  position: fixed;
+  z-index: 9999;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background: rgba(10, 10, 10, 0.94);
+
+  backdrop-filter: blur(12px);
+
+  animation: fadeIn 0.25s ease;
+}
+
+.lightbox-image {
+  max-width: 92vw;
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.5);
+
+  animation: zoomIn 0.3s ease;
+}
+
+.close-button {
+  position: absolute;
+
+  top: 25px;
+  right: 30px;
+
+  width: 50px;
+  height: 50px;
+
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.08);
+
+  color: white;
+
+  font-size: 32px;
+  font-weight: 200;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: rotate(90deg);
+}
+
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1000px) {
+
   .gallery {
-    padding: 20px 10px;
+    padding: 80px 4%;
+  }
+
+  .image-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 260px;
+  }
+
+  .card-1 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .card-3 {
+    grid-row: span 1;
+  }
+
+  .card-5 {
+    grid-column: span 2;
+  }
+
+  .card-6 {
+    grid-row: span 1;
+  }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+  .gallery {
+    padding: 65px 18px;
+  }
+
+  .gallery-header {
+    margin-bottom: 35px;
+  }
+
+  .gallery-header h2 {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+
+  .gallery-header p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .image-container {
     grid-template-columns: 1fr;
-    /* Single column on smaller devices */
+    grid-auto-rows: 260px;
+    gap: 14px;
+  }
+
+  .card-1,
+  .card-2,
+  .card-3,
+  .card-4,
+  .card-5,
+  .card-6,
+  .card-7,
+  .card-8 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .card-1,
+  .card-5 {
+    grid-row: span 2;
+  }
+
+  .gallery-card {
+    border-radius: 16px;
+  }
+
+  /* Show a subtle overlay on mobile */
+  .image-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gallery-card::after {
+    opacity: 0.7;
+  }
+
+  .lightbox {
+    padding: 15px;
+  }
+
+  .lightbox-image {
+    max-width: 96vw;
+    max-height: 85vh;
+  }
+
+  .close-button {
+    top: 15px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    font-size: 27px;
+  }
+}
+
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-card,
+  .gallery-image,
+  .image-overlay,
+  .lightbox,
+  .lightbox-image {
+    transition: none;
+    animation: none;
   }
 }

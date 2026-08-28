@@ -1,6 +1,5 @@
-// src/components/ContactBar.js
 import React from 'react';
-import { FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaPhoneAlt } from 'react-icons/fa';
 import './ContactBar.css';
 
 const ContactBar = () => {
@@ -9,13 +8,18 @@ const ContactBar = () => {
       <div className="contact-item">
         <a href="tel:9448734152" className="contact-link">
           <FaPhoneAlt className="contact-icon" />
-          <span className="contact-text">9448734152</span>
+          <span className="contact-text">
+            Booking number (10am to 8pm): 9448734152
+          </span>
         </a>
       </div>
+
       <div className="contact-item">
-        <a href="https://wa.me/9448734152" className="contact-link" target="_blank" rel="noopener noreferrer">
-          <FaWhatsapp className="contact-icon" />
-          <span className="contact-text">9448734152</span>
+        <a href="tel:8431813492" className="contact-link">
+          <FaPhoneAlt className="contact-icon" />
+          <span className="contact-text">
+            Night Contact (10pm to 8am): 8431813492
+          </span>
         </a>
       </div>
     </div>

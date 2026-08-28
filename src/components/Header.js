@@ -4,71 +4,159 @@ import "./Header.css";
 
 const Header = () => {
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLinkClick = useCallback((link) => {
-    setActiveLink(link);
-    setIsMenuOpen(false); // Close the menu after clicking a link
-  }, []);
-
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-
-  // Memoize navItems to prevent re-creation on every render
   const navItems = useMemo(
     () => [
-      { path: "/", label: "Home", id: "home" },
-      { path: "/location", label: "Map", id: "location" },
-      { path: "/contact", label: "Reservation", id: "contact" },
-      { path: "/attraction", label: "Attraction", id: "attraction" },
-      { path: "/gallery", label: "Gallery", id: "gallery" },
-      { path: "/details", label: "Guest Policies", id: "details" },
+      { path: "/", label: "Home", id: "home", icon: "⌂" },
+      { path: "/location", label: "Rooms", id: "location", icon: "▣" },
+      { path: "/contact", label: "Book Now", id: "contact", icon: "✦" },
+      { path: "/attraction", label: "Attraction", id: "attraction", icon: "♧" },
+      { path: "/gallery", label: "Gallery", id: "gallery", icon: "▧" },
+      { path: "/details", label: "Guest Policies", id: "details", icon: "✓" },
     ],
     []
   );
 
-  // Sync activeLink with the current URL on page load or URL change
-  useEffect(() => {
-    const currentNavItem = navItems.find((item) => item.path === location.pathname);
-    if (currentNavItem) {
-      setActiveLink(currentNavItem.id);
-    }
+  const activeLink = useMemo(() => {
+    const current = navItems.find(
+      (item) => item.path === location.pathname
+    );
+
+    return current?.id || "home";
   }, [location.pathname, navItems]);
 
+  const handleLinkClick = useCallback(() => {
+    setIsMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  // Close menu when browser width changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 850) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <header className="header">
-      <div className="header-content">
-        <div className="logo-title">
-          <img
-            src="https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752042707/krs_gelrwv.webp"
-            alt="KRS Logo"
-            className="krs-logo"
-          />
-          <div className="title-container">
-            <h1 className="header-title">K R S GUEST HOUSE</h1>
-            <p className="header-subtitle">Near Siganduru Chowdeshwari Temple</p>
+    <>
+      <header className="site-header">
+        <div className="header-inner">
+
+          {/* Logo + Hotel Information */}
+          <Link to="/" className="brand" onClick={handleLinkClick}>
+            <div className="logo-wrapper">
+              <img
+                src="https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752042707/krs_gelrwv.webp"
+                alt="KRS Guest House Logo"
+                className="krs-logo"
+              />
+            </div>
+
+            <div className="brand-text">
+              <h1>K R S <span>GUEST HOUSE</span></h1>
+              <div className="brand-location">
+                <span className="location-dot">●</span>
+                Near Siganduru Chowdeshwari Temple
+              </div>
+            </div>
+          </Link>
+
+          {/* Desktop Quick Info */}
+          <div className="header-info">
+            <div className="info-item">
+              <span className="info-icon">✦</span>
+              <div>
+                <small>WELCOME</small>
+                <strong>Feel at Home</strong>
+              </div>
+            </div>
+
+            <Link
+              to="/contact"
+              className="header-book-btn"
+              onClick={handleLinkClick}
+            >
+              <span>Book Your Stay</span>
+              <span className="arrow">→</span>
+            </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className={`menu-toggle ${isMenuOpen ? "active" : ""}`}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <button className="menu-toggle" onClick={toggleMenu}>
-          ☰
-        </button>
-      </div>
-      <nav className={`nav-bar ${isMenuOpen ? "open" : ""}`}>
-        <ul>
-          {navItems.map(({ path, label, id }) => (
-            <li key={id}>
-              <Link
-                to={path}
-                onClick={() => handleLinkClick(id)}
-                className={activeLink === id ? "active" : ""}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+
+        {/* Navigation */}
+        <nav className={`nav-bar ${isMenuOpen ? "open" : ""}`}>
+          <div className="nav-inner">
+            <ul>
+              {navItems.map(({ path, label, id, icon }) => (
+                <li key={id}>
+                  <Link
+                    to={path}
+                    onClick={handleLinkClick}
+                    className={activeLink === id ? "active" : ""}
+                  >
+                    <span className="nav-icon">{icon}</span>
+                    <span>{label}</span>
+
+                    {activeLink === id && (
+                      <span className="active-line"></span>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Mobile booking button */}
+            <Link
+              to="/contact"
+              className="mobile-book-btn"
+              onClick={handleLinkClick}
+            >
+              <span>Reserve Your Room</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile menu overlay */}
+      {isMenuOpen && (
+        <div
+          className="menu-overlay"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+    </>
   );
 };
 

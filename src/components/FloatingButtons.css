@@ -1,52 +1,385 @@
-.floating-buttons {
-  position: fixed;
-  bottom: 20px;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-  transition: opacity 0.5s ease, transform 0.3s ease;
-}
+/* =========================================
+   FLOATING CONTACT BUTTONS
+   ========================================= */
 
-.fab {
-  width: 50px;
-  height: 50px;
-  background-color: #25d366;
-  /* WhatsApp green */
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-  font-size: 24px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.fab.email {
-  background-color: #007373;
-  /* Blue for email */
-}
-
-.fab.call {
-  background-color: #34af23;
-  /* Green for call */
-}
-
-.fab:hover {
-  transform: scale(1.1);
-}
-
-/* Hide buttons when scrolling down */
-.hidden {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Show buttons when scrolling up */
-.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+   .floating-buttons {
+    position: fixed;
+    right: 22px;
+    bottom: 28px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 13px;
+  
+    z-index: 9999;
+  
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  /* =========================================
+     BUTTON
+     ========================================= */
+  
+  .fab {
+    position: relative;
+  
+    width: 56px;
+    height: 56px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  
+    padding: 0;
+  
+    border-radius: 50px;
+  
+    color: #ffffff;
+    text-decoration: none;
+  
+    overflow: hidden;
+  
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.15),
+      0 3px 8px rgba(0, 0, 0, 0.08);
+  
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  
+    transition:
+      width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  
+  /* =========================================
+     ICON
+     ========================================= */
+  
+  .fab-icon {
+    min-width: 56px;
+    width: 56px;
+    height: 56px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 23px;
+  
+    position: relative;
+    z-index: 2;
+  }
+  
+  .fab-icon svg {
+    transition: transform 0.35s ease;
+  }
+  
+  /* =========================================
+     LABEL
+     ========================================= */
+  
+  .fab-label {
+    position: absolute;
+    left: 55px;
+  
+    white-space: nowrap;
+  
+    font-family:
+      Inter,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+  
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  
+    opacity: 0;
+  
+    transform: translateX(10px);
+  
+    transition:
+      opacity 0.25s ease,
+      transform 0.3s ease;
+  }
+  
+  /* =========================================
+     HOVER
+     ========================================= */
+  
+  .fab:hover {
+    width: 145px;
+  
+    transform: translateY(-3px);
+  
+    box-shadow:
+      0 14px 30px rgba(0, 0, 0, 0.2),
+      0 5px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fab:hover .fab-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .fab:hover .fab-icon svg {
+    transform: scale(1.12) rotate(-5deg);
+  }
+  
+  /* =========================================
+     WHATSAPP
+     ========================================= */
+  
+  .fab.whatsapp {
+    background:
+      linear-gradient(
+        135deg,
+        #25d366 0%,
+        #16b957 100%
+      );
+  }
+  
+  .fab.whatsapp:hover {
+    box-shadow:
+      0 14px 30px rgba(37, 211, 102, 0.35),
+      0 5px 12px rgba(37, 211, 102, 0.2);
+  }
+  
+  /* =========================================
+     EMAIL
+     ========================================= */
+  
+  .fab.email {
+    background:
+      linear-gradient(
+        135deg,
+        #008f8f 0%,
+        #006b6b 100%
+      );
+  }
+  
+  .fab.email:hover {
+    box-shadow:
+      0 14px 30px rgba(0, 115, 115, 0.35),
+      0 5px 12px rgba(0, 115, 115, 0.2);
+  }
+  
+  /* =========================================
+     CALL
+     ========================================= */
+  
+  .fab.call {
+    background:
+      linear-gradient(
+        135deg,
+        #43c833 0%,
+        #259f22 100%
+      );
+  }
+  
+  .fab.call:hover {
+    box-shadow:
+      0 14px 30px rgba(52, 175, 35, 0.35),
+      0 5px 12px rgba(52, 175, 35, 0.2);
+  }
+  
+  /* =========================================
+     SMALL SHINE EFFECT
+     ========================================= */
+  
+  .fab::before {
+    content: "";
+  
+    position: absolute;
+    top: 0;
+    left: -120%;
+  
+    width: 70%;
+    height: 100%;
+  
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+  
+    transform: skewX(-20deg);
+  
+    transition: left 0.6s ease;
+  }
+  
+  .fab:hover::before {
+    left: 130%;
+  }
+  
+  /* =========================================
+     SCROLL INDICATOR
+     ========================================= */
+  
+  .scroll-indicator {
+    width: 34px;
+    height: 34px;
+  
+    margin-top: 3px;
+    margin-right: 11px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    color: #777;
+  
+    font-size: 11px;
+  
+    background: rgba(255, 255, 255, 0.9);
+  
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  
+    border-radius: 50%;
+  
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.1);
+  
+    animation: floatingArrow 2s ease-in-out infinite;
+  }
+  
+  @keyframes floatingArrow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+  
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+  
+  /* =========================================
+     HIDE / SHOW
+     ========================================= */
+  
+  .floating-buttons.hidden {
+    opacity: 0;
+  
+    transform: translateY(35px);
+  
+    pointer-events: none;
+  }
+  
+  .floating-buttons.visible {
+    opacity: 1;
+  
+    transform: translateY(0);
+  
+    pointer-events: auto;
+  }
+  
+  /* =========================================
+     PULSE EFFECT
+     ========================================= */
+  
+  .fab.whatsapp .fab-icon::after {
+    content: "";
+  
+    position: absolute;
+  
+    width: 100%;
+    height: 100%;
+  
+    border-radius: 50%;
+  
+    border: 1px solid rgba(37, 211, 102, 0.5);
+  
+    animation: whatsappPulse 2.2s infinite;
+  
+    pointer-events: none;
+  }
+  
+  @keyframes whatsappPulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.8;
+    }
+  
+    70% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  }
+  
+  /* =========================================
+     MOBILE
+     ========================================= */
+  
+  @media (max-width: 600px) {
+    .floating-buttons {
+      right: 14px;
+      bottom: 18px;
+      gap: 10px;
+    }
+  
+    .fab {
+      width: 52px;
+      height: 52px;
+    }
+  
+    .fab-icon {
+      min-width: 52px;
+      width: 52px;
+      height: 52px;
+  
+      font-size: 21px;
+    }
+  
+    /*
+      Don't expand on mobile.
+      Labels are hidden because touch devices
+      don't have hover.
+    */
+  
+    .fab:hover {
+      width: 52px;
+      transform: translateY(-2px);
+    }
+  
+    .fab-label {
+      display: none;
+    }
+  
+    .scroll-indicator {
+      width: 30px;
+      height: 30px;
+      margin-right: 11px;
+    }
+  }
+  
+  /* =========================================
+     ACCESSIBILITY
+     ========================================= */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .floating-buttons,
+    .fab,
+    .fab-icon svg,
+    .fab-label,
+    .fab::before {
+      transition: none;
+    }
+  
+    .scroll-indicator,
+    .fab.whatsapp .fab-icon::after {
+      animation: none;
+    }
+  }
+  

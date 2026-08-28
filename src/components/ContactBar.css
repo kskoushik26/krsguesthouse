@@ -1,38 +1,298 @@
-/* src/components/ContactBar.css */
+/* =========================================
+   CONTACT BAR
+   ========================================= */
 
-.contact-bar {
-  background-color: antiquewhite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0;
-  gap: 30px;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center; /* Ensures the icon and text are vertically aligned */
-  gap: 8px; /* Adds spacing between the icon and the text */
-}
-
-.contact-icon {
-  color: darkgreen;
-  font-size: 18px;
-}
-
-.contact-text {
-  color: #000;
-  font-weight: 600;
-  font-size: 16px; /* Ensures the text size matches the icon size */
-}
-
-.contact-link {
-  text-decoration: none; /* Removes underline */
-  color: inherit; /* Ensures the text color matches the parent element */
-  display: flex; /* Ensures the link behaves as a flex container */
-  align-items: center; /* Aligns the icon and text vertically */
-}
-
-.contact-link:hover {
-  text-decoration: none; /* Ensures no underline on hover */
-}
+   .contact-bar {
+    all: initial;
+  
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+  
+    width: 100% !important;
+    box-sizing: border-box !important;
+  
+    background: antiquewhite !important;
+  
+    padding: 10px 10px !important;
+    margin: 0 !important;
+  
+    gap: 35px !important;
+  
+    font-family: Arial, sans-serif !important;
+  }
+  
+  
+  /* =========================================
+     CONTACT ITEM
+     ========================================= */
+  
+  .contact-bar .contact-item {
+    all: initial;
+  
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  
+    box-sizing: border-box !important;
+  
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  
+  /* =========================================
+     CONTACT LINK
+     ========================================= */
+  
+  .contact-bar .contact-link {
+    all: initial;
+  
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  
+    box-sizing: border-box !important;
+  
+    margin: 0 !important;
+    padding: 0 !important;
+  
+    gap: 6px !important;
+  
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  
+    cursor: pointer;
+  }
+  
+  
+  /* =========================================
+     PHONE ICON
+     ========================================= */
+  
+  .contact-bar .contact-icon {
+    color: darkgreen !important;
+  
+    width: 14px !important;
+    height: 14px !important;
+  
+    min-width: 14px !important;
+    min-height: 14px !important;
+  
+    max-width: 14px !important;
+    max-height: 14px !important;
+  
+    font-size: 14px !important;
+  
+    flex-shrink: 0 !important;
+  }
+  
+  
+  /* =========================================
+     CONTACT TEXT
+     ========================================= */
+  
+  .contact-bar .contact-text {
+    all: initial;
+  
+    display: inline !important;
+  
+    color: #222 !important;
+  
+    font-family: Arial, sans-serif !important;
+  
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  
+    line-height: 14px !important;
+  
+    margin: 0 !important;
+    padding: 0 !important;
+  
+    white-space: nowrap !important;
+  }
+  
+  
+  /* =========================================
+     HOVER
+     ========================================= */
+  
+  .contact-bar .contact-link:hover .contact-text {
+    color: darkgreen !important;
+  }
+  
+  .contact-bar .contact-link:hover .contact-icon {
+    color: #14532d !important;
+  }
+  
+  
+  /* =========================================
+     TABLET
+     ========================================= */
+  
+  @media (max-width: 768px) {
+  
+    .contact-bar {
+      padding: 4px 8px !important;
+      gap: 20px !important;
+    }
+  
+    .contact-bar .contact-icon {
+      width: 13px !important;
+      height: 13px !important;
+  
+      min-width: 13px !important;
+      min-height: 13px !important;
+  
+      max-width: 13px !important;
+      max-height: 13px !important;
+  
+      font-size: 13px !important;
+    }
+  
+    .contact-bar .contact-text {
+      font-size: 11px !important;
+      line-height: 13px !important;
+    }
+  }
+  
+  
+  /* =========================================
+     MOBILE
+     TWO SMALL LINES
+     ========================================= */
+  
+  @media (max-width: 600px) {
+  
+    .contact-bar {
+      all: initial;
+  
+      display: flex !important;
+      flex-direction: column !important;
+  
+      align-items: center !important;
+      justify-content: center !important;
+  
+      width: 100% !important;
+  
+      box-sizing: border-box !important;
+  
+      background: antiquewhite !important;
+  
+      padding: 4px 5px !important;
+      margin: 0 !important;
+  
+      gap: 1px !important;
+  
+      font-family: Arial, sans-serif !important;
+    }
+  
+  
+    .contact-bar .contact-item {
+      all: initial;
+  
+      display: flex !important;
+  
+      align-items: center !important;
+      justify-content: center !important;
+  
+      width: 100% !important;
+  
+      box-sizing: border-box !important;
+  
+      margin: 0 !important;
+      padding: 6px !important;
+    }
+  
+  
+    .contact-bar .contact-link {
+      all: initial;
+  
+      display: flex !important;
+  
+      align-items: center !important;
+      justify-content: center !important;
+  
+      box-sizing: border-box !important;
+  
+      gap: 4px !important;
+  
+      margin: 0 !important;
+      padding: 0 !important;
+  
+      text-decoration: none !important;
+      white-space: nowrap !important;
+    }
+  
+  
+    .contact-bar .contact-icon {
+      color: darkgreen !important;
+  
+      width: 10px !important;
+      height: 10px !important;
+  
+      min-width: 10px !important;
+      min-height: 10px !important;
+  
+      max-width: 10px !important;
+      max-height: 10px !important;
+  
+      font-size: 10px !important;
+  
+      flex-shrink: 0 !important;
+    }
+  
+  
+    .contact-bar .contact-text {
+      all: initial;
+  
+      display: inline !important;
+  
+      color: #222 !important;
+  
+      font-family: Arial, sans-serif !important;
+  
+      font-size: 9px !important;
+      font-weight: 600 !important;
+  
+      line-height: 11px !important;
+  
+      margin: 0 !important;
+      padding: 0 !important;
+  
+      white-space: nowrap !important;
+    }
+  }
+  
+  
+  /* =========================================
+     VERY SMALL MOBILE
+     ========================================= */
+  
+  @media (max-width: 380px) {
+  
+    .contact-bar {
+      padding: 3px 4px !important;
+      gap: 1px !important;
+    }
+  
+    .contact-bar .contact-icon {
+      width: 9px !important;
+      height: 9px !important;
+  
+      min-width: 9px !important;
+      min-height: 9px !important;
+  
+      max-width: 9px !important;
+      max-height: 9px !important;
+  
+      font-size: 9px !important;
+    }
+  
+    .contact-bar .contact-text {
+      font-size: 14px !important;
+      line-height: 10px !important;
+    }
+  }
+  

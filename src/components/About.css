@@ -1,447 +1,1179 @@
-/* ================================
-   KRS GUEST HOUSE - ABOUT / HERO
-   ================================ */
+/* =========================================================
+   KRS GUEST HOUSE
+   Premium Responsive Hero / Enquiry Section
+   ========================================================= */
 
-   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap");
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
 
-   * {
-     box-sizing: border-box;
-   }
-   
-   .hero {
-     position: relative;
-     min-height: 100vh;
-     width: 100%;
-     padding: 70px 20px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-   
-     background:
-       linear-gradient(
-         135deg,
-         rgba(0, 25, 30, 0.72),
-         rgba(0, 0, 0, 0.45),
-         rgba(0, 55, 60, 0.65)
-       ),
-       url("../../public/bridge.jpeg") center center / cover no-repeat;
-   
-     background-attachment: fixed;
-     color: #fff;
-     overflow: hidden;
-   }
-   
-   /* Soft decorative glow */
-   .hero::before {
-     content: "";
-     position: absolute;
-     width: 450px;
-     height: 450px;
-     top: -180px;
-     right: -150px;
-     background: rgba(255, 196, 92, 0.18);
-     border-radius: 50%;
-     filter: blur(80px);
-     pointer-events: none;
-   }
-   
-   .hero::after {
-     content: "";
-     position: absolute;
-     width: 350px;
-     height: 350px;
-     bottom: -150px;
-     left: -120px;
-     background: rgba(0, 190, 180, 0.18);
-     border-radius: 50%;
-     filter: blur(80px);
-     pointer-events: none;
-   }
-   
-   /* ================================
-      GLASS OVERLAY
-      ================================ */
-   
-   .overlay {
-     position: relative;
-     z-index: 2;
-   
-     width: min(100%, 850px);
-     padding: 45px;
-   
-     background: rgba(10, 25, 27, 0.68);
-     border: 1px solid rgba(255, 255, 255, 0.18);
-     border-radius: 24px;
-   
-     backdrop-filter: blur(16px);
-     -webkit-backdrop-filter: blur(16px);
-   
-     box-shadow:
-       0 25px 70px rgba(0, 0, 0, 0.45),
-       inset 0 1px 0 rgba(255, 255, 255, 0.12);
-   
-     animation: fadeUp 0.8s ease-out;
-   }
-   
-   .content {
-     width: 100%;
-     max-width: 700px;
-     margin: auto;
-     text-align: center;
-   }
-   
-   /* ================================
-      HEADING
-      ================================ */
-   
-   .content h1 {
-     margin: 0 0 18px;
-   
-     font-family: "Playfair Display", serif;
-     font-size: clamp(2.2rem, 5vw, 3.6rem);
-     font-weight: 700;
-     line-height: 1.15;
-   
-     background: linear-gradient(
-       90deg,
-       #ffd166,
-       #ffb347,
-       #ffe7a0
-     );
-   
-     -webkit-background-clip: text;
-     background-clip: text;
-     -webkit-text-fill-color: transparent;
-   
-     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
-   }
-   
-   /* Small decorative line */
-   .content h1::after {
-     content: "";
-     display: block;
-     width: 75px;
-     height: 3px;
-     margin: 18px auto 0;
-   
-     background: linear-gradient(
-       90deg,
-       transparent,
-       #ffd166,
-       transparent
-     );
-   
-     border-radius: 50%;
-   }
-   
-   /* ================================
-      DESCRIPTION
-      ================================ */
-   
-   .content > p {
-     margin: 0 auto;
-     max-width: 650px;
-   
-     font-family: "Poppins", sans-serif;
-     font-size: 1rem;
-     font-weight: 300;
-     line-height: 1.8;
-   
-     color: rgba(255, 255, 255, 0.9);
-   
-     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
-   }
-   
-   /* ================================
-      FORM
-      ================================ */
-   
-   .enquiry-form {
-     width: 100%;
-     margin-top: 32px;
-   
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
-     gap: 16px;
-   
-     text-align: left;
-   }
-   
-   /* Inputs and textarea */
-   .enquiry-form input,
-   .enquiry-form textarea {
-     width: 100%;
-   
-     padding: 15px 17px;
-   
-     font-family: "Poppins", sans-serif;
-     font-size: 0.95rem;
-     color: #fff;
-   
-     background: rgba(255, 255, 255, 0.09);
-   
-     border: 1px solid rgba(255, 255, 255, 0.22);
-     border-radius: 12px;
-   
-     outline: none;
-   
-     transition:
-       border-color 0.25s ease,
-       background 0.25s ease,
-       box-shadow 0.25s ease,
-       transform 0.25s ease;
-   }
-   
-   /* Placeholder */
-   .enquiry-form input::placeholder,
-   .enquiry-form textarea::placeholder {
-     color: rgba(255, 255, 255, 0.62);
-   }
-   
-   /* Focus effect */
-   .enquiry-form input:focus,
-   .enquiry-form textarea:focus {
-     background: rgba(255, 255, 255, 0.14);
-   
-     border-color: #ffd166;
-   
-     box-shadow:
-       0 0 0 3px rgba(255, 209, 102, 0.12),
-       0 8px 25px rgba(0, 0, 0, 0.15);
-   
-     transform: translateY(-2px);
-   }
-   
-   /* Date picker */
-   .enquiry-form input[type="date"] {
-     color-scheme: dark;
-   }
-   
-   /* Number input arrows */
-   .enquiry-form input[type="number"] {
-     appearance: auto;
-   }
-   
-   /* Textarea */
-   .enquiry-form textarea {
-     min-height: 120px;
-     resize: vertical;
-   
-     grid-column: 1 / -1;
-   }
-   
-   /* ================================
-      ERROR MESSAGES
-      ================================ */
-   
-   .error {
-     margin: -8px 4px 0;
-   
-     grid-column: span 1;
-   
-     font-family: "Poppins", sans-serif;
-     font-size: 0.78rem !important;
-     line-height: 1.3 !important;
-   
-     color: #ff9b9b !important;
-   
-     text-shadow: none !important;
-   }
-   
-   /* Make textarea error full width */
-   textarea + .error {
-     grid-column: 1 / -1;
-   }
-   
-   /* ================================
-      SUBMIT BUTTON
-      ================================ */
-   
-   .enquiry-form button {
-     grid-column: 1 / -1;
-   
-     margin-top: 5px;
-     padding: 15px 25px;
-   
-     font-family: "Poppins", sans-serif;
-     font-size: 1rem;
-     font-weight: 600;
-     letter-spacing: 0.3px;
-   
-     color: #132b2b;
-   
-     background: linear-gradient(
-       135deg,
-       #ffd166,
-       #ffb347
-     );
-   
-     border: none;
-     border-radius: 12px;
-   
-     cursor: pointer;
-   
-     box-shadow:
-       0 8px 25px rgba(255, 177, 71, 0.3);
-   
-     transition:
-       transform 0.25s ease,
-       box-shadow 0.25s ease,
-       filter 0.25s ease;
-   }
-   
-   .enquiry-form button:hover {
-     transform: translateY(-3px);
-   
-     filter: brightness(1.08);
-   
-     box-shadow:
-       0 12px 32px rgba(255, 177, 71, 0.45);
-   }
-   
-   .enquiry-form button:active {
-     transform: translateY(-1px);
-   }
-   
-   /* ================================
-      SUCCESS MESSAGE
-      ================================ */
-   
-   .success {
-     grid-column: 1 / -1;
-   
-     margin: 5px 0 0 !important;
-     padding: 14px 18px;
-   
-     font-family: "Poppins", sans-serif;
-     font-size: 0.9rem !important;
-     line-height: 1.6 !important;
-   
-     color: #b8ffd1 !important;
-   
-     background: rgba(40, 167, 69, 0.14);
-   
-     border: 1px solid rgba(40, 167, 69, 0.35);
-     border-radius: 10px;
-   
-     text-shadow: none !important;
-   
-     animation: successAnimation 0.5s ease-out;
-   }
-   
-   /* ================================
-      ANIMATIONS
-      ================================ */
-   
-   @keyframes fadeUp {
-     from {
-       opacity: 0;
-       transform: translateY(30px);
-     }
-   
-     to {
-       opacity: 1;
-       transform: translateY(0);
-     }
-   }
-   
-   @keyframes successAnimation {
-     from {
-       opacity: 0;
-       transform: scale(0.96);
-     }
-   
-     to {
-       opacity: 1;
-       transform: scale(1);
-     }
-   }
-   
-   /* ================================
-      TABLET
-      ================================ */
-   
-   @media (max-width: 700px) {
-     .hero {
-       padding: 40px 15px;
-       background-attachment: scroll;
-     }
-   
-     .overlay {
-       padding: 30px 22px;
-       border-radius: 20px;
-     }
-   
-     .content h1 {
-       font-size: 2.2rem;
-     }
-   
-     .content > p {
-       font-size: 0.92rem;
-       line-height: 1.7;
-     }
-   
-     .enquiry-form {
-       grid-template-columns: 1fr;
-       gap: 13px;
-     }
-   
-     .enquiry-form textarea,
-     .enquiry-form button,
-     .success {
-       grid-column: 1;
-     }
-   
-     .error {
-       grid-column: 1;
-     }
-   }
-   
-   /* ================================
-      MOBILE
-      ================================ */
-   
-   @media (max-width: 450px) {
-     .hero {
-       min-height: 100vh;
-       padding: 25px 12px;
-     }
-   
-     .overlay {
-       padding: 25px 16px;
-       border-radius: 18px;
-     }
-   
-     .content h1 {
-       font-size: 1.9rem;
-     }
-   
-     .content h1::after {
-       width: 55px;
-       margin-top: 14px;
-     }
-   
-     .content > p {
-       font-size: 0.85rem;
-     }
-   
-     .enquiry-form {
-       margin-top: 25px;
-     }
-   
-     .enquiry-form input,
-     .enquiry-form textarea {
-       padding: 13px 14px;
-       font-size: 0.88rem;
-     }
-   
-     .enquiry-form button {
-       padding: 14px;
-       font-size: 0.95rem;
-     }
-   
-     .success {
-       font-size: 0.8rem !important;
-     }
-   }
-   
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", Arial, sans-serif;
+  background: #07191a;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 100svh;
+
+  padding: 70px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(2, 24, 27, 0.84) 0%,
+      rgba(3, 35, 38, 0.62) 45%,
+      rgba(0, 0, 0, 0.70) 100%
+    ),
+    url("../../public/bridge.jpeg") center center / cover no-repeat;
+
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   BACKGROUND DECORATION
+   ========================================================= */
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(255, 205, 102, 0.20),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(0, 193, 183, 0.18),
+      transparent 30%
+    );
+
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.10),
+      rgba(0, 0, 0, 0.28)
+    );
+
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  pointer-events: none;
+
+  opacity: 0.45;
+}
+
+.hero-glow-one {
+  top: -220px;
+  right: -150px;
+
+  background: rgba(255, 190, 80, 0.24);
+}
+
+.hero-glow-two {
+  bottom: -250px;
+  left: -180px;
+
+  background: rgba(0, 185, 180, 0.22);
+}
+
+
+/* =========================================================
+   MAIN GLASS CONTAINER
+   ========================================================= */
+
+.overlay {
+  position: relative;
+  z-index: 5;
+
+  width: min(100%, 920px);
+
+  padding: 52px;
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13, 36, 38, 0.84),
+      rgba(7, 25, 27, 0.70)
+    );
+
+  /*
+    Backdrop blur has broad modern browser support.
+    The background above keeps the design readable
+    even when blur isn't supported.
+  */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.52),
+    0 8px 30px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+
+  animation: fadeUp 0.8s ease both;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+  padding: 7px 15px;
+
+  border: 1px solid rgba(255, 209, 102, 0.25);
+  border-radius: 100px;
+
+  background: rgba(255, 209, 102, 0.07);
+
+  color: #ffd166;
+
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.content h1 {
+  margin: 0;
+
+  font-family: "Playfair Display", Georgia, serif;
+
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+
+  line-height: 1.08;
+  letter-spacing: -1px;
+
+  color: #fff;
+
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.content h1 span {
+  display: block;
+
+  margin-top: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffd166,
+      #ffb347,
+      #ffe7a0,
+      #ffd166
+    );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: goldShimmer 5s linear infinite;
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+.title-line {
+  position: relative;
+
+  width: 110px;
+  height: 1px;
+
+  margin: 22px auto 20px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ffd166,
+    transparent
+  );
+}
+
+.title-line::after {
+  content: "✦";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  padding: 0 10px;
+
+  color: #ffd166;
+
+  font-size: 12px;
+
+  background: rgba(11, 31, 33, 0.95);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description {
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 0.98rem;
+  font-weight: 400;
+
+  line-height: 1.85;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   HIGHLIGHTS
+   ========================================================= */
+
+.highlights {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 22px;
+}
+
+.highlights span {
+  padding: 7px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 0.76rem;
+  font-weight: 500;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.highlights span:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 209, 102, 0.35);
+
+  background: rgba(255, 209, 102, 0.08);
+}
+
+
+/* =========================================================
+   FORM CARD
+   ========================================================= */
+
+.form-card {
+  position: relative;
+
+  margin-top: 30px;
+  padding: 26px;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 15px 45px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   FORM HEADER
+   ========================================================= */
+
+.form-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 22px;
+
+  text-align: left;
+}
+
+.form-icon {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 209, 102, 0.25);
+  border-radius: 12px;
+
+  background: rgba(255, 209, 102, 0.10);
+
+  color: #ffd166;
+
+  font-size: 16px;
+}
+
+.form-heading h2 {
+  margin: 0 0 3px;
+
+  color: #fff;
+
+  font-family: "Playfair Display", Georgia, serif;
+
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.form-heading p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.enquiry-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   FIELD
+   ========================================================= */
+
+.field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0 0 7px 2px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  letter-spacing: 0.2px;
+}
+
+.optional {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.68rem;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.enquiry-form input,
+.enquiry-form textarea {
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 11px;
+
+  outline: none;
+
+  background: rgba(0, 0, 0, 0.16);
+
+  color: #fff;
+
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 0.88rem;
+
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.enquiry-form input {
+  height: 50px;
+
+  padding: 0 15px;
+}
+
+.enquiry-form textarea {
+  min-height: 105px;
+
+  padding: 14px 15px;
+
+  resize: vertical;
+}
+
+.enquiry-form input::placeholder,
+.enquiry-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.enquiry-form input:hover,
+.enquiry-form textarea:hover {
+  border-color: rgba(255, 255, 255, 0.27);
+}
+
+.enquiry-form input:focus,
+.enquiry-form textarea:focus {
+  border-color: rgba(255, 209, 102, 0.75);
+
+  background: rgba(255, 255, 255, 0.075);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 209, 102, 0.09),
+    0 8px 22px rgba(0, 0, 0, 0.12);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DATE INPUT
+   ========================================================= */
+
+.enquiry-form input[type="date"] {
+  color-scheme: dark;
+
+  cursor: pointer;
+}
+
+.enquiry-form input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+
+  opacity: 0.75;
+
+  filter:
+    invert(88%)
+    sepia(35%)
+    saturate(600%)
+    hue-rotate(350deg);
+}
+
+
+/* =========================================================
+   NUMBER INPUT
+   ========================================================= */
+
+.enquiry-form input[type="number"] {
+  appearance: auto;
+  -moz-appearance: textfield;
+}
+
+.enquiry-form input[type="number"]::-webkit-inner-spin-button,
+.enquiry-form input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error {
+  margin: 6px 2px 0;
+
+  color: #ffaaa8;
+
+  font-size: 0.70rem;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   GENERAL FORM ERROR
+   ========================================================= */
+
+.form-error {
+  grid-column: 1 / -1;
+
+  padding: 11px 13px;
+
+  border: 1px solid rgba(255, 100, 100, 0.25);
+  border-radius: 10px;
+
+  background: rgba(255, 80, 80, 0.08);
+
+  color: #ffb0b0;
+
+  font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.submit-button {
+  position: relative;
+
+  grid-column: 1 / -1;
+
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 3px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd166 0%,
+      #ffb347 50%,
+      #f6a53a 100%
+    );
+
+  color: #17302f;
+
+  font-size: 0.91rem;
+  font-weight: 700;
+
+  letter-spacing: 0.15px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 28px rgba(255, 174, 67, 0.23);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 14px 35px rgba(255, 174, 67, 0.35);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-button:focus-visible {
+  outline: 3px solid rgba(255, 209, 102, 0.35);
+  outline-offset: 3px;
+}
+
+.submit-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+.button-arrow {
+  font-size: 1.15rem;
+
+  transition: transform 0.25s ease;
+}
+
+.submit-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   PRIVACY NOTE
+   ========================================================= */
+
+.privacy-note {
+  grid-column: 1 / -1;
+
+  margin: -5px 0 0;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.67rem;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.success {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 15px;
+
+  border: 1px solid rgba(82, 211, 128, 0.25);
+  border-radius: 12px;
+
+  background: rgba(45, 180, 90, 0.09);
+
+  color: #c1ffd5;
+
+  animation: successAnimation 0.45s ease both;
+}
+
+.success-icon {
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(77, 220, 125, 0.15);
+
+  color: #72e99a;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.success strong {
+  color: #d1ffdf;
+
+  font-size: 0.83rem;
+}
+
+.success p {
+  margin: 4px 0 0;
+
+  color: rgba(209, 255, 223, 0.70);
+
+  font-size: 0.73rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   BOTTOM NOTE
+   ========================================================= */
+
+.bottom-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 23px;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.bottom-note span {
+  width: 35px;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.20);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes successAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .hero {
+    padding: 45px 16px;
+
+    background-attachment: scroll;
+  }
+
+  .overlay {
+    padding: 38px 30px;
+
+    border-radius: 25px;
+  }
+
+  .content h1 {
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+  }
+
+  .form-card {
+    padding: 22px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100svh;
+
+    padding: 25px 10px;
+
+    align-items: flex-start;
+
+    background-position: center;
+  }
+
+  .overlay {
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 28px 16px;
+
+    border-radius: 20px;
+
+    /*
+      Less blur on mobile improves performance.
+    */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .content h1 {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+
+    letter-spacing: -0.6px;
+  }
+
+  .eyebrow {
+    margin-bottom: 13px;
+
+    padding: 6px 11px;
+
+    font-size: 0.64rem;
+
+    letter-spacing: 1px;
+  }
+
+  .title-line {
+    width: 75px;
+
+    margin: 18px auto;
+  }
+
+  .description {
+    font-size: 0.82rem;
+
+    line-height: 1.72;
+  }
+
+  .highlights {
+    gap: 6px;
+
+    margin-top: 17px;
+  }
+
+  .highlights span {
+    padding: 6px 9px;
+
+    font-size: 0.63rem;
+  }
+
+  .form-card {
+    margin-top: 23px;
+
+    padding: 18px 14px;
+
+    border-radius: 17px;
+  }
+
+  .form-heading {
+    gap: 10px;
+
+    margin-bottom: 18px;
+  }
+
+  .form-icon {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+  }
+
+  .form-heading h2 {
+    font-size: 1.25rem;
+  }
+
+  .form-heading p {
+    font-size: 0.70rem;
+  }
+
+  .enquiry-form {
+    grid-template-columns: 1fr;
+
+    gap: 13px;
+  }
+
+  .full-width {
+    grid-column: 1;
+  }
+
+  .field label {
+    margin-bottom: 6px;
+
+    font-size: 0.73rem;
+  }
+
+  .enquiry-form input {
+    height: 48px;
+
+    padding: 0 13px;
+
+    font-size: 0.84rem;
+  }
+
+  .enquiry-form textarea {
+    min-height: 95px;
+
+    padding: 12px 13px;
+
+    font-size: 0.84rem;
+  }
+
+  .submit-button {
+    grid-column: 1;
+
+    min-height: 50px;
+
+    font-size: 0.86rem;
+  }
+
+  .privacy-note,
+  .success,
+  .form-error {
+    grid-column: 1;
+  }
+
+  .success {
+    padding: 12px;
+  }
+
+  .success p {
+    font-size: 0.68rem;
+  }
+
+  .bottom-note {
+    gap: 7px;
+
+    margin-top: 18px;
+
+    font-size: 0.55rem;
+
+    letter-spacing: 0.5px;
+  }
+
+  .bottom-note span {
+    width: 18px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .hero {
+    padding: 18px 7px;
+  }
+
+  .overlay {
+    padding: 23px 12px;
+  }
+
+  .content h1 {
+    font-size: 1.85rem;
+  }
+
+  .description {
+    font-size: 0.78rem;
+  }
+
+  .highlights span {
+    font-size: 0.59rem;
+  }
+
+  .form-card {
+    padding: 16px 11px;
+  }
+
+  .form-heading h2 {
+    font-size: 1.15rem;
+  }
+
+  .form-heading p {
+    font-size: 0.65rem;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   SAFER VIEWPORT FALLBACK
+   ========================================================= */
+
+/*
+  Older browsers that don't understand svh will use 100vh.
+*/
+
+@supports not (height: 100svh) {
+  .hero {
+    min-height: 100vh;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+  .hero {
+    min-height: auto;
+
+    padding: 20px;
+
+    background: #fff;
+
+    color: #000;
+  }
+
+  .overlay,
+  .form-card {
+    background: #fff;
+
+    border: 1px solid #ccc;
+
+    box-shadow: none;
+  }
+
+  .content h1,
+  .content h1 span {
+    color: #111;
+
+    -webkit-text-fill-color: #111;
+  }
+}

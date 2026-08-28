@@ -1,110 +1,468 @@
+/* =========================================
+   LOCATION PAGE
+   Modern + Responsive + Mobile Friendly
+========================================= */
+
 .location {
-  padding: 2rem;
-  background-color: #f9f9f9;
+  width: 100%;
+  padding: clamp(2rem, 5vw, 5rem) 1rem;
+  background: linear-gradient(135deg, #f4fbfa 0%, #ffffff 50%, #f7faf9 100%);
   color: #333;
-  font-family: "Arial", sans-serif;
+  font-family:
+    "Inter",
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  box-sizing: border-box;
 }
+
+/* Prevent sizing issues */
+.location *,
+.location *::before,
+.location *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.location-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+
+  align-items: stretch;
+}
+
+/* =========================================
+   COMMON CARD STYLES
+========================================= */
+
+.room-types-section,
+.location-section {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 115, 115, 0.08);
+  border-radius: 20px;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+
+  box-shadow:
+    0 10px 30px rgba(0, 70, 70, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  min-width: 0;
+}
+
+/* Desktop hover only */
+@media (hover: hover) and (pointer: fine) {
+  .room-types-section:hover,
+  .location-section:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+      0 18px 40px rgba(0, 70, 70, 0.12),
+      0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* =========================================
+   HEADINGS
+========================================= */
 
 .location h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  position: relative;
+
+  margin: 0 0 2rem;
+
   color: #007373;
-  font-weight: bold;
+
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.2;
+  font-weight: 700;
+
+  text-align: center;
 }
 
-.location-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+/* Small decorative line */
+.location h2::after {
+  content: "";
+
+  display: block;
+
+  width: 55px;
+  height: 3px;
+
+  margin: 0.75rem auto 0;
+
+  background: linear-gradient(
+    90deg,
+    #007373,
+    #18a6a6
+  );
+
+  border-radius: 999px;
+}
+
+/* =========================================
+   ROOM TYPES
+========================================= */
+
+.room-types-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-types-section ul {
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.9rem;
+}
+
+.room-types-section li {
+  position: relative;
+
+  padding: 1rem 1rem 1rem 3rem;
+
+  background: #f5fbfa;
+
+  border: 1px solid rgba(0, 115, 115, 0.08);
+
+  border-radius: 12px;
+
+  color: #4a4a4a;
+
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+
+  line-height: 1.55;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Check icon */
+.room-types-section li::before {
+  content: "✓";
+
+  position: absolute;
+
+  left: 1rem;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #007373;
+  color: #fff;
+
+  border-radius: 50%;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .room-types-section li:hover {
+    background: #edf8f7;
+    transform: translateX(4px);
+  }
+}
+
+.room-types-section li strong {
+  color: #006363;
+  font-weight: 700;
+}
+
+/* Description */
+.room-types-section p {
+  margin: 1.5rem 0 0;
+
+  padding: 1rem;
+
+  background: #fff8e8;
+
+  border-left: 4px solid #e5ad3d;
+
+  border-radius: 8px;
+
+  color: #555;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  text-align: left;
+}
+
+/* =========================================
+   LOCATION / MAP
+========================================= */
+
+.location-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .map-container {
+  position: relative;
+
+  width: 100%;
+
+  height: clamp(280px, 35vw, 430px);
+
   border: 2px solid #007373;
-  border-radius: 10px;
+
+  border-radius: 16px;
+
   overflow: hidden;
-  height: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  background: #eef7f6;
+
+  box-shadow:
+    0 8px 20px rgba(0, 115, 115, 0.12);
 }
 
+/* Google map */
+.map-container iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  /* Helps prevent weird iframe overflow */
+  max-width: 100%;
+}
+
+/* Loading state */
 .loading-text {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #555;
-  font-style: italic;
-}
+  position: absolute;
 
-.review-section {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  inset: 0;
 
-.review-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.review-section h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  margin: 0;
+
   color: #007373;
-  font-weight: bold;
-  text-align: center;
-}
 
-.review {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fdfdfd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.review:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.review-name {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.review-text {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #555;
-  line-height: 1.5;
+  font-weight: 500;
+
+  background: #f4fbfa;
 }
 
-.review-rating {
-  color: #ffc107;
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
+/* =========================================
+   TABLET
+========================================= */
 
-/* Add responsiveness for smaller screens */
-@media (max-width: 768px) {
-  .location-grid {
+@media (max-width: 900px) {
+  .location {
+    padding: 2.5rem 1rem;
+  }
+
+  .location-container {
     grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+  .room-types-section,
+  .location-section {
+    padding: 1.75rem;
+  }
+
+  .map-container {
+    height: 380px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .location {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .location-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  .room-types-section,
+  .location-section {
+    width: 100%;
+
+    padding: 1.25rem;
+
+    border-radius: 16px;
+
+    box-shadow:
+      0 6px 20px rgba(0, 70, 70, 0.07);
+  }
+
+  .location h2 {
+    margin-bottom: 1.4rem;
+
+    font-size: 1.4rem;
+  }
+
+  .location h2::after {
+    width: 45px;
+    height: 2px;
+
+    margin-top: 0.6rem;
+  }
+
+  /* Room list */
+  .room-types-section ul {
+    gap: 0.7rem;
+  }
+
+  .room-types-section li {
+    padding: 0.9rem 0.8rem 0.9rem 2.7rem;
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+
+    border-radius: 10px;
+  }
+
+  .room-types-section li::before {
+    left: 0.8rem;
+
+    width: 23px;
+    height: 23px;
+
+    font-size: 0.75rem;
+  }
+
+  .room-types-section p {
+    margin-top: 1.2rem;
+
+    padding: 0.85rem;
+
+    font-size: 0.88rem;
+
+    line-height: 1.5;
+  }
+
+  /* Map */
+  .map-container {
+    height: 300px;
+
+    border-radius: 12px;
+
+    border-width: 1.5px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE DEVICES
+========================================= */
+
+@media (max-width: 380px) {
+  .location {
+    padding: 1.25rem 0.5rem;
+  }
+
+  .room-types-section,
+  .location-section {
+    padding: 1rem;
+  }
+
+  .location h2 {
+    font-size: 1.3rem;
+  }
+
+  .room-types-section li {
+    padding: 0.8rem 0.7rem 0.8rem 2.5rem;
+
+    font-size: 0.9rem;
+  }
+
+  .room-types-section li::before {
+    left: 0.7rem;
+
+    width: 21px;
+    height: 21px;
+  }
+
+  .map-container {
+    height: 260px;
+  }
+}
+
+/* =========================================
+   LANDSCAPE MOBILE
+========================================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .location {
+    padding: 1.5rem 1rem;
+  }
+
+  .location-container {
+    grid-template-columns: 1fr 1fr;
   }
 
   .map-container {
     height: 300px;
   }
+}
 
-  .review-section {
-    padding: 1.5rem;
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .room-types-section,
+  .location-section,
+  .room-types-section li {
+    transition: none;
+  }
+}
+
+/* =========================================
+   VERY LARGE SCREENS
+========================================= */
+
+@media (min-width: 1400px) {
+  .location-container {
+    max-width: 1250px;
   }
 
-  .review {
-    padding: 1rem;
+  .map-container {
+    height: 450px;
   }
 }

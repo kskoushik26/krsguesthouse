@@ -1,101 +1,392 @@
-.contact {
-  font-family: 'Roboto', Arial, sans-serif;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 800px;
-  background: linear-gradient(135deg, #f9f9f9, #e3f2fd);
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+/* ================================
+   Contact Page - Luxury Guest House
+   ================================ */
 
-.contact:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.contact h2 {
-  color: #2c3e50;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.contact ol {
-  padding-left: 25px;
-  margin-bottom: 25px;
-}
-
-.contact ol li {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #34495e;
-}
-
-.contact ol li::marker {
-  color: #007373;
-  font-size: 1.2rem;
-}
-
-.contact a {
-  color: #007373;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.contact a:hover {
-  text-decoration: underline;
-  color: #0056b3;
-}
-
-.contact p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.contact strong {
-  font-weight: bold;
-}
-
-.contact p a {
-  color: #007373;
-}
-
-.contact p a:hover {
-  text-decoration: underline;
-  color: #0056b3;
-}
-
-.contact p.address {
-  margin-top: 20px;
-  font-size: 0.95rem;
-  color: #777;
-  text-align: center;
-  font-style: italic;
-}
-
-.contact p.address::before {
-  content: "📍 ";
-}
-
-@media (max-width: 600px) {
-  .contact {
-    padding: 15px;
+   .contact {
+    position: relative;
+    width: min(90%, 820px);
+    margin: 50px auto;
+    padding: 45px 50px;
+  
+    font-family: "Roboto", Arial, sans-serif;
+    color: #263238;
+  
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.96),
+        rgba(240, 250, 248, 0.94)
+      );
+  
+    border: 1px solid rgba(0, 115, 115, 0.12);
+    border-radius: 24px;
+  
+    box-shadow:
+      0 20px 50px rgba(0, 65, 65, 0.12),
+      0 5px 15px rgba(0, 0, 0, 0.06);
+  
+    overflow: hidden;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
   }
-
+  
+  /* Decorative top gradient */
+  .contact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+  
+    background: linear-gradient(
+      90deg,
+      #007373,
+      #00a6a6,
+      #d4af37,
+      #007373
+    );
+  }
+  
+  /* Soft decorative glow */
+  .contact::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -100px;
+    top: -100px;
+  
+    background: rgba(0, 166, 166, 0.08);
+    border-radius: 50%;
+  
+    pointer-events: none;
+  }
+  
+  .contact:hover {
+    transform: translateY(-5px);
+  
+    box-shadow:
+      0 25px 60px rgba(0, 65, 65, 0.16),
+      0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  
+  /* ================================
+     Headings
+     ================================ */
+  
   .contact h2 {
-    font-size: 1.6rem;
+    position: relative;
+  
+    margin: 10px 0 28px;
+  
+    color: #006666;
+  
+    font-size: 1.85rem;
+    font-weight: 700;
+  
+    text-align: center;
+    letter-spacing: 1px;
+  
+    text-transform: uppercase;
   }
-
+  
+  /* Small gold line under heading */
+  .contact h2::after {
+    content: "";
+  
+    display: block;
+  
+    width: 55px;
+    height: 3px;
+  
+    margin: 12px auto 0;
+  
+    background: linear-gradient(
+      90deg,
+      #d4af37,
+      #f0d477
+    );
+  
+    border-radius: 10px;
+  }
+  
+  
+  /* ================================
+     Booking Steps
+     ================================ */
+  
+  .contact ol {
+    counter-reset: booking-step;
+  
+    list-style: none;
+  
+    padding: 0;
+    margin: 0 0 42px;
+  }
+  
   .contact ol li {
-    font-size: 1rem;
+    position: relative;
+  
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  
+    margin-bottom: 18px;
+    padding: 18px 20px;
+  
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #455a64;
+  
+    background: rgba(255, 255, 255, 0.75);
+  
+    border: 1px solid rgba(0, 115, 115, 0.08);
+    border-radius: 14px;
+  
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.04);
+  
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
   }
-
+  
+  /* Number circle */
+  .contact ol li::before {
+    counter-increment: booking-step;
+    content: counter(booking-step);
+  
+    flex-shrink: 0;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 36px;
+    height: 36px;
+  
+    margin-top: 2px;
+  
+    color: white;
+    background: linear-gradient(
+      135deg,
+      #007373,
+      #00a6a6
+    );
+  
+    border-radius: 50%;
+  
+    font-size: 0.95rem;
+    font-weight: 700;
+  
+    box-shadow:
+      0 5px 12px rgba(0, 115, 115, 0.25);
+  }
+  
+  .contact ol li:hover {
+    transform: translateX(5px);
+  
+    border-color: rgba(0, 115, 115, 0.2);
+  
+    box-shadow:
+      0 8px 20px rgba(0, 115, 115, 0.09);
+  }
+  
+  
+  /* ================================
+     Links
+     ================================ */
+  
+  .contact a {
+    color: #007373;
+  
+    font-weight: 700;
+  
+    text-decoration: none;
+  
+    transition:
+      color 0.2s ease,
+      text-shadow 0.2s ease;
+  }
+  
+  .contact a:hover {
+    color: #005252;
+  
+    text-decoration: underline;
+  
+    text-shadow:
+      0 0 10px rgba(0, 115, 115, 0.15);
+  }
+  
+  
+  /* ================================
+     Contact Information
+     ================================ */
+  
   .contact p {
-    font-size: 0.9rem;
+    margin: 0 0 15px;
+    padding: 14px 18px;
+  
+    font-size: 1rem;
+    line-height: 1.6;
+  
+    color: #546e7a;
+  
+    background: rgba(255, 255, 255, 0.6);
+  
+    border-left: 4px solid #007373;
+    border-radius: 0 10px 10px 0;
+  
+    transition:
+      background 0.25s ease,
+      transform 0.25s ease;
   }
-}
+  
+  .contact p:hover {
+    background: rgba(255, 255, 255, 0.9);
+  
+    transform: translateX(4px);
+  }
+  
+  .contact p strong {
+    color: #006666;
+    font-weight: 700;
+  }
+  
+  
+  /* ================================
+     Address
+     ================================ */
+  
+  .contact p:last-child {
+    margin-top: 20px;
+  
+    border-left-color: #d4af37;
+  
+    color: #607d8b;
+  }
+  
+  .contact p:last-child::before {
+    content: "📍 ";
+  
+    font-size: 1.05rem;
+  }
+  
+  
+  /* ================================
+     Responsive Design
+     ================================ */
+  
+  @media (max-width: 768px) {
+    .contact {
+      width: calc(100% - 30px);
+  
+      margin: 30px auto;
+      padding: 35px 25px;
+  
+      border-radius: 20px;
+    }
+  
+    .contact h2 {
+      font-size: 1.55rem;
+      margin-bottom: 24px;
+    }
+  
+    .contact ol li {
+      gap: 14px;
+  
+      padding: 16px;
+  
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+  
+    .contact ol li::before {
+      width: 32px;
+      height: 32px;
+  
+      font-size: 0.85rem;
+    }
+  
+    .contact p {
+      padding: 13px 15px;
+      font-size: 0.95rem;
+    }
+  }
+  
+  
+  /* ================================
+     Small Mobile Screens
+     ================================ */
+  
+  @media (max-width: 480px) {
+    .contact {
+      width: calc(100% - 20px);
+  
+      margin: 20px auto;
+      padding: 30px 16px;
+  
+      border-radius: 18px;
+    }
+  
+    .contact h2 {
+      font-size: 1.3rem;
+      letter-spacing: 0.7px;
+    }
+  
+    .contact ol li {
+      gap: 12px;
+  
+      padding: 14px;
+  
+      font-size: 0.92rem;
+    }
+  
+    .contact ol li::before {
+      width: 30px;
+      height: 30px;
+  
+      font-size: 0.8rem;
+    }
+  
+    .contact p {
+      font-size: 0.9rem;
+      padding: 12px;
+    }
+  }
+  
+  
+  /* ================================
+     Accessibility
+     ================================ */
+  
+  .contact a:focus-visible {
+    outline: 3px solid rgba(0, 166, 166, 0.35);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  
+  
+  /* ================================
+     Reduced Motion
+     ================================ */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .contact,
+    .contact ol li,
+    .contact p,
+    .contact a {
+      transition: none;
+    }
+  
+    .contact:hover,
+    .contact ol li:hover,
+    .contact p:hover {
+      transform: none;
+    }
+  }
+  

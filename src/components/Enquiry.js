@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./About.css";
+import "./Enquiry.css";
 
 const initialFormData = {
   name: "",
@@ -11,7 +11,7 @@ const initialFormData = {
   members: "",
 };
 
-const About = () => {
+const Enquiry = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -19,7 +19,10 @@ const About = () => {
 
   const todayDate = new Date().toISOString().split("T")[0];
 
-  // Handle input changes
+  /* =========================================================
+     HANDLE INPUT CHANGES
+     ========================================================= */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,7 +31,7 @@ const About = () => {
       [name]: value,
     }));
 
-    // Clear field error while typing
+    // Clear individual field error while typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -36,50 +39,71 @@ const About = () => {
       }));
     }
 
+    // Hide previous success message if user starts editing again
     if (submitted) {
       setSubmitted(false);
     }
   };
 
-  // Validate form
+
+  /* =========================================================
+     VALIDATE FORM
+     ========================================================= */
+
   const validateForm = () => {
     const newErrors = {};
 
+    // Name
     if (!formData.name.trim()) {
       newErrors.name = "Please enter your name.";
     }
 
+    // Phone
     if (!formData.phone.trim()) {
       newErrors.phone = "Please enter your phone number.";
-    } else if (formData.phone.replace(/\D/g, "").length < 10) {
+    } else if (
+      formData.phone.replace(/\D/g, "").length < 10
+    ) {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
+    // Email
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email address.";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+    ) {
+      newErrors.email = "Please enter a valid email address.";
     }
 
+    // Check-in
     if (!formData.checkin) {
       newErrors.checkin = "Please select a check-in date.";
     } else if (formData.checkin < todayDate) {
-      newErrors.checkin = "Check-in date cannot be in the past.";
+      newErrors.checkin =
+        "Check-in date cannot be in the past.";
     }
 
+    // Check-out
     if (!formData.checkout) {
-      newErrors.checkout = "Please select a check-out date.";
+      newErrors.checkout =
+        "Please select a check-out date.";
     } else if (
       formData.checkin &&
       formData.checkout <= formData.checkin
     ) {
-      newErrors.checkout = "Check-out must be after check-in.";
+      newErrors.checkout =
+        "Check-out must be after check-in.";
     }
 
+    // Number of guests
     if (
       !formData.members ||
       Number(formData.members) <= 0 ||
       !Number.isInteger(Number(formData.members))
     ) {
-      newErrors.members = "Please enter a valid number of guests.";
+      newErrors.members =
+        "Please enter a valid number of guests.";
     }
 
     setErrors(newErrors);
@@ -87,11 +111,18 @@ const About = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
+
+  /* =========================================================
+     HANDLE FORM SUBMISSION
+     ========================================================= */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    // Stop submission if validation fails
+    if (!validateForm()) {
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitted(false);
@@ -101,11 +132,21 @@ const About = () => {
         "https://formspree.io/f/xldjvgdp",
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-          body: JSON.stringify(formData),
+
+          body: JSON.stringify({
+            ...formData,
+
+            // Helpful subject for Formspree emails
+            _subject: `New Stay Enquiry from ${formData.name}`,
+
+            // Human-readable guest details
+            enquiry_type: "Guest House Stay Enquiry",
+          }),
         }
       );
 
@@ -113,67 +154,108 @@ const About = () => {
         throw new Error("Form submission failed");
       }
 
+      // Successful submission
       setSubmitted(true);
+
       setFormData(initialFormData);
+
       setErrors({});
+
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error(
+        "Error submitting enquiry:",
+        error
+      );
 
       setErrors({
         form:
           "Something went wrong. Please try again or call us directly.",
       });
+
     } finally {
       setIsSubmitting(false);
     }
   };
 
+
+  /* =========================================================
+     JSX
+     ========================================================= */
+
   return (
     <main className="hero">
 
-      {/* Decorative Background Glows */}
-      <div className="hero-glow hero-glow-one" />
-      <div className="hero-glow hero-glow-two" />
+      {/* =====================================================
+          BACKGROUND EFFECTS
+          ===================================================== */}
+
+      <div
+        className="hero-glow hero-glow-one"
+        aria-hidden="true"
+      />
+
+      <div
+        className="hero-glow hero-glow-two"
+        aria-hidden="true"
+      />
+
+
+      {/* =====================================================
+          MAIN GLASS CONTAINER
+          ===================================================== */}
 
       <div className="overlay">
 
         <div className="content">
 
-          {/* =====================================================
-              INTRODUCTION
-              ===================================================== */}
 
-          <div className="intro">
+          {/* =================================================
+              INTRODUCTION
+              ================================================= */}
+
+          <section
+            className="intro"
+            aria-labelledby="enquiry-title"
+          >
 
             <span className="eyebrow">
-              ✦ Welcome to KRS Guest House ✦
+              ✦ KRS Guest House ✦
             </span>
 
-            <h1>
-              Stay Close to
-              <span> Sigandur Chowdeshwari Temple</span>
+
+            <h1 id="enquiry-title">
+              Make an
+              <span> Enquiry</span>
             </h1>
 
-            <div className="title-line" />
+
+            <div
+              className="title-line"
+              aria-hidden="true"
+            />
+
 
             <p className="description">
-              With the divine blessings of Sigandur Chowdeshwari
-              Matha, KRS Guest House offers a peaceful and comfortable
-              stay near the sacred temple. Surrounded by the natural
-              beauty and spiritual atmosphere of Sigandur, our guest
-              house is a welcoming place for devotees, families, and
-              travellers seeking a calm and memorable stay.
+              Planning a peaceful stay near Sigandur
+              Chowdeshwari Temple? Send us your stay details
+              and our team will get back to you with
+              availability and further information.
             </p>
 
+
             {/* Highlights */}
-            <div className="highlights">
+
+            <div
+              className="highlights"
+              aria-label="Guest house highlights"
+            >
 
               <span>
                 🛕 Near Sigandur Temple
               </span>
 
               <span>
-                🙏 Divine Blessings
+                🏡 Comfortable Stay
               </span>
 
               <span>
@@ -182,33 +264,49 @@ const About = () => {
 
             </div>
 
-          </div>
+          </section>
 
 
-          {/* =====================================================
+          {/* =================================================
               ENQUIRY FORM CARD
-              ===================================================== */}
+              ================================================= */}
 
-          <div className="form-card">
+          <section
+            className="form-card"
+            aria-labelledby="stay-enquiry-title"
+          >
+
+
+            {/* FORM HEADER */}
 
             <div className="form-heading">
 
-              <span className="form-icon">
+              <span
+                className="form-icon"
+                aria-hidden="true"
+              >
                 ✦
               </span>
 
+
               <div>
-                <h2>
-                  Plan Your Stay
+
+                <h2 id="stay-enquiry-title">
+                  Stay Enquiry
                 </h2>
 
                 <p>
-                  Send us your details and we'll get back to you.
+                  Tell us about your visit and we'll contact you.
                 </p>
+
               </div>
 
             </div>
 
+
+            {/* =================================================
+                FORM
+                ================================================= */}
 
             <form
               onSubmit={handleSubmit}
@@ -216,8 +314,9 @@ const About = () => {
               noValidate
             >
 
+
               {/* =================================================
-                  NAME
+                  FULL NAME
                   ================================================= */}
 
               <div className="field">
@@ -235,10 +334,19 @@ const About = () => {
                   onChange={handleChange}
                   autoComplete="name"
                   required
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={
+                    errors.name
+                      ? "name-error"
+                      : undefined
+                  }
                 />
 
                 {errors.name && (
-                  <span className="error">
+                  <span
+                    id="name-error"
+                    className="error"
+                  >
                     {errors.name}
                   </span>
                 )}
@@ -247,7 +355,7 @@ const About = () => {
 
 
               {/* =================================================
-                  PHONE
+                  PHONE NUMBER
                   ================================================= */}
 
               <div className="field">
@@ -266,10 +374,19 @@ const About = () => {
                   autoComplete="tel"
                   inputMode="tel"
                   required
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={
+                    errors.phone
+                      ? "phone-error"
+                      : undefined
+                  }
                 />
 
                 {errors.phone && (
-                  <span className="error">
+                  <span
+                    id="phone-error"
+                    className="error"
+                  >
                     {errors.phone}
                   </span>
                 )}
@@ -296,10 +413,19 @@ const About = () => {
                   onChange={handleChange}
                   autoComplete="email"
                   required
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={
+                    errors.email
+                      ? "email-error"
+                      : undefined
+                  }
                 />
 
                 {errors.email && (
-                  <span className="error">
+                  <span
+                    id="email-error"
+                    className="error"
+                  >
                     {errors.email}
                   </span>
                 )}
@@ -314,7 +440,7 @@ const About = () => {
               <div className="field">
 
                 <label htmlFor="checkin">
-                  Check-in
+                  Check-in Date
                 </label>
 
                 <input
@@ -325,10 +451,19 @@ const About = () => {
                   min={todayDate}
                   onChange={handleChange}
                   required
+                  aria-invalid={Boolean(errors.checkin)}
+                  aria-describedby={
+                    errors.checkin
+                      ? "checkin-error"
+                      : undefined
+                  }
                 />
 
                 {errors.checkin && (
-                  <span className="error">
+                  <span
+                    id="checkin-error"
+                    className="error"
+                  >
                     {errors.checkin}
                   </span>
                 )}
@@ -343,7 +478,7 @@ const About = () => {
               <div className="field">
 
                 <label htmlFor="checkout">
-                  Check-out
+                  Check-out Date
                 </label>
 
                 <input
@@ -351,13 +486,25 @@ const About = () => {
                   type="date"
                   name="checkout"
                   value={formData.checkout}
-                  min={formData.checkin || todayDate}
+                  min={
+                    formData.checkin ||
+                    todayDate
+                  }
                   onChange={handleChange}
                   required
+                  aria-invalid={Boolean(errors.checkout)}
+                  aria-describedby={
+                    errors.checkout
+                      ? "checkout-error"
+                      : undefined
+                  }
                 />
 
                 {errors.checkout && (
-                  <span className="error">
+                  <span
+                    id="checkout-error"
+                    className="error"
+                  >
                     {errors.checkout}
                   </span>
                 )}
@@ -386,10 +533,19 @@ const About = () => {
                   onChange={handleChange}
                   inputMode="numeric"
                   required
+                  aria-invalid={Boolean(errors.members)}
+                  aria-describedby={
+                    errors.members
+                      ? "members-error"
+                      : undefined
+                  }
                 />
 
                 {errors.members && (
-                  <span className="error">
+                  <span
+                    id="members-error"
+                    className="error"
+                  >
                     {errors.members}
                   </span>
                 )}
@@ -405,7 +561,7 @@ const About = () => {
 
                 <label htmlFor="question">
 
-                  Additional Message
+                  Message
 
                   <span className="optional">
                     Optional
@@ -430,7 +586,10 @@ const About = () => {
                   ================================================= */}
 
               {errors.form && (
-                <div className="form-error">
+                <div
+                  className="form-error"
+                  role="alert"
+                >
                   {errors.form}
                 </div>
               )}
@@ -444,6 +603,7 @@ const About = () => {
                 type="submit"
                 className="submit-button"
                 disabled={isSubmitting}
+                aria-busy={isSubmitting}
               >
 
                 <span>
@@ -453,7 +613,10 @@ const About = () => {
                 </span>
 
                 {!isSubmitting && (
-                  <span className="button-arrow">
+                  <span
+                    className="button-arrow"
+                    aria-hidden="true"
+                  >
                     →
                   </span>
                 )}
@@ -466,8 +629,8 @@ const About = () => {
                   ================================================= */}
 
               <p className="privacy-note">
-                🔒 Your information is only used to respond to
-                your enquiry.
+                🔒 Your information is only used to respond
+                to your enquiry.
               </p>
 
 
@@ -476,11 +639,19 @@ const About = () => {
                   ================================================= */}
 
               {submitted && (
-                <div className="success">
+                <div
+                  className="success"
+                  role="status"
+                  aria-live="polite"
+                >
 
-                  <span className="success-icon">
+                  <span
+                    className="success-icon"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
+
 
                   <div>
 
@@ -489,9 +660,9 @@ const About = () => {
                     </strong>
 
                     <p>
-                      Thank you for contacting KRS Guest House.
-                      We will get back to you soon. For urgent
-                      enquiries, please call{" "}
+                      Thank you for contacting KRS Guest
+                      House. We will get back to you soon.
+                      For urgent enquiries, please call{" "}
                       <strong>9448734152</strong>.
                     </p>
 
@@ -502,20 +673,20 @@ const About = () => {
 
             </form>
 
-          </div>
+          </section>
 
 
           {/* =====================================================
-              FOOTER TEXT
+              BOTTOM NOTE
               ===================================================== */}
 
           <div className="bottom-note">
 
-            <span />
+            <span aria-hidden="true" />
 
-            Blessed Stay • Peaceful Surroundings • Sigandur
+            Your Stay • Your Comfort • Your Peace
 
-            <span />
+            <span aria-hidden="true" />
 
           </div>
 
@@ -527,4 +698,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Enquiry;

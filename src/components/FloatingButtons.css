@@ -4,23 +4,22 @@
 
    .floating-buttons {
     position: fixed;
+  
     right: 22px;
     bottom: 28px;
   
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+  
     gap: 13px;
   
     z-index: 9999;
-  
-    transition:
-      opacity 0.45s ease,
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
   
+  
   /* =========================================
-     BUTTON
+     COMMON BUTTON
      ========================================= */
   
   .fab {
@@ -35,12 +34,17 @@
   
     padding: 0;
   
+    border: none;
+  
     border-radius: 50px;
   
     color: #ffffff;
+  
     text-decoration: none;
   
     overflow: hidden;
+  
+    cursor: pointer;
   
     box-shadow:
       0 8px 20px rgba(0, 0, 0, 0.15),
@@ -54,6 +58,7 @@
       transform 0.3s ease,
       box-shadow 0.3s ease;
   }
+  
   
   /* =========================================
      ICON
@@ -71,12 +76,17 @@
     font-size: 23px;
   
     position: relative;
+  
     z-index: 2;
   }
   
   .fab-icon svg {
-    transition: transform 0.35s ease;
+    display: block;
+  
+    transition:
+      transform 0.35s ease;
   }
+  
   
   /* =========================================
      LABEL
@@ -84,6 +94,7 @@
   
   .fab-label {
     position: absolute;
+  
     left: 55px;
   
     white-space: nowrap;
@@ -96,7 +107,9 @@
       sans-serif;
   
     font-size: 14px;
+  
     font-weight: 600;
+  
     letter-spacing: 0.2px;
   
     opacity: 0;
@@ -108,6 +121,7 @@
       transform 0.3s ease;
   }
   
+  
   /* =========================================
      HOVER
      ========================================= */
@@ -118,18 +132,20 @@
     transform: translateY(-3px);
   
     box-shadow:
-      0 14px 30px rgba(0, 0, 0, 0.2),
-      0 5px 12px rgba(0, 0, 0, 0.1);
+      0 14px 30px rgba(0, 0, 0, 0.20),
+      0 5px 12px rgba(0, 0, 0, 0.10);
   }
   
   .fab:hover .fab-label {
     opacity: 1;
+  
     transform: translateX(0);
   }
   
   .fab:hover .fab-icon svg {
     transform: scale(1.12) rotate(-5deg);
   }
+  
   
   /* =========================================
      WHATSAPP
@@ -147,8 +163,9 @@
   .fab.whatsapp:hover {
     box-shadow:
       0 14px 30px rgba(37, 211, 102, 0.35),
-      0 5px 12px rgba(37, 211, 102, 0.2);
+      0 5px 12px rgba(37, 211, 102, 0.20);
   }
+  
   
   /* =========================================
      EMAIL
@@ -166,8 +183,9 @@
   .fab.email:hover {
     box-shadow:
       0 14px 30px rgba(0, 115, 115, 0.35),
-      0 5px 12px rgba(0, 115, 115, 0.2);
+      0 5px 12px rgba(0, 115, 115, 0.20);
   }
+  
   
   /* =========================================
      CALL
@@ -185,103 +203,66 @@
   .fab.call:hover {
     box-shadow:
       0 14px 30px rgba(52, 175, 35, 0.35),
-      0 5px 12px rgba(52, 175, 35, 0.2);
+      0 5px 12px rgba(52, 175, 35, 0.20);
   }
   
+  
   /* =========================================
-     SMALL SHINE EFFECT
+     LOCATION
+     ========================================= */
+  
+  .fab.location {
+    background:
+      linear-gradient(
+        135deg,
+        #ea4335 0%,
+        #c5221f 100%
+      );
+  }
+  
+  .fab.location:hover {
+    box-shadow:
+      0 14px 30px rgba(234, 67, 53, 0.35),
+      0 5px 12px rgba(234, 67, 53, 0.20);
+  }
+  
+  
+  /* =========================================
+     SHINE EFFECT
      ========================================= */
   
   .fab::before {
     content: "";
   
     position: absolute;
+  
     top: 0;
     left: -120%;
   
     width: 70%;
     height: 100%;
   
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.25),
-      transparent
-    );
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
   
     transform: skewX(-20deg);
   
-    transition: left 0.6s ease;
+    transition:
+      left 0.6s ease;
   }
   
   .fab:hover::before {
     left: 130%;
   }
   
-  /* =========================================
-     SCROLL INDICATOR
-     ========================================= */
-  
-  .scroll-indicator {
-    width: 34px;
-    height: 34px;
-  
-    margin-top: 3px;
-    margin-right: 11px;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    color: #777;
-  
-    font-size: 11px;
-  
-    background: rgba(255, 255, 255, 0.9);
-  
-    border: 1px solid rgba(0, 0, 0, 0.06);
-  
-    border-radius: 50%;
-  
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.1);
-  
-    animation: floatingArrow 2s ease-in-out infinite;
-  }
-  
-  @keyframes floatingArrow {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-  
-    50% {
-      transform: translateY(-3px);
-    }
-  }
   
   /* =========================================
-     HIDE / SHOW
-     ========================================= */
-  
-  .floating-buttons.hidden {
-    opacity: 0;
-  
-    transform: translateY(35px);
-  
-    pointer-events: none;
-  }
-  
-  .floating-buttons.visible {
-    opacity: 1;
-  
-    transform: translateY(0);
-  
-    pointer-events: auto;
-  }
-  
-  /* =========================================
-     PULSE EFFECT
+     WHATSAPP PULSE
      ========================================= */
   
   .fab.whatsapp .fab-icon::after {
@@ -294,9 +275,11 @@
   
     border-radius: 50%;
   
-    border: 1px solid rgba(37, 211, 102, 0.5);
+    border:
+      1px solid rgba(37, 211, 102, 0.5);
   
-    animation: whatsappPulse 2.2s infinite;
+    animation:
+      whatsappPulse 2.2s infinite;
   
     pointer-events: none;
   }
@@ -318,63 +301,352 @@
     }
   }
   
+  
+  /* =========================================
+     SCROLL INDICATOR
+     ========================================= */
+  
+  .scroll-indicator {
+    width: 34px;
+    height: 34px;
+  
+    margin-top: 3px;
+    margin-right: 11px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    color: #777777;
+  
+    font-size: 11px;
+  
+    background:
+      rgba(255, 255, 255, 0.90);
+  
+    border:
+      1px solid rgba(0, 0, 0, 0.06);
+  
+    border-radius: 50%;
+  
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.10);
+  
+    animation:
+      floatingArrow 2s ease-in-out infinite;
+  }
+  
+  @keyframes floatingArrow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+  
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+  
+  
+  /* =========================================
+     MAP OVERLAY
+     ========================================= */
+  
+  .map-overlay {
+    position: fixed;
+  
+    inset: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 20px;
+  
+    background:
+      rgba(0, 0, 0, 0.65);
+  
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  
+    z-index: 10000;
+  
+    animation:
+      mapOverlayIn 0.25s ease;
+  }
+  
+  @keyframes mapOverlayIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  /* =========================================
+     MAP MODAL
+     ========================================= */
+  
+  .map-modal {
+    width: min(900px, 95vw);
+  
+    height: min(650px, 85vh);
+  
+    display: flex;
+    flex-direction: column;
+  
+    overflow: hidden;
+  
+    background: #ffffff;
+  
+    border-radius: 18px;
+  
+    box-shadow:
+      0 25px 70px rgba(0, 0, 0, 0.35);
+  
+    animation:
+      mapModalIn 0.3s
+      cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  @keyframes mapModalIn {
+    from {
+      opacity: 0;
+  
+      transform:
+        translateY(20px)
+        scale(0.96);
+    }
+  
+    to {
+      opacity: 1;
+  
+      transform:
+        translateY(0)
+        scale(1);
+    }
+  }
+  
+  
+  /* =========================================
+     MAP HEADER
+     ========================================= */
+  
+  .map-header {
+    min-height: 60px;
+  
+    padding: 0 18px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    background:
+      linear-gradient(
+        135deg,
+        #ea4335,
+        #c5221f
+      );
+  
+    color: #ffffff;
+  }
+  
+  
+  /* =========================================
+     MAP TITLE
+     ========================================= */
+  
+  .map-title {
+    display: flex;
+    align-items: center;
+  
+    gap: 10px;
+  
+    font-size: 16px;
+  
+    font-weight: 700;
+  }
+  
+  .map-title svg {
+    font-size: 18px;
+  }
+  
+  
+  /* =========================================
+     CLOSE BUTTON
+     ========================================= */
+  
+  .map-close {
+    width: 38px;
+    height: 38px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 0;
+  
+    border: none;
+  
+    border-radius: 50%;
+  
+    background:
+      rgba(255, 255, 255, 0.15);
+  
+    color: #ffffff;
+  
+    font-size: 17px;
+  
+    cursor: pointer;
+  
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  .map-close:hover {
+    background:
+      rgba(255, 255, 255, 0.25);
+  
+    transform: rotate(90deg);
+  }
+  
+  
+  /* =========================================
+     MAP CONTAINER
+     ========================================= */
+  
+  .map-container {
+    flex: 1;
+  
+    width: 100%;
+  
+    min-height: 0;
+  
+    background: #eeeeee;
+  }
+  
+  .map-container iframe {
+    display: block;
+  
+    width: 100%;
+    height: 100%;
+  
+    border: 0;
+  }
+  
+  
   /* =========================================
      MOBILE
      ========================================= */
   
   @media (max-width: 600px) {
+  
     .floating-buttons {
       right: 14px;
+  
       bottom: 18px;
+  
       gap: 10px;
     }
+  
   
     .fab {
       width: 52px;
       height: 52px;
+  
+      border-radius: 50%;
     }
+  
   
     .fab-icon {
       min-width: 52px;
+  
       width: 52px;
+  
       height: 52px;
   
       font-size: 21px;
     }
   
-    /*
-      Don't expand on mobile.
-      Labels are hidden because touch devices
-      don't have hover.
-    */
+  
+    /* No expansion on mobile */
   
     .fab:hover {
       width: 52px;
+  
       transform: translateY(-2px);
     }
+  
   
     .fab-label {
       display: none;
     }
   
+  
     .scroll-indicator {
       width: 30px;
       height: 30px;
+  
       margin-right: 11px;
+  
+      font-size: 10px;
+    }
+  
+  
+    /* Map */
+  
+    .map-overlay {
+      padding: 10px;
+    }
+  
+    .map-modal {
+      width: 100%;
+  
+      height: 80vh;
+  
+      border-radius: 14px;
+    }
+  
+    .map-header {
+      min-height: 55px;
+  
+      padding: 0 14px;
+    }
+  
+    .map-title {
+      font-size: 14px;
+    }
+  
+    .map-close {
+      width: 34px;
+      height: 34px;
     }
   }
+  
   
   /* =========================================
      ACCESSIBILITY
      ========================================= */
   
   @media (prefers-reduced-motion: reduce) {
-    .floating-buttons,
+  
     .fab,
     .fab-icon svg,
     .fab-label,
-    .fab::before {
+    .fab::before,
+    .map-overlay,
+    .map-modal,
+    .map-close {
       transition: none;
+  
+      animation: none;
     }
   
     .scroll-indicator,

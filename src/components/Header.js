@@ -12,7 +12,7 @@ const Header = () => {
       { path: "/location", label: "Rooms", id: "location", icon: "▣" },
       { path: "/contact", label: "Book Now", id: "contact", icon: "✦" },
       { path: "/attraction", label: "Attraction", id: "attraction", icon: "♧" },
-      { path: "/gallery", label: "Gallery", id: "gallery", icon: "▧" },
+      { path: "/enquiry", label: "Enquiry", id: "enquiry", icon: "?" },
       { path: "/details", label: "Guest Policies", id: "details", icon: "✓" },
     ],
     []

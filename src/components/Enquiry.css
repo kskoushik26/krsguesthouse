@@ -1,0 +1,1181 @@
+/* =========================================================
+   KRS GUEST HOUSE
+   Premium Responsive Enquiry Page
+   ========================================================= */
+
+   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+
+   /* =========================================================
+      RESET
+      ========================================================= */
+   
+   *,
+   *::before,
+   *::after {
+     box-sizing: border-box;
+   }
+   
+   html {
+     scroll-behavior: smooth;
+   }
+   
+   body {
+     margin: 0;
+     font-family: "DM Sans", Arial, sans-serif;
+     background: #07191a;
+   }
+   
+   button,
+   input,
+   textarea {
+     font: inherit;
+   }
+   
+   
+   /* =========================================================
+      ENQUIRY PAGE
+      ========================================================= */
+   
+   .hero {
+     position: relative;
+   
+     width: 100%;
+     min-height: 100svh;
+   
+     padding: 55px 20px;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     overflow: hidden;
+   
+     color: #fff;
+   
+     background:
+       linear-gradient(
+         135deg,
+         rgba(2, 24, 27, 0.88) 0%,
+         rgba(3, 35, 38, 0.68) 48%,
+         rgba(0, 0, 0, 0.76) 100%
+       ),
+       url("../../public/bridge.jpeg") center center / cover no-repeat;
+   
+     background-attachment: fixed;
+   }
+   
+   
+   /* =========================================================
+      BACKGROUND EFFECTS
+      ========================================================= */
+   
+   .hero::before {
+     content: "";
+   
+     position: absolute;
+     inset: 0;
+   
+     background:
+       radial-gradient(
+         circle at 85% 15%,
+         rgba(255, 205, 102, 0.18),
+         transparent 28%
+       ),
+       radial-gradient(
+         circle at 10% 90%,
+         rgba(0, 193, 183, 0.15),
+         transparent 30%
+       );
+   
+     pointer-events: none;
+   }
+   
+   .hero::after {
+     content: "";
+   
+     position: absolute;
+     inset: 0;
+   
+     background: linear-gradient(
+       to bottom,
+       rgba(0, 0, 0, 0.08),
+       rgba(0, 0, 0, 0.30)
+     );
+   
+     pointer-events: none;
+   }
+   
+   
+   /* =========================================================
+      DECORATIVE GLOWS
+      ========================================================= */
+   
+   .hero-glow {
+     position: absolute;
+   
+     width: 420px;
+     height: 420px;
+   
+     border-radius: 50%;
+   
+     filter: blur(100px);
+   
+     pointer-events: none;
+   
+     opacity: 0.40;
+   }
+   
+   .hero-glow-one {
+     top: -220px;
+     right: -150px;
+   
+     background: rgba(255, 190, 80, 0.23);
+   }
+   
+   .hero-glow-two {
+     bottom: -250px;
+     left: -180px;
+   
+     background: rgba(0, 185, 180, 0.20);
+   }
+   
+   
+   /* =========================================================
+      MAIN CONTAINER
+      ========================================================= */
+   
+   .overlay {
+     position: relative;
+     z-index: 5;
+   
+     width: min(100%, 940px);
+   
+     padding: 44px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.18);
+     border-radius: 28px;
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(13, 36, 38, 0.87),
+         rgba(7, 25, 27, 0.73)
+       );
+   
+     backdrop-filter: blur(18px);
+     -webkit-backdrop-filter: blur(18px);
+   
+     box-shadow:
+       0 35px 90px rgba(0, 0, 0, 0.52),
+       0 8px 30px rgba(0, 0, 0, 0.20),
+       inset 0 1px 0 rgba(255, 255, 255, 0.12);
+   
+     animation: fadeUp 0.8s ease both;
+   }
+   
+   
+   /* =========================================================
+      CONTENT
+      ========================================================= */
+   
+   .content {
+     width: 100%;
+     max-width: 790px;
+   
+     margin: 0 auto;
+   
+     text-align: center;
+   }
+   
+   
+   /* =========================================================
+      INTRODUCTION
+      ========================================================= */
+   
+   .intro {
+     margin-bottom: 27px;
+   }
+   
+   .eyebrow {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+   
+     margin-bottom: 13px;
+     padding: 6px 14px;
+   
+     border: 1px solid rgba(255, 209, 102, 0.25);
+     border-radius: 100px;
+   
+     background: rgba(255, 209, 102, 0.07);
+   
+     color: #ffd166;
+   
+     font-size: 0.72rem;
+     font-weight: 600;
+   
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+   }
+   
+   
+   /* =========================================================
+      PAGE TITLE
+      ========================================================= */
+   
+   .content h1 {
+     margin: 0;
+   
+     font-family: "Playfair Display", Georgia, serif;
+   
+     font-size: clamp(2.35rem, 5vw, 3.8rem);
+     font-weight: 700;
+   
+     line-height: 1.08;
+     letter-spacing: -1px;
+   
+     color: #fff;
+   
+     text-shadow:
+       0 4px 20px rgba(0, 0, 0, 0.35);
+   }
+   
+   .content h1 span {
+     display: inline;
+   
+     margin-left: 8px;
+   
+     background:
+       linear-gradient(
+         90deg,
+         #ffd166,
+         #ffb347,
+         #ffe7a0,
+         #ffd166
+       );
+   
+     background-size: 200% auto;
+   
+     -webkit-background-clip: text;
+     background-clip: text;
+   
+     -webkit-text-fill-color: transparent;
+   
+     animation: goldShimmer 5s linear infinite;
+   }
+   
+   
+   /* =========================================================
+      TITLE DECORATION
+      ========================================================= */
+   
+   .title-line {
+     position: relative;
+   
+     width: 90px;
+     height: 1px;
+   
+     margin: 17px auto 16px;
+   
+     background: linear-gradient(
+       90deg,
+       transparent,
+       #ffd166,
+       transparent
+     );
+   }
+   
+   .title-line::after {
+     content: "✦";
+   
+     position: absolute;
+   
+     left: 50%;
+     top: 50%;
+   
+     transform: translate(-50%, -50%);
+   
+     padding: 0 8px;
+   
+     color: #ffd166;
+   
+     font-size: 11px;
+   
+     background: rgba(11, 31, 33, 0.95);
+   }
+   
+   
+   /* =========================================================
+      DESCRIPTION
+      ========================================================= */
+   
+   .description {
+     max-width: 650px;
+   
+     margin: 0 auto;
+   
+     color: rgba(255, 255, 255, 0.72);
+   
+     font-size: 0.90rem;
+     line-height: 1.75;
+   
+     text-shadow:
+       0 2px 8px rgba(0, 0, 0, 0.35);
+   }
+   
+   
+   /* =========================================================
+      HIGHLIGHTS
+      ========================================================= */
+   
+   .highlights {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+   
+     gap: 8px;
+   
+     margin-top: 17px;
+   }
+   
+   .highlights span {
+     padding: 6px 11px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.11);
+     border-radius: 100px;
+   
+     background: rgba(255, 255, 255, 0.045);
+   
+     color: rgba(255, 255, 255, 0.70);
+   
+     font-size: 0.71rem;
+     font-weight: 500;
+   
+     transition:
+       background 0.25s ease,
+       border-color 0.25s ease,
+       transform 0.25s ease;
+   }
+   
+   .highlights span:hover {
+     transform: translateY(-2px);
+   
+     border-color: rgba(255, 209, 102, 0.35);
+   
+     background: rgba(255, 209, 102, 0.08);
+   }
+   
+   
+   /* =========================================================
+      ENQUIRY FORM CARD
+      ========================================================= */
+   
+   .form-card {
+     position: relative;
+   
+     margin-top: 26px;
+   
+     padding: 25px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.14);
+     border-radius: 21px;
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(255, 255, 255, 0.075),
+         rgba(255, 255, 255, 0.032)
+       );
+   
+     box-shadow:
+       inset 0 1px 0 rgba(255, 255, 255, 0.08),
+       0 15px 45px rgba(0, 0, 0, 0.18);
+   }
+   
+   
+   /* =========================================================
+      FORM HEADER
+      ========================================================= */
+   
+   .form-heading {
+     display: flex;
+     align-items: center;
+   
+     gap: 13px;
+   
+     margin-bottom: 21px;
+   
+     text-align: left;
+   }
+   
+   .form-icon {
+     flex-shrink: 0;
+   
+     width: 41px;
+     height: 41px;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     border: 1px solid rgba(255, 209, 102, 0.25);
+     border-radius: 11px;
+   
+     background: rgba(255, 209, 102, 0.10);
+   
+     color: #ffd166;
+   
+     font-size: 15px;
+   }
+   
+   .form-heading h2 {
+     margin: 0 0 3px;
+   
+     color: #fff;
+   
+     font-family: "Playfair Display", Georgia, serif;
+   
+     font-size: 1.40rem;
+     font-weight: 600;
+   }
+   
+   .form-heading p {
+     margin: 0;
+   
+     color: rgba(255, 255, 255, 0.52);
+   
+     font-size: 0.76rem;
+   }
+   
+   
+   /* =========================================================
+      FORM GRID
+      ========================================================= */
+   
+   .enquiry-form {
+     display: grid;
+   
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+   
+     gap: 16px;
+   
+     text-align: left;
+   }
+   
+   
+   /* =========================================================
+      FORM FIELD
+      ========================================================= */
+   
+   .field {
+     min-width: 0;
+   
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .full-width {
+     grid-column: 1 / -1;
+   }
+   
+   .field label {
+     display: flex;
+     align-items: center;
+     gap: 7px;
+   
+     margin: 0 0 7px 2px;
+   
+     color: rgba(255, 255, 255, 0.80);
+   
+     font-size: 0.77rem;
+     font-weight: 600;
+   }
+   
+   .optional {
+     color: rgba(255, 255, 255, 0.37);
+   
+     font-size: 0.67rem;
+     font-weight: 400;
+   }
+   
+   
+   /* =========================================================
+      INPUTS
+      ========================================================= */
+   
+   .enquiry-form input,
+   .enquiry-form textarea {
+     width: 100%;
+   
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 10px;
+   
+     outline: none;
+   
+     background: rgba(0, 0, 0, 0.16);
+   
+     color: #fff;
+   
+     font-family: "DM Sans", Arial, sans-serif;
+     font-size: 0.86rem;
+   
+     transition:
+       border-color 0.22s ease,
+       background 0.22s ease,
+       box-shadow 0.22s ease,
+       transform 0.22s ease;
+   }
+   
+   .enquiry-form input {
+     height: 49px;
+   
+     padding: 0 14px;
+   }
+   
+   .enquiry-form textarea {
+     min-height: 100px;
+   
+     padding: 13px 14px;
+   
+     resize: vertical;
+   }
+   
+   .enquiry-form input::placeholder,
+   .enquiry-form textarea::placeholder {
+     color: rgba(255, 255, 255, 0.35);
+   }
+   
+   
+   /* =========================================================
+      INPUT HOVER / FOCUS
+      ========================================================= */
+   
+   .enquiry-form input:hover,
+   .enquiry-form textarea:hover {
+     border-color: rgba(255, 255, 255, 0.26);
+   }
+   
+   .enquiry-form input:focus,
+   .enquiry-form textarea:focus {
+     border-color: rgba(255, 209, 102, 0.72);
+   
+     background: rgba(255, 255, 255, 0.07);
+   
+     box-shadow:
+       0 0 0 3px rgba(255, 209, 102, 0.08),
+       0 8px 22px rgba(0, 0, 0, 0.12);
+   
+     transform: translateY(-1px);
+   }
+   
+   
+   /* =========================================================
+      DATE INPUT
+      ========================================================= */
+   
+   .enquiry-form input[type="date"] {
+     color-scheme: dark;
+   
+     cursor: pointer;
+   }
+   
+   .enquiry-form input[type="date"]::-webkit-calendar-picker-indicator {
+     cursor: pointer;
+   
+     opacity: 0.75;
+   
+     filter:
+       invert(88%)
+       sepia(35%)
+       saturate(600%)
+       hue-rotate(350deg);
+   }
+   
+   
+   /* =========================================================
+      NUMBER INPUT
+      ========================================================= */
+   
+   .enquiry-form input[type="number"] {
+     appearance: auto;
+     -moz-appearance: textfield;
+   }
+   
+   .enquiry-form input[type="number"]::-webkit-inner-spin-button,
+   .enquiry-form input[type="number"]::-webkit-outer-spin-button {
+     opacity: 0.65;
+   }
+   
+   
+   /* =========================================================
+      FIELD ERROR
+      ========================================================= */
+   
+   .error {
+     margin: 5px 2px 0;
+   
+     color: #ffaaa8;
+   
+     font-size: 0.69rem;
+   
+     line-height: 1.3;
+   }
+   
+   
+   /* =========================================================
+      FORM ERROR
+      ========================================================= */
+   
+   .form-error {
+     grid-column: 1 / -1;
+   
+     padding: 10px 12px;
+   
+     border: 1px solid rgba(255, 100, 100, 0.25);
+     border-radius: 9px;
+   
+     background: rgba(255, 80, 80, 0.08);
+   
+     color: #ffb0b0;
+   
+     font-size: 0.76rem;
+   }
+   
+   
+   /* =========================================================
+      SUBMIT BUTTON
+      ========================================================= */
+   
+   .submit-button {
+     position: relative;
+   
+     grid-column: 1 / -1;
+   
+     width: 100%;
+     min-height: 51px;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     gap: 11px;
+   
+     margin-top: 2px;
+   
+     border: 0;
+     border-radius: 11px;
+   
+     background:
+       linear-gradient(
+         135deg,
+         #ffd166 0%,
+         #ffb347 50%,
+         #f6a53a 100%
+       );
+   
+     color: #17302f;
+   
+     font-size: 0.89rem;
+     font-weight: 700;
+   
+     cursor: pointer;
+   
+     box-shadow:
+       0 10px 28px rgba(255, 174, 67, 0.23);
+   
+     transition:
+       transform 0.25s ease,
+       box-shadow 0.25s ease,
+       filter 0.25s ease;
+   }
+   
+   .submit-button:hover:not(:disabled) {
+     transform: translateY(-2px);
+   
+     filter: brightness(1.06);
+   
+     box-shadow:
+       0 14px 35px rgba(255, 174, 67, 0.35);
+   }
+   
+   .submit-button:active:not(:disabled) {
+     transform: translateY(0);
+   }
+   
+   .submit-button:focus-visible {
+     outline: 3px solid rgba(255, 209, 102, 0.35);
+     outline-offset: 3px;
+   }
+   
+   .submit-button:disabled {
+     opacity: 0.65;
+   
+     cursor: not-allowed;
+   }
+   
+   .button-arrow {
+     font-size: 1.12rem;
+   
+     transition: transform 0.25s ease;
+   }
+   
+   .submit-button:hover .button-arrow {
+     transform: translateX(4px);
+   }
+   
+   
+   /* =========================================================
+      PRIVACY
+      ========================================================= */
+   
+   .privacy-note {
+     grid-column: 1 / -1;
+   
+     margin: -4px 0 0;
+   
+     color: rgba(255, 255, 255, 0.36);
+   
+     font-size: 0.65rem;
+   
+     text-align: center;
+   }
+   
+   
+   /* =========================================================
+      SUCCESS MESSAGE
+      ========================================================= */
+   
+   .success {
+     grid-column: 1 / -1;
+   
+     display: flex;
+     align-items: flex-start;
+   
+     gap: 11px;
+   
+     padding: 14px;
+   
+     border: 1px solid rgba(82, 211, 128, 0.25);
+     border-radius: 11px;
+   
+     background: rgba(45, 180, 90, 0.09);
+   
+     color: #c1ffd5;
+   
+     animation: successAnimation 0.45s ease both;
+   }
+   
+   .success-icon {
+     flex-shrink: 0;
+   
+     width: 27px;
+     height: 27px;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     border-radius: 50%;
+   
+     background: rgba(77, 220, 125, 0.15);
+   
+     color: #72e99a;
+   
+     font-size: 13px;
+     font-weight: 700;
+   }
+   
+   .success strong {
+     color: #d1ffdf;
+   
+     font-size: 0.81rem;
+   }
+   
+   .success p {
+     margin: 4px 0 0;
+   
+     color: rgba(209, 255, 223, 0.70);
+   
+     font-size: 0.71rem;
+   
+     line-height: 1.5;
+   }
+   
+   
+   /* =========================================================
+      BOTTOM NOTE
+      ========================================================= */
+   
+   .bottom-note {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     gap: 11px;
+   
+     margin-top: 20px;
+   
+     color: rgba(255, 255, 255, 0.38);
+   
+     font-size: 0.65rem;
+   
+     letter-spacing: 0.75px;
+   
+     text-transform: uppercase;
+   }
+   
+   .bottom-note span {
+     width: 30px;
+     height: 1px;
+   
+     background: rgba(255, 255, 255, 0.18);
+   }
+   
+   
+   /* =========================================================
+      ANIMATIONS
+      ========================================================= */
+   
+   @keyframes fadeUp {
+     from {
+       opacity: 0;
+       transform: translateY(25px);
+     }
+   
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   @keyframes successAnimation {
+     from {
+       opacity: 0;
+       transform: translateY(6px) scale(0.98);
+     }
+   
+     to {
+       opacity: 1;
+       transform: translateY(0) scale(1);
+     }
+   }
+   
+   @keyframes goldShimmer {
+     0% {
+       background-position: 0% center;
+     }
+   
+     100% {
+       background-position: 200% center;
+     }
+   }
+   
+   
+   /* =========================================================
+      TABLET
+      ========================================================= */
+   
+   @media (max-width: 800px) {
+     .hero {
+       padding: 40px 16px;
+   
+       background-attachment: scroll;
+     }
+   
+     .overlay {
+       padding: 36px 28px;
+   
+       border-radius: 24px;
+     }
+   
+     .content h1 {
+       font-size: clamp(2.15rem, 7vw, 3.1rem);
+     }
+   
+     .form-card {
+       padding: 21px;
+     }
+   }
+   
+   
+   /* =========================================================
+      MOBILE
+      ========================================================= */
+   
+   @media (max-width: 600px) {
+     .hero {
+       min-height: 100svh;
+   
+       padding: 20px 9px;
+   
+       align-items: flex-start;
+   
+       background-position: center;
+     }
+   
+     .overlay {
+       width: 100%;
+   
+       margin: 8px 0;
+   
+       padding: 26px 14px;
+   
+       border-radius: 19px;
+   
+       backdrop-filter: blur(10px);
+       -webkit-backdrop-filter: blur(10px);
+     }
+   
+     .intro {
+       margin-bottom: 22px;
+     }
+   
+     .content h1 {
+       font-size: clamp(2rem, 10vw, 2.65rem);
+   
+       letter-spacing: -0.6px;
+     }
+   
+     .content h1 span {
+       display: block;
+   
+       margin: 3px 0 0;
+     }
+   
+     .eyebrow {
+       margin-bottom: 12px;
+   
+       padding: 6px 10px;
+   
+       font-size: 0.62rem;
+   
+       letter-spacing: 0.9px;
+     }
+   
+     .title-line {
+       width: 70px;
+   
+       margin: 16px auto;
+     }
+   
+     .description {
+       font-size: 0.80rem;
+   
+       line-height: 1.68;
+     }
+   
+     .highlights {
+       gap: 6px;
+   
+       margin-top: 15px;
+     }
+   
+     .highlights span {
+       padding: 5px 8px;
+   
+       font-size: 0.61rem;
+     }
+   
+     .form-card {
+       margin-top: 20px;
+   
+       padding: 17px 13px;
+   
+       border-radius: 16px;
+     }
+   
+     .form-heading {
+       gap: 9px;
+   
+       margin-bottom: 17px;
+     }
+   
+     .form-icon {
+       width: 36px;
+       height: 36px;
+   
+       border-radius: 9px;
+   
+       font-size: 13px;
+     }
+   
+     .form-heading h2 {
+       font-size: 1.20rem;
+     }
+   
+     .form-heading p {
+       font-size: 0.68rem;
+     }
+   
+     .enquiry-form {
+       grid-template-columns: 1fr;
+   
+       gap: 12px;
+     }
+   
+     .full-width {
+       grid-column: 1;
+     }
+   
+     .field label {
+       margin-bottom: 5px;
+   
+       font-size: 0.71rem;
+     }
+   
+     .enquiry-form input {
+       height: 47px;
+   
+       padding: 0 12px;
+   
+       font-size: 0.82rem;
+     }
+   
+     .enquiry-form textarea {
+       min-height: 92px;
+   
+       padding: 11px 12px;
+   
+       font-size: 0.82rem;
+     }
+   
+     .submit-button {
+       grid-column: 1;
+   
+       min-height: 49px;
+   
+       font-size: 0.84rem;
+     }
+   
+     .privacy-note,
+     .success,
+     .form-error {
+       grid-column: 1;
+     }
+   
+     .success {
+       padding: 11px;
+     }
+   
+     .success p {
+       font-size: 0.67rem;
+     }
+   
+     .bottom-note {
+       gap: 6px;
+   
+       margin-top: 16px;
+   
+       font-size: 0.52rem;
+   
+       letter-spacing: 0.45px;
+     }
+   
+     .bottom-note span {
+       width: 16px;
+     }
+   }
+   
+   
+   /* =========================================================
+      SMALL PHONES
+      ========================================================= */
+   
+   @media (max-width: 380px) {
+     .hero {
+       padding: 15px 6px;
+     }
+   
+     .overlay {
+       padding: 22px 11px;
+     }
+   
+     .content h1 {
+       font-size: 1.80rem;
+     }
+   
+     .description {
+       font-size: 0.75rem;
+     }
+   
+     .highlights span {
+       font-size: 0.57rem;
+     }
+   
+     .form-card {
+       padding: 15px 10px;
+     }
+   
+     .form-heading h2 {
+       font-size: 1.10rem;
+     }
+   
+     .form-heading p {
+       font-size: 0.63rem;
+     }
+   }
+   
+   
+   /* =========================================================
+      ACCESSIBILITY
+      ========================================================= */
+   
+   @media (prefers-reduced-motion: reduce) {
+     *,
+     *::before,
+     *::after {
+       scroll-behavior: auto !important;
+   
+       animation-duration: 0.01ms !important;
+       animation-iteration-count: 1 !important;
+   
+       transition-duration: 0.01ms !important;
+     }
+   }
+   
+   
+   /* =========================================================
+      VIEWPORT FALLBACK
+      ========================================================= */
+   
+   @supports not (height: 100svh) {
+     .hero {
+       min-height: 100vh;
+     }
+   }
+   
+   
+   /* =========================================================
+      PRINT
+      ========================================================= */
+   
+   @media print {
+     .hero {
+       min-height: auto;
+   
+       padding: 20px;
+   
+       background: #fff;
+   
+       color: #000;
+     }
+   
+     .overlay,
+     .form-card {
+       background: #fff;
+   
+       border: 1px solid #ccc;
+   
+       box-shadow: none;
+     }
+   
+     .content h1,
+     .content h1 span {
+       color: #111;
+   
+       -webkit-text-fill-color: #111;
+     }
+   }
+   

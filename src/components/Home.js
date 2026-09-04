@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
@@ -158,6 +158,16 @@ const Home = () => {
 
   const [homeSelectedImage, setHomeSelectedImage] = useState(0);
   const [homeOpenFaq, setHomeOpenFaq] = useState(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHomeSelectedImage((currentIndex) =>
+        currentIndex === homeImages.length - 1 ? 0 : currentIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [homeImages.length]);
 
   const handleHomeFaqToggle = (index) => {
     setHomeOpenFaq(homeOpenFaq === index ? null : index);

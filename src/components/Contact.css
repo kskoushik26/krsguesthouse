@@ -178,6 +178,87 @@
     font-size: 1rem;
     line-height: 1.8;
   }
+
+  .booking-trust {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: -25px 0 42px;
+  }
+
+  .booking-trust span {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 12px;
+    background: #fff;
+    border: 1px solid rgba(0, 115, 115, 0.1);
+    border-radius: 10px;
+    color: #315959;
+    font-size: 0.78rem;
+  }
+
+  .booking-trust b {
+    color: #007373;
+    font-size: 1rem;
+  }
+
+  .seasonal-pricing {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 48px;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .pricing-card {
+    padding: 20px 17px;
+    background: #fff;
+    border: 1px solid rgba(0, 115, 115, 0.11);
+    border-radius: 14px;
+  }
+
+  .pricing-card.featured {
+    border-color: #d4af37;
+    box-shadow: 0 10px 24px rgba(0, 90, 90, 0.08);
+  }
+
+  .pricing-season,
+  .pricing-card small {
+    display: block;
+    color: #8a9b9b;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .pricing-card strong {
+    display: block;
+    margin: 9px 0 2px;
+    color: #004f4f;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+  }
+
+  .pricing-card p {
+    margin: 14px 0 0;
+    color: #627575;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .pricing-disclaimer {
+    margin: 12px 0 0;
+    color: #7b9090;
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
   
   
   /* =====================================================
@@ -454,6 +535,50 @@
     font-size: 1.35rem;
     font-weight: 500;
   }
+
+  .booking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .availability-button,
+  .whatsapp-button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .availability-button {
+    color: #17382d;
+    background: #d7a646;
+  }
+
+  .whatsapp-button {
+    color: #fff;
+    background: #1bb85a;
+  }
+
+  .availability-button:hover,
+  .whatsapp-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-button small {
+    display: block;
+    margin-bottom: 2px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.6rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
   
   .call-button {
     display: flex;
@@ -678,6 +803,15 @@
     .contact-header {
       margin-bottom: 40px;
     }
+
+    .booking-trust,
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .booking-trust {
+      margin-top: -15px;
+    }
   
     .contact-header h1 {
       font-size: 2.35rem;
@@ -686,6 +820,17 @@
     .booking-cta {
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .booking-actions {
+      width: 100%;
+      justify-content: stretch;
+    }
+
+    .availability-button,
+    .whatsapp-button {
+      flex: 1;
+      justify-content: center;
     }
   
     .call-button {
@@ -728,6 +873,19 @@
     .contact-header p {
       font-size: 0.9rem;
       line-height: 1.7;
+    }
+
+    .booking-trust {
+      margin-bottom: 32px;
+    }
+
+    .booking-actions {
+      flex-direction: column;
+    }
+
+    .availability-button,
+    .whatsapp-button {
+      width: 100%;
     }
   
     .section-heading {

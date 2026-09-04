@@ -236,7 +236,7 @@ const Enquiry = () => {
 
 
             <p className="description">
-              Planning a peaceful stay near Sigandur
+              Planning a peaceful stay near Siganduru
               Chowdeshwari Temple? Send us your stay details
               and our team will get back to you with
               availability and further information.
@@ -251,7 +251,7 @@ const Enquiry = () => {
             >
 
               <span>
-                🛕 Near Sigandur Temple
+                🛕 Near Siganduru Temple
               </span>
 
               <span>

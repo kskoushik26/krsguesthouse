@@ -66,14 +66,14 @@ const Header = () => {
           <Link to="/" className="brand" onClick={handleLinkClick}>
             <div className="logo-wrapper">
               <img
-                src="https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752042707/krs_gelrwv.webp"
+                src="/krs.png"
                 alt="KRS Guest House Logo"
                 className="krs-logo"
               />
             </div>
 
             <div className="brand-text">
-              <h1>K R S <span>GUEST HOUSE</span></h1>
+              <div className="brand-name">K R S <span>GUEST HOUSE</span></div>
               <div className="brand-location">
                 <span className="location-dot">●</span>
                 Near Siganduru Chowdeshwari Temple
@@ -96,7 +96,7 @@ const Header = () => {
               className="header-book-btn"
               onClick={handleLinkClick}
             >
-              <span>Book Your Stay</span>
+              <span>Book Now</span>
               <span className="arrow">→</span>
             </Link>
           </div>

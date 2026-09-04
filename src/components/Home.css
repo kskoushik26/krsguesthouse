@@ -169,6 +169,59 @@
   box-shadow: 0 14px 30px rgba(11, 107, 80, 0.3);
 }
 
+.home-page-hero-button + .home-page-hero-button {
+  margin-left: 10px;
+}
+
+.home-page-hero-button-primary {
+  background: #d7a646;
+  color: #17382d;
+}
+
+.home-page-hero-button-primary:hover {
+  background: #edc267;
+  box-shadow: 0 14px 30px rgba(215, 166, 70, 0.3);
+}
+
+.home-page-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--home-border);
+  border-bottom: 1px solid var(--home-border);
+}
+
+.home-page-trust-strip div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 11px;
+  align-items: center;
+  padding: 18px 24px;
+  background: #fff;
+}
+
+.home-page-trust-strip span {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--home-primary-light);
+  color: var(--home-primary);
+  font-weight: 800;
+}
+
+.home-page-trust-strip strong {
+  color: var(--home-primary-deep);
+  font-size: 0.9rem;
+}
+
+.home-page-trust-strip small {
+  color: var(--home-muted);
+  font-size: 0.72rem;
+}
+
 
 /* =====================================================
    IMAGE THUMBNAILS
@@ -1443,6 +1496,19 @@
     width: 100%;
 
     min-height: 48px;
+  }
+
+  .home-page-hero-button + .home-page-hero-button {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .home-page-trust-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page-trust-strip div {
+    padding: 14px 20px;
   }
 
 

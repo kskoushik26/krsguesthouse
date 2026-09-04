@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 
 import Header from "./components/Header";
-import About from "./components/Enquiry";
+import Enquiry from "./components/Enquiry";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Location from "./components/Location";
@@ -53,7 +53,7 @@ function App() {
           <Route path="/location" element={<Location />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/details" element={<Details />} />
-          <Route path="/enquiry" element={<About />} />
+          <Route path="/enquiry" element={<Enquiry />} />
         </Routes>
 
         <Footer />

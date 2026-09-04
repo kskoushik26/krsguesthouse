@@ -1,12 +1,7 @@
 {
   "short_name": "KRS Guest House",
-  "name": "KRS Guest House - Peaceful Stay Near Sigandur, Sagara",
+  "name": "KRS Guest House - Peaceful Stay Near Siganduru, Sagara",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
     {
       "src": "krs.png",
       "type": "image/png",
@@ -22,7 +17,7 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "description": "Stay at KRS Guest House near Sigandur, Sagara, and Shivamogga. Experience comfort, tranquility, and scenic beauty with easy access to the Sigandur Chowdeshwari Temple.",
+  "description": "Stay at KRS Guest House near Siganduru, Sagara, and Shivamogga. Experience comfort, tranquility, and scenic beauty with easy access to the Siganduru Chowdeshwari Temple.",
   "lang": "en",
   "categories": ["travel", "accommodation", "hospitality", "guest house"],
   "screenshots": [
@@ -48,7 +43,7 @@
       "icons": [{ "src": "book-icon.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "Attractions Near Sigandur",
+      "name": "Attractions Near Siganduru",
       "short_name": "Attractions",
       "description": "Explore nearby attractions near KRS Guest House",
       "url": "/attraction",

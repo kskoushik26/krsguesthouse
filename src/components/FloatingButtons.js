@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaWhatsapp,
   FaPhoneAlt,
@@ -11,6 +11,25 @@ import "./FloatingButtons.css";
 
 const FloatingButtons = () => {
   const [showMap, setShowMap] = useState(false);
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!showMap) {
+      return undefined;
+    }
+
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowMap(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [showMap]);
 
   return (
     <>
@@ -104,11 +123,15 @@ const FloatingButtons = () => {
         <div
           className="map-overlay"
           onClick={() => setShowMap(false)}
+          role="presentation"
         >
 
           <div
             className="map-modal"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="map-title"
           >
 
             {/* Map Header */}
@@ -116,7 +139,7 @@ const FloatingButtons = () => {
 
               <div className="map-title">
                 <FaMapMarkerAlt />
-                <span>K.R.S Guest House</span>
+                <span id="map-title">K.R.S Guest House</span>
               </div>
 
               <button
@@ -124,6 +147,7 @@ const FloatingButtons = () => {
                 className="map-close"
                 onClick={() => setShowMap(false)}
                 aria-label="Close map"
+                ref={closeButtonRef}
               >
                 <FaTimes />
               </button>

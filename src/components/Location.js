@@ -7,7 +7,7 @@ const rooms = [
     icon: "🛏️",
     title: "2-Occupancy Room",
     description:
-      "Perfect for couples or solo travelers looking for a comfortable stay.",
+      "Perfect for couples looking for a comfortable stay.",
     guests: "Up to 2 Guests",
   },
   {

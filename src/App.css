@@ -1,9 +1,33 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f9;
-  color: #333;
+  color: #1f2933;
+  line-height: 1.5;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 .App {
@@ -17,6 +41,17 @@ h2 {
 .App {
   font-family: Arial, sans-serif;
   text-align: center;
+}
+
+.App main {
+  width: 100%;
+}
+
+.App h1,
+.App h2,
+.App h3,
+.App p {
+  overflow-wrap: break-word;
 }
 
 .main-section {

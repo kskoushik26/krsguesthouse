@@ -4,6 +4,7 @@ import "./Home.css";
 
 const Home = () => {
   const homeImages = [
+    "/krs.png",
     "https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752135436/image1_a8nu2z.jpg",
     "https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752135435/image7_1_q4pgpx.jpg",
   ];
@@ -13,7 +14,7 @@ const Home = () => {
       icon: "🛕",
       title: "Close to Temple",
       description:
-        "Located just 400 meters from Sigandur Chowdeshwari Temple.",
+        "Located just 400 meters from Siganduru Chowdeshwari Temple.",
     },
     {
       icon: "🛏️",
@@ -62,7 +63,7 @@ const Home = () => {
       icon: "🛏️",
       title: "2-Occupancy Room",
       description:
-        "Perfect for couples or solo travelers looking for a comfortable stay.",
+        "Perfect for couples looking for a comfortable stay.",
       guests: "Up to 2 Guests",
     },
     {
@@ -109,7 +110,7 @@ const Home = () => {
     },
     {
       question:
-        "How far is the guest house from Sigandur Chowdeshwari Temple?",
+        "How far is the guest house from Siganduru Chowdeshwari Temple?",
       answer:
         "The guest house is conveniently located approximately 400 meters from the temple, making it easy for guests to visit.",
     },
@@ -185,12 +186,12 @@ const Home = () => {
               <h1>
                 A Comfortable Stay,
                 <br />
-                Close to the Sigandur Chowdeshwari Temple
+                Close to the Siganduru Chowdeshwari Temple
               </h1>
 
               <p>
                 Clean rooms, peaceful surroundings, comfortable facilities,
-                and just 400 meters from Sigandur Chowdeshwari Temple.
+                and just 400 meters from Siganduru Chowdeshwari Temple.
               </p>
 
               <Link
@@ -198,6 +199,13 @@ const Home = () => {
                 className="home-page-hero-button"
               >
                 View Rooms
+              </Link>
+
+              <Link
+                to="/contact"
+                className="home-page-hero-button home-page-hero-button-primary"
+              >
+                Book Now <span aria-hidden="true">→</span>
               </Link>
 
 
@@ -226,6 +234,12 @@ const Home = () => {
             </button>
           ))}
         </div>
+      </section>
+
+      <section className="home-page-trust-strip" aria-label="Why guests choose us">
+        <div><span>✓</span><strong>Verified stay</strong><small>Clean, cared-for rooms</small></div>
+        <div><span>♥</span><strong>Family-friendly</strong><small>Rooms for every group</small></div>
+        <div><span>◷</span><strong>24x7 support</strong><small>Help before and during your stay</small></div>
       </section>
 
       {/* ================= INTRO ================= */}
@@ -421,7 +435,7 @@ const Home = () => {
             </h2>
 
             <p>
-              Stay close to Sigandur Chowdeshwari Temple with
+              Stay close to Siganduru Chowdeshwari Temple with
               convenient access to the guest house.
             </p>
 
@@ -456,7 +470,7 @@ const Home = () => {
                   <span>NEARBY TEMPLE</span>
 
                   <strong>
-                    Sigandur Chowdeshwari Temple
+                    Siganduru Chowdeshwari Temple
                   </strong>
 
                   <p>
@@ -567,7 +581,7 @@ const Home = () => {
                   <div>
                     <strong>K.R.S Guest House</strong>
                     <small>
-                      Sigandur, Karnataka
+                      Siganduru, Karnataka
                     </small>
                   </div>
 
@@ -588,7 +602,7 @@ const Home = () => {
               <span>✨</span>
 
               <div>
-                <h3>Planning a visit to Sigandur?</h3>
+                <h3>Planning a visit to Siganduru?</h3>
 
                 <p>
                   Stay close to the temple in a comfortable
@@ -649,8 +663,10 @@ const Home = () => {
               <button
                 type="button"
                 className="home-page-faq-question"
+                id={`home-faq-question-${index}`}
                 onClick={() => handleHomeFaqToggle(index)}
                 aria-expanded={homeOpenFaq === index}
+                aria-controls={`home-faq-answer-${index}`}
               >
 
                 <span>
@@ -664,10 +680,13 @@ const Home = () => {
               </button>
 
               <div
+                id={`home-faq-answer-${index}`}
                 className={`home-page-faq-answer ${homeOpenFaq === index
                     ? "home-page-faq-answer-show"
                     : ""
                   }`}
+                role="region"
+                aria-labelledby={`home-faq-question-${index}`}
               >
 
                 <p>

@@ -87,7 +87,7 @@
   min-width: 0;
 }
 
-.brand-text h1 {
+.brand-name {
   margin: 0;
 
   font-family: Georgia, "Times New Roman", serif;
@@ -99,7 +99,7 @@
   color: var(--white);
 }
 
-.brand-text h1 span {
+.brand-name span {
   font-weight: 400;
 }
 

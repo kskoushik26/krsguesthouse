@@ -10,11 +10,11 @@
   background:
     linear-gradient(
       135deg,
-      #fffaf3 0%,
-      #fffdf9 45%,
-      #f8f4ec 100%
+      #f3faf7 0%,
+      #f9fcfb 45%,
+      #eef7f3 100%
     );
-  color: #2d241d;
+  color: #17352c;
 }
 
 /* Decorative background circles */
@@ -30,7 +30,7 @@
   height: 420px;
   top: -180px;
   left: -180px;
-  background: rgba(190, 145, 80, 0.08);
+  background: rgba(6, 78, 59, 0.08);
 }
 
 .location-bg-circle-two {
@@ -38,7 +38,7 @@
   height: 350px;
   right: -150px;
   bottom: -120px;
-  background: rgba(125, 91, 48, 0.06);
+  background: rgba(3, 60, 45, 0.07);
 }
 
 .location-container {
@@ -62,7 +62,7 @@
 .location-eyebrow {
   display: inline-block;
   margin-bottom: 15px;
-  color: #a8783d;
+  color: #0b6b50;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -70,7 +70,7 @@
 
 .location-header h1 {
   margin: 0;
-  color: #30251c;
+  color: #033c2d;
   font-size: clamp(36px, 5vw, 62px);
   line-height: 1.08;
   font-weight: 700;
@@ -79,13 +79,13 @@
 
 .location-header h1 span {
   display: block;
-  color: #a8783d;
+  color: #064e3b;
 }
 
 .location-header p {
   max-width: 650px;
   margin: 22px auto 0;
-  color: #766b60;
+  color: #64756f;
   font-size: 16px;
   line-height: 1.8;
 }
@@ -119,16 +119,17 @@
   flex-shrink: 0;
   width: 52px;
   height: 52px;
-  border: 1px solid rgba(168, 120, 61, 0.18);
+  border: 1px solid rgba(6, 78, 59, 0.16);
   border-radius: 15px;
-  background: rgba(168, 120, 61, 0.09);
+  background: rgba(6, 78, 59, 0.08);
+  color: #064e3b;
   font-size: 23px;
 }
 
 .section-heading span {
   display: block;
   margin-bottom: 4px;
-  color: #b08756;
+  color: #0b6b50;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -136,7 +137,7 @@
 
 .section-heading h2 {
   margin: 0;
-  color: #30251c;
+  color: #033c2d;
   font-size: 27px;
   line-height: 1.2;
   font-weight: 700;
@@ -156,10 +157,10 @@
   display: flex;
   gap: 18px;
   padding: 22px;
-  border: 1px solid rgba(122, 92, 57, 0.12);
+  border: 1px solid rgba(6, 78, 59, 0.11);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 8px 25px rgba(70, 47, 25, 0.045);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 25px rgba(3, 60, 45, 0.045);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -168,8 +169,8 @@
 
 .room-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(168, 120, 61, 0.25);
-  box-shadow: 0 15px 35px rgba(70, 47, 25, 0.09);
+  border-color: rgba(6, 78, 59, 0.25);
+  box-shadow: 0 15px 35px rgba(3, 60, 45, 0.09);
 }
 
 .room-icon {
@@ -180,7 +181,8 @@
   width: 58px;
   height: 58px;
   border-radius: 16px;
-  background: #f4eadb;
+  background: #e3f1ec;
+  color: #064e3b;
   font-size: 26px;
 }
 
@@ -198,7 +200,7 @@
 
 .room-title-row h3 {
   margin: 0;
-  color: #35291f;
+  color: #17352c;
   font-size: 17px;
   font-weight: 700;
 }
@@ -207,8 +209,8 @@
   flex-shrink: 0;
   padding: 6px 10px;
   border-radius: 30px;
-  background: #faf2e7;
-  color: #a8783d;
+  background: #eaf5f1;
+  color: #064e3b;
   font-size: 10px;
   font-weight: 700;
   white-space: nowrap;
@@ -216,7 +218,7 @@
 
 .room-info > p {
   margin: 9px 0 15px;
-  color: #7d7369;
+  color: #6d7d77;
   font-size: 13px;
   line-height: 1.65;
 }
@@ -226,17 +228,17 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 12px;
-  border-top: 1px solid rgba(100, 80, 60, 0.09);
+  border-top: 1px solid rgba(6, 78, 59, 0.09);
 }
 
 .tariff-text {
-  color: #9c7548;
+  color: #0b6b50;
   font-size: 11px;
   font-weight: 600;
 }
 
 .arrow {
-  color: #a8783d;
+  color: #064e3b;
   font-size: 18px;
   transition: transform 0.25s ease;
 }
@@ -254,26 +256,27 @@
   gap: 13px;
   margin-top: 18px;
   padding: 18px;
-  border: 1px solid rgba(168, 120, 61, 0.13);
+  border: 1px solid rgba(6, 78, 59, 0.13);
   border-radius: 17px;
-  background: rgba(247, 237, 222, 0.55);
+  background: rgba(227, 241, 236, 0.6);
 }
 
 .note-icon {
   flex-shrink: 0;
+  color: #064e3b;
   font-size: 18px;
 }
 
 .pricing-note strong {
   display: block;
   margin-bottom: 5px;
-  color: #5d452c;
+  color: #064e3b;
   font-size: 13px;
 }
 
 .pricing-note p {
   margin: 0;
-  color: #806f5e;
+  color: #64756f;
   font-size: 12px;
   line-height: 1.6;
 }
@@ -299,8 +302,8 @@
   min-width: 0;
   border-radius: 16px;
   cursor: pointer;
-  background: #e9e1d7;
-  box-shadow: 0 8px 22px rgba(50, 35, 20, 0.08);
+  background: #dfece7;
+  box-shadow: 0 8px 22px rgba(3, 60, 45, 0.08);
 }
 
 /* Different sizes for a premium masonry-like layout */
@@ -350,7 +353,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(45, 31, 19, 0);
+  background: rgba(3, 60, 45, 0);
   color: #fff;
   opacity: 0;
   transition:
@@ -360,7 +363,7 @@
 
 .gallery-card:hover .image-overlay {
   opacity: 1;
-  background: rgba(45, 31, 19, 0.48);
+  background: rgba(3, 60, 45, 0.52);
 }
 
 .view-icon {
@@ -394,15 +397,15 @@
   gap: 25px;
   margin-top: 70px;
   padding: 28px 32px;
-  border: 1px solid rgba(168, 120, 61, 0.15);
+  border: 1px solid rgba(6, 78, 59, 0.15);
   border-radius: 22px;
   background:
     linear-gradient(
       135deg,
-      rgba(249, 239, 224, 0.95),
-      rgba(255, 250, 242, 0.95)
+      rgba(228, 242, 237, 0.95),
+      rgba(247, 252, 250, 0.95)
     );
-  box-shadow: 0 12px 35px rgba(75, 48, 25, 0.055);
+  box-shadow: 0 12px 35px rgba(3, 60, 45, 0.055);
 }
 
 .cta-content {
@@ -419,19 +422,20 @@
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: #ead8bd;
+  background: #cfe5dc;
+  color: #064e3b;
   font-size: 21px;
 }
 
 .cta-content h3 {
   margin: 0 0 5px;
-  color: #3b2d21;
+  color: #033c2d;
   font-size: 18px;
 }
 
 .cta-content p {
   margin: 0;
-  color: #7d6d5d;
+  color: #687a73;
   font-size: 13px;
 }
 
@@ -443,12 +447,12 @@
   min-width: 150px;
   padding: 13px 20px;
   border-radius: 12px;
-  background: #a8783d;
+  background: #064e3b;
   color: #fff;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 8px 18px rgba(168, 120, 61, 0.22);
+  box-shadow: 0 8px 18px rgba(6, 78, 59, 0.22);
   transition:
     transform 0.25s ease,
     background 0.25s ease,
@@ -462,8 +466,8 @@
 
 .cta-button:hover {
   transform: translateY(-2px);
-  background: #91652f;
-  box-shadow: 0 12px 25px rgba(168, 120, 61, 0.3);
+  background: #033c2d;
+  box-shadow: 0 12px 25px rgba(6, 78, 59, 0.3);
 }
 
 .cta-button:hover span {
@@ -482,7 +486,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: rgba(20, 14, 9, 0.92);
+  background: rgba(2, 28, 21, 0.94);
   backdrop-filter: blur(8px);
   animation: lightboxFade 0.25s ease;
 }
@@ -690,7 +694,7 @@
     padding: 10px;
     background: linear-gradient(
       to top,
-      rgba(30, 20, 12, 0.45),
+      rgba(3, 60, 45, 0.55),
       transparent 55%
     );
   }

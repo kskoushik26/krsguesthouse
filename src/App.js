@@ -23,9 +23,9 @@ import "./App.css";
 
 const pageMetadata = {
   "/": {
-    title: "KRS Guest House | Budget Stay Near Siganduru Temple, Sagara",
+    title: "KRS Guest House near Siganduru Chowdeshwari Temple",
     description:
-      "Stay at KRS Guest House near Siganduru Chowdeshwari Temple in Sagara, Karnataka. Enjoy clean rooms, hot water, free parking, and a peaceful family-friendly stay.",
+      "KRS Guest House offers a comfortable budget stay near Siganduru Chowdeshwari Temple in Sagara, Karnataka, with clean rooms, hot water, and family-friendly hospitality.",
   },
   "/attraction": {
     title: "Places to Visit Near Siganduru | KRS Guest House",

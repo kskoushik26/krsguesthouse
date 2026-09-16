@@ -3,12 +3,12 @@
   "name": "KRS Guest House - Peaceful Stay Near Siganduru, Sagara",
   "icons": [
     {
-      "src": "krs.png",
+      "src": "krs.png?v=2",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "krs.png",
+      "src": "krs.png?v=2",
       "type": "image/png",
       "sizes": "512x512"
     }

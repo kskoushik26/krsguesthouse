@@ -25,22 +25,22 @@ const pageMetadata = {
   "/": {
     title: "KRS Guest House near Siganduru Chowdeshwari Temple",
     description:
-      "KRS Guest House offers a comfortable budget stay near Siganduru Chowdeshwari Temple in Sagara, Karnataka, with clean rooms, hot water, and family-friendly hospitality.",
+      "KRS Guest House offers a comfortable budget stay near Siganduru Chowdeshwari Temple in Siganduru, Karnataka, with clean rooms, hot water, and family-friendly hospitality.",
   },
   "/attraction": {
     title: "Places to Visit Near Siganduru | KRS Guest House",
     description:
-      "Explore temples, viewpoints, waterfalls, and attractions near Siganduru from KRS Guest House in Sagara, Karnataka.",
+      "Explore temples, viewpoints, waterfalls, and attractions near Siganduru from KRS Guest House in Siganduru, Karnataka.",
   },
   "/location": {
-    title: "KRS Guest House Location | Near Siganduru Temple, Sagara",
+    title: "KRS Guest House Location | Near Siganduru Temple, Siganduru",
     description:
-      "Find KRS Guest House near Siganduru Chowdeshwari Temple in Sagara, Karnataka, with directions, map details, and nearby landmarks.",
+      "Find KRS Guest House near Siganduru Chowdeshwari Temple in Siganduru, Karnataka, with directions, map details, and nearby landmarks.",
   },
   "/contact": {
     title: "Contact KRS Guest House | Book a Room in Siganduru",
     description:
-      "Contact KRS Guest House to check room availability and plan a comfortable stay near Siganduru Chowdeshwari Temple in Sagara, Karnataka.",
+      "Contact KRS Guest House to check room availability and plan a comfortable stay near Siganduru Chowdeshwari Temple in Siganduru, Karnataka.",
   },
   "/details": {
     title: "Rooms and Amenities | KRS Guest House Siganduru",
@@ -50,7 +50,7 @@ const pageMetadata = {
   "/enquiry": {
     title: "Room Enquiry | KRS Guest House Near Siganduru",
     description:
-      "Send a room enquiry to KRS Guest House for your visit to Siganduru Chowdeshwari Temple in Sagara, Karnataka.",
+      "Send a room enquiry to KRS Guest House for your visit to Siganduru Chowdeshwari Temple in Siganduru, Karnataka.",
   },
 };
 

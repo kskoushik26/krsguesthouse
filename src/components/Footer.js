@@ -36,40 +36,11 @@ const Footer = React.memo(function Footer() {
       <div className="site-footer__glow site-footer__glow--right" />
 
       <div className="site-footer__container">
-        {/* Brand introduction */}
-        <section className="site-footer__intro">
-          <div className="footer-brand">
-            <div className="footer-brand__mark" aria-hidden="true">
-              <span>KRS</span>
-            </div>
 
-            <div className="footer-brand__content">
-              <p className="footer-brand__eyebrow">Welcome to</p>
-              <h2 className="footer-brand__title">KRS Guest House</h2>
-              <p className="footer-brand__tagline">
-                Comfortable stays. Warm hospitality.
-              </p>
-            </div>
-          </div>
-
-          <div className="site-footer__welcome">
-            <span className="site-footer__welcome-line" aria-hidden="true" />
-
-            <p>
-              Your home away from home, where thoughtful comfort and genuine
-              hospitality make every stay memorable.
-            </p>
-          </div>
-        </section>
-
-        <div className="footer-separator" aria-hidden="true">
-          <span />
-          <i />
-          <span />
-        </div>
-
-        {/* Main content */}
+        {/* ================= MAIN CONTENT ================= */}
         <div className="site-footer__grid">
+
+          {/* ABOUT */}
           <section className="footer-section footer-section--about">
             <FooterHeading title="About KRS" />
 
@@ -85,7 +56,12 @@ const Footer = React.memo(function Footer() {
             </a>
           </section>
 
-          <nav className="footer-section" aria-label="Footer navigation">
+
+          {/* EXPLORE */}
+          <nav
+            className="footer-section footer-section--explore"
+            aria-label="Footer navigation"
+          >
             <FooterHeading title="Explore" />
 
             <ul className="footer-navigation">
@@ -103,10 +79,13 @@ const Footer = React.memo(function Footer() {
             </ul>
           </nav>
 
-          <section className="footer-section">
+
+          {/* CONTACT */}
+          <section className="footer-section footer-section--contact">
             <FooterHeading title="Get in Touch" />
 
             <div className="footer-contact-list">
+
               <ContactLink
                 href="tel:+919448734152"
                 icon={<FaPhoneAlt />}
@@ -120,6 +99,7 @@ const Footer = React.memo(function Footer() {
                 label="Email us"
                 value="krsguesthouse26@gmail.com"
               />
+
             </div>
 
             <a className="footer-text-link" href="/contact">
@@ -128,12 +108,14 @@ const Footer = React.memo(function Footer() {
             </a>
           </section>
 
-          <section className="footer-section">
+
+          {/* LOCATION */}
+          <section className="footer-section footer-section--location">
             <FooterHeading title="Find Us" />
 
             <a
               className="footer-location"
-              href="[google.com](https://www.google.com/maps/search/?api=1&query=K.R.S+Guest+House)"
+              href="https://www.google.com/maps/search/?api=1&query=K.R.S+Guest+House"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View KRS Guest House on Google Maps"
@@ -157,19 +139,29 @@ const Footer = React.memo(function Footer() {
               We look forward to welcoming you.
             </p>
           </section>
+
         </div>
 
-        {/* Guest actions */}
+
+        {/* ================= CONNECT ================= */}
         <section className="footer-connect">
+
           <div className="footer-connect__heading">
             <p className="footer-kicker">Stay connected</p>
+
             <h2>We would love to hear from you</h2>
-            <p>Have a question or want to share your experience?</p>
+
+            <p>
+              Have a question or want to share your experience?
+            </p>
           </div>
 
+
           <div className="footer-connect__actions">
+
+            {/* WHATSAPP */}
             <ActionCard
-              href="[wa.me](https://wa.me/919448734152)"
+              href="https://wa.me/919448734152"
               className="footer-action--whatsapp"
               icon={<FaWhatsapp />}
               eyebrow="Quick contact"
@@ -178,8 +170,9 @@ const Footer = React.memo(function Footer() {
               ariaLabel="Chat with KRS Guest House on WhatsApp"
             />
 
+            {/* GOOGLE REVIEW */}
             <ActionCard
-              href="[g.page](https://g.page/r/CVuyigziKlU3EBM/review)"
+              href="https://g.page/r/CVuyigziKlU3EBM/review"
               className="footer-action--review"
               icon={<FaStar />}
               eyebrow="Your experience matters"
@@ -187,13 +180,18 @@ const Footer = React.memo(function Footer() {
               description="Share your stay with others"
               ariaLabel="Leave a Google review for KRS Guest House"
             />
+
           </div>
+
         </section>
 
-        {/* Bottom bar */}
+
+        {/* ================= BOTTOM ================= */}
         <div className="site-footer__bottom">
+
           <p className="site-footer__copyright">
-            Copyright © {currentYear} <strong>KRS Guest House</strong>.
+            Copyright © {currentYear}{" "}
+            <strong>KRS Guest House</strong>.
             <span> All rights reserved.</span>
           </p>
 
@@ -202,9 +200,13 @@ const Footer = React.memo(function Footer() {
             aria-label="Footer shortcuts"
           >
             <a href="/">Home</a>
+
             <span aria-hidden="true" />
+
             <a href="/contact">Contact</a>
+
             <span aria-hidden="true" />
+
             <a href="/enquiry">Enquiry</a>
           </nav>
 
@@ -217,11 +219,18 @@ const Footer = React.memo(function Footer() {
           >
             <FaArrowUp aria-hidden="true" />
           </button>
+
         </div>
+
       </div>
     </footer>
   );
 });
+
+
+/* =========================================================
+   REUSABLE COMPONENTS
+   ========================================================= */
 
 function FooterHeading({ title }) {
   return (
@@ -232,10 +241,19 @@ function FooterHeading({ title }) {
   );
 }
 
-function ContactLink({ href, icon, label, value }) {
+
+function ContactLink({
+  href,
+  icon,
+  label,
+  value,
+}) {
   return (
     <a className="footer-contact" href={href}>
-      <span className="footer-contact__icon" aria-hidden="true">
+      <span
+        className="footer-contact__icon"
+        aria-hidden="true"
+      >
         {icon}
       </span>
 
@@ -251,6 +269,7 @@ function ContactLink({ href, icon, label, value }) {
     </a>
   );
 }
+
 
 function ActionCard({
   href,
@@ -269,9 +288,15 @@ function ActionCard({
       className={`footer-action ${className}`}
       aria-label={ariaLabel}
     >
-      <span className="footer-action__shine" aria-hidden="true" />
+      <span
+        className="footer-action__shine"
+        aria-hidden="true"
+      />
 
-      <span className="footer-action__icon" aria-hidden="true">
+      <span
+        className="footer-action__icon"
+        aria-hidden="true"
+      >
         {icon}
       </span>
 
@@ -281,11 +306,16 @@ function ActionCard({
         <span>{description}</span>
       </span>
 
-      <span className="footer-action__arrow" aria-hidden="true">
+      <span
+        className="footer-action__arrow"
+        aria-hidden="true"
+      >
         <FaChevronRight />
       </span>
     </a>
   );
 }
 
+
 export default Footer;
+

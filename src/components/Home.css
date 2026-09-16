@@ -84,9 +84,9 @@
     linear-gradient(
       90deg,
       rgba(5, 31, 24, 0.92) 0%,
-      rgba(5, 31, 24, 0.72) 38%,
-      rgba(5, 31, 24, 0.25) 75%,
-      rgba(5, 31, 24, 0.1) 100%
+      rgba(5, 31, 24, 0.78) 38%,
+      rgba(5, 31, 24, 0.4) 75%,
+      rgba(5, 31, 24, 0.2) 100%
     );
 }
 
@@ -110,6 +110,8 @@
   font-weight: 800;
 
   letter-spacing: 3px;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 
 .home-page-hero-content h1 {
@@ -123,6 +125,8 @@
   line-height: 1.08;
 
   letter-spacing: -1.5px;
+
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.8);
 }
 
 .home-page-hero-content p {
@@ -134,6 +138,8 @@
 
   font-size: 18px;
   line-height: 1.7;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .home-page-hero-button {
@@ -176,6 +182,16 @@
 .home-page-hero-button-primary {
   background: #d7a646;
   color: #17382d;
+}
+
+.home-page-hero-button-enquiry {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.home-page-hero-button-enquiry:hover {
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 14px 30px rgba(255, 255, 255, 0.12);
 }
 
 .home-page-hero-button-primary:hover {
@@ -1445,6 +1461,11 @@
 
 @media (max-width: 600px) {
 
+  .home-page-rooms,
+  .home-page-faq {
+    display: none;
+  }
+
   /* HERO */
 
   .home-page-hero-image-wrapper {
@@ -1457,7 +1478,7 @@
     background:
       linear-gradient(
         180deg,
-        rgba(5, 31, 24, 0.03) 10%,
+        rgba(5, 31, 24, 0.25) 10%,
         rgba(5, 31, 24, 0.4) 42%,
         rgba(5, 31, 24, 0.95) 100%
       );

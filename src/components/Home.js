@@ -14,7 +14,7 @@ const Home = () => {
       icon: "🛕",
       title: "Close to Temple",
       description:
-        "Located just 400 meters from Siganduru Chowdeshwari Temple.",
+        "Located just 350 meters from Siganduru Chowdeshwari Temple.",
     },
     {
       icon: "🛏️",
@@ -112,7 +112,7 @@ const Home = () => {
       question:
         "How far is the guest house from Siganduru Chowdeshwari Temple?",
       answer:
-        "The guest house is conveniently located approximately 400 meters from the temple, making it easy for guests to visit.",
+        "The guest house is conveniently located approximately 350 meters from the temple, making it easy for guests to visit.",
     },
     {
       question: "What room types are available?",
@@ -196,12 +196,12 @@ const Home = () => {
               <h1>
                 A Comfortable Stay,
                 <br />
-                Close to the Siganduru Chowdeshwari Temple
+                near to the Siganduru Chowdeshwari Temple
               </h1>
 
               <p>
                 Clean rooms, peaceful surroundings, comfortable facilities,
-                and just 400 meters from Siganduru Chowdeshwari Temple.
+                and just 350 meters from Siganduru Chowdeshwari Temple.
               </p>
 
               <Link
@@ -209,6 +209,13 @@ const Home = () => {
                 className="home-page-hero-button"
               >
                 View Rooms
+              </Link>
+
+              <Link
+                to="/enquiry"
+                className="home-page-hero-button home-page-hero-button-enquiry"
+              >
+                Enquiry Now
               </Link>
 
               <Link
@@ -278,7 +285,7 @@ const Home = () => {
 
             <div>
               <span className="home-page-highlight-icon">🛕</span>
-              <strong>400m</strong>
+              <strong>350m</strong>
               <small>From Temple</small>
             </div>
 
@@ -484,7 +491,7 @@ const Home = () => {
                   </strong>
 
                   <p>
-                    Approximately 400 meters from the guest house.
+                    Approximately 350 meters from the guest house.
                   </p>
                 </div>
 
@@ -535,7 +542,7 @@ const Home = () => {
               <div className="home-page-location-features">
 
                 <span>
-                  <b>✓</b> 400m from Temple
+                  <b>✓</b> 350m from Temple
                 </span>
 
                 <span>

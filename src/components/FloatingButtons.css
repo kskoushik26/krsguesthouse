@@ -16,6 +16,16 @@
   
     z-index: 9999;
   }
+
+  @media (max-width: 768px) {
+    .floating-buttons {
+      right: 12px;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      gap: 8px;
+      transform: scale(0.86);
+      transform-origin: bottom right;
+    }
+  }
   
   
   /* =========================================

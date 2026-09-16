@@ -85,12 +85,6 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="booking-trust" aria-label="Booking assurances">
-          <span><b>✓</b><strong>Verified stay</strong></span>
-          <span><b>♥</b><strong>Family-friendly</strong></span>
-          <span><b>◷</b><strong>24x7 support</strong></span>
-        </div>
-
         {/* Booking Section */}
         <div className="booking-section">
           <div className="section-heading">

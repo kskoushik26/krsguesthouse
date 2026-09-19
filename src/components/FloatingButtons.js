@@ -91,7 +91,7 @@ const FloatingButtons = () => {
         {/* Location */}
         <button
           type="button"
-          className="fab location"
+          className="fab fab-map"
           onClick={() => setShowMap(true)}
           aria-label="View our location"
         >

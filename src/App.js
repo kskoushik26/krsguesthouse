@@ -9,17 +9,18 @@ import {
 import ScrollToTop from "./components/ScrollToTop";
 
 import Header from "./components/Header";
-import Enquiry from "./components/Enquiry";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Location from "./components/Location";
-import AttractionsList from "./components/attraction";
-import Details from "./components/Details";
 import FloatingButtons from "./components/FloatingButtons";
 import ContactBar from "./components/ContactBar";
 import Home from "./components/Home";
 
 import "./App.css";
+
+const Enquiry = React.lazy(() => import("./components/Enquiry"));
+const Contact = React.lazy(() => import("./components/Contact"));
+const Location = React.lazy(() => import("./components/Location"));
+const AttractionsList = React.lazy(() => import("./components/attraction"));
+const Details = React.lazy(() => import("./components/Details"));
 
 const pageMetadata = {
   "/": {
@@ -88,7 +89,7 @@ function PageMetadata() {
       } else {
         const newElement = document.createElement("meta");
         if (selector.startsWith("meta[property=\"") || selector.startsWith("meta[name=\"")) {
-          const attr = selector.match(/meta\[(?:property|name)=\"([^\"]+)\"\]/i);
+          const attr = selector.match(/meta\[(?:property|name)="([^"]+)"\]/i);
           if (attr) {
             newElement.setAttribute(attr[1].includes(":") ? "property" : "name", attr[1]);
           }
@@ -149,14 +150,16 @@ function App() {
         <Header />
 
         {/* Pages */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/attraction" element={<AttractionsList />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/details" element={<Details />} />
-          <Route path="/enquiry" element={<Enquiry />} />
-        </Routes>
+        <React.Suspense fallback={<div className="route-loading">Loading page...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/attraction" element={<AttractionsList />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/details" element={<Details />} />
+            <Route path="/enquiry" element={<Enquiry />} />
+          </Routes>
+        </React.Suspense>
 
         <Footer />
       </Router>

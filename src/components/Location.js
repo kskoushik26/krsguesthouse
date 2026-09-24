@@ -9,7 +9,7 @@ const rooms = [
     icon: "🛏️",
     title: "2-Occupancy Room",
     description:
-      "Perfect for couples looking for a comfortable stay.",
+      "Perfect for a family of 2",
     guests: "Up to 2 Guests",
     facilities: [
       "Attached Bathroom",

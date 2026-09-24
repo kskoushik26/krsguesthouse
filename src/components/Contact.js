@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaDirections, FaStar } from "react-icons/fa";
 import { googleMapsDirectionsUrl, googleReviewUrl } from "../business";
+import { trackEvent } from "../analytics";
 import "./Contact.css";
 
 const whatsappBookingUrl =
@@ -118,10 +119,10 @@ const Contact = () => {
           </div>
 
           <div className="booking-actions">
-            <Link className="availability-button" to="/enquiry">
+            <Link className="availability-button" to="/enquiry" onClick={() => trackEvent("booking", "click", "check_availability")}>
               Check availability <span aria-hidden="true">→</span>
             </Link>
-            <a className="whatsapp-button" href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer">
+            <a className="whatsapp-button" href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("booking", "click", "whatsapp_booking") }>
               <span className="call-icon">◔</span>
               <span><small>WhatsApp</small>Message us directly</span>
             </a>
@@ -141,9 +142,10 @@ const Contact = () => {
 
           <div className="contact-grid">
 
-            <a
+              <a
               className="contact-item"
               href="mailto:krsguesthouse26@gmail.com"
+              onClick={() => trackEvent("contact", "click", "email_contact_page")}
             >
               <div className="contact-item-icon">✉</div>
 
@@ -156,6 +158,7 @@ const Contact = () => {
             <a
               className="contact-item"
               href="tel:+919448734152"
+              onClick={() => trackEvent("contact", "click", "phone_contact_page")}
             >
               <div className="contact-item-icon">☎</div>
 
@@ -183,6 +186,7 @@ const Contact = () => {
               href={googleMapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("location", "click", "directions_contact_page")}
             >
               <div className="contact-item-icon"><FaDirections aria-hidden="true" /></div>
 
@@ -197,6 +201,7 @@ const Contact = () => {
               href={googleReviewUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("review", "click", "google_reviews_contact_page")}
             >
               <div className="contact-item-icon"><FaStar aria-hidden="true" /></div>
 

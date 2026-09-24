@@ -7,6 +7,7 @@ import {
   FaChevronUp,
   FaTimes,
 } from "react-icons/fa";
+import { trackEvent } from "../analytics";
 import "./FloatingButtons.css";
 
 const FloatingButtons = () => {
@@ -45,6 +46,7 @@ const FloatingButtons = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
+          onClick={() => trackEvent("contact", "click", "whatsapp_floating")}
         >
           <span className="fab-icon">
             <FaWhatsapp />
@@ -61,6 +63,7 @@ const FloatingButtons = () => {
           href="mailto:krsguesthouse26@gmail.com"
           className="fab email"
           aria-label="Send us an email"
+          onClick={() => trackEvent("contact", "click", "email_floating")}
         >
           <span className="fab-icon">
             <FaEnvelope />
@@ -77,6 +80,7 @@ const FloatingButtons = () => {
           href="tel:+919448734152"
           className="fab call"
           aria-label="Call us"
+          onClick={() => trackEvent("contact", "click", "phone_floating")}
         >
           <span className="fab-icon">
             <FaPhoneAlt />
@@ -114,6 +118,21 @@ const FloatingButtons = () => {
         </div>
 
       </div>
+
+      <nav className="mobile-action-bar" aria-label="Quick booking actions">
+        <a href="tel:+919448734152" onClick={() => trackEvent("contact", "click", "phone_mobile_cta")}>
+          <FaPhoneAlt aria-hidden="true" />
+          <span>Call</span>
+        </a>
+        <a href="https://wa.me/919448734152" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("contact", "click", "whatsapp_mobile_cta")}>
+          <FaWhatsapp aria-hidden="true" />
+          <span>WhatsApp</span>
+        </a>
+        <a href="/contact" onClick={() => trackEvent("booking", "click", "book_mobile_cta")}>
+          <FaEnvelope aria-hidden="true" />
+          <span>Book now</span>
+        </a>
+      </nav>
 
 
       {/* =========================================

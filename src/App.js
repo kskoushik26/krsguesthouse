@@ -14,6 +14,7 @@ import FloatingButtons from "./components/FloatingButtons";
 import ContactBar from "./components/ContactBar";
 import Home from "./components/Home";
 import { getRouteMetadata } from "./seoMetadata";
+import { trackEvent } from "./analytics";
 
 import "./App.css";
 
@@ -63,6 +64,34 @@ function PageMetadata() {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", canonicalUrl);
+
+    const schemaId = "route-breadcrumb-schema";
+    const schema = document.getElementById(schemaId) || document.createElement("script");
+    schema.id = schemaId;
+    schema.type = "application/ld+json";
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://krsguesthouse.com/",
+        },
+        ...(location.pathname !== "/"
+          ? [{
+              "@type": "ListItem",
+              position: 2,
+              name: metadata.title.split(" | ")[0],
+              item: canonicalUrl,
+            }]
+          : []),
+      ],
+    });
+    document.head.appendChild(schema);
+
+    trackEvent("navigation", "page_view", location.pathname);
   }, [location.pathname]);
 
   return null;

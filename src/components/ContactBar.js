@@ -1,12 +1,13 @@
 import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
+import { trackEvent } from '../analytics';
 import './ContactBar.css';
 
 const ContactBar = () => {
   return (
     <div className="contact-bar">
       <div className="contact-item">
-        <a href="tel:9448734152" className="contact-link">
+        <a href="tel:9448734152" className="contact-link" onClick={() => trackEvent('contact', 'click', 'booking_phone_top_bar')}>
           <FaPhoneAlt className="contact-icon" />
           <span className="contact-text">
             Booking number (10am to 8pm): 9448734152
@@ -15,7 +16,7 @@ const ContactBar = () => {
       </div>
 
       <div className="contact-item">
-        <a href="tel:8431813492" className="contact-link">
+        <a href="tel:8431813492" className="contact-link" onClick={() => trackEvent('contact', 'click', 'night_phone_top_bar')}>
           <FaPhoneAlt className="contact-icon" />
           <span className="contact-text">
             Night Contact (10pm to 8am): 8431813492

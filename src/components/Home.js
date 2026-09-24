@@ -5,10 +5,40 @@ import { trackEvent } from "../analytics";
 import "./Home.css";
 
 const Home = () => {
+  const whatsappBookingUrl =
+    "https://wa.me/919448734152?text=Hi%20KRS%20Guest%20House%2C%20I%20want%20to%20check%20room%20availability.";
+
   const homeImages = [
     "/krs.png",
     "https://res.cloudinary.com/dm0l1t1vk/image/upload/f_auto,q_auto,w_1600/v1752135436/image1_a8nu2z.jpg",
     "https://res.cloudinary.com/dm0l1t1vk/image/upload/f_auto,q_auto,w_1600/v1752135435/image7_1_q4pgpx.jpg",
+  ];
+
+  const homeRoomPlans = [
+    {
+      icon: "🛏️",
+      title: "2 Guests Room",
+      guests: "Perfect for a family of 2",
+      description:
+        "Comfortable stay with clean bedding, attached bathroom, hot water, and a peaceful atmosphere for a relaxing visit.",
+      features: ["Attached bathroom", "Hot water", "Clean stay"],
+    },
+    {
+      icon: "👨‍👩‍👧‍👦",
+      title: "Family Room",
+      guests: "Suitable for up to 4 guests",
+      description:
+        "Spacious and family-friendly room designed for temple visits, group stays, and comfortable family accommodation.",
+      features: ["Family friendly", "Extra space", "Peaceful setting"],
+    },
+    {
+      icon: "🏠",
+      title: "Group Room",
+      guests: "Suitable for up to 6 guests",
+      description:
+        "Perfect for larger groups visiting Siganduru with shared comfort, easy access, and convenient guest support.",
+      features: ["Group stay", "Parking", "Support available"],
+    },
   ];
 
   const homeFacilities = [
@@ -22,7 +52,7 @@ const Home = () => {
       icon: "🛏️",
       title: "Comfortable Rooms",
       description:
-        "Well-maintained rooms suitable for couples, families and groups.",
+        "Well-maintained rooms suitable for families and groups.",
     },
     {
       icon: "🚿",
@@ -177,36 +207,37 @@ const Home = () => {
               </span>
 
               <h1>
-                A Comfortable Stay,
+                Comfortable Stay Near
                 <br />
-                near to the Siganduru Chowdeshwari Temple
+                Siganduru Chowdeshwari Temple
               </h1>
 
               <p>
-                Clean rooms, peaceful surroundings, comfortable facilities,
-                and just 350 meters from Siganduru Chowdeshwari Temple in
-                Karnataka.
+                Clean rooms, family-friendly accommodation, free parking,
+                and a peaceful stay just 350 meters from the temple.
               </p>
 
               <p className="home-page-hero-search-copy">
-                Searching for rooms or a hotel stay near Siganduru? KRS Guest
-                House, also searched as Sigandooru accommodation, is a
-                convenient choice for temple visitors and families.
+                Looking for a clean and affordable stay near Siganduru?
+                KRS Guest House offers comfortable rooms for families,
+                temple visitors, and travelers seeking a calm place to rest.
               </p>
 
               <Link
                 to="/enquiry"
                 className="home-page-hero-button"
+                onClick={() => trackEvent("booking", "click", "hero_check_availability")}
               >
                 Check availability
               </Link>
 
-              <a
-                href="/location"
+              <Link
+                to="/location"
                 className="home-page-hero-button home-page-hero-button-enquiry"
+                onClick={() => trackEvent("booking", "click", "hero_view_rooms")}
               >
                 See room options
-              </a>
+              </Link>
 
               <a
                 href="tel:+919448734152"
@@ -248,10 +279,76 @@ const Home = () => {
         </div>
       </section>
 
+      <div className="home-page-sticky-booking-bar" aria-label="Quick booking actions">
+        <span>Book your stay today</span>
+        <div className="home-page-sticky-booking-actions">
+          <a
+            href="tel:+919448734152"
+            onClick={() => trackEvent("contact", "click", "sticky_phone")}
+          >
+            Call Now
+          </a>
+          <a
+            href={whatsappBookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent("contact", "click", "sticky_whatsapp")}
+          >
+            WhatsApp
+          </a>
+          <Link
+            to="/contact"
+            onClick={() => trackEvent("booking", "click", "sticky_check_availability")}
+          >
+            Check Availability
+          </Link>
+        </div>
+      </div>
+
       <section className="home-page-trust-strip" aria-label="Why guests choose us">
         <div><span>✓</span><strong>Direct booking</strong><small>Talk to our local team</small></div>
         <div><span>♥</span><strong>Family-friendly</strong><small>Rooms for every group</small></div>
-        <div><span>◷</span><strong>Clear support hours</strong><small>Booking help from 10am to 8pm</small></div>
+        <div><span>◷</span><strong>Near the temple</strong><small>Just 350 meters away</small></div>
+      </section>
+
+      <section className="home-page-room-options" aria-labelledby="home-page-room-options-title">
+        <div className="home-page-section-heading">
+          <span className="home-page-section-label">ROOM OPTIONS</span>
+          <h2 id="home-page-room-options-title">Choose Your Perfect Stay</h2>
+          <p>
+            Comfortable rooms for families and groups visiting Siganduru for worship, travel, or a peaceful break.
+          </p>
+        </div>
+
+        <div className="home-page-room-options-grid">
+          {homeRoomPlans.map((room) => (
+            <article className="home-page-room-option-card" key={room.title}>
+              <div className="home-page-room-option-top">
+                <span className="home-page-room-option-icon">{room.icon}</span>
+                <span className="home-page-room-option-guests">{room.guests}</span>
+              </div>
+
+              <div className="home-page-room-option-content">
+                <h3>{room.title}</h3>
+                <p>{room.description}</p>
+
+                <ul>
+                  {room.features.map((feature) => (
+                    <li key={feature}>✓ {feature}</li>
+                  ))}
+                </ul>
+
+                <Link
+                  to="/contact"
+                  className="home-page-room-option-button"
+                  onClick={() => trackEvent("booking", "click", `room_${room.title.toLowerCase().replace(/\s+/g, "_")}`)}
+                >
+                  Enquire now
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="home-page-reviews" aria-labelledby="home-page-reviews-title">
@@ -494,43 +591,40 @@ const Home = () => {
 
           </div>
 
-          {/* Location CTA */}
-
-          <div className="home-page-location-cta">
-
-            <div className="home-page-location-cta-content">
-
-              <span>✨</span>
-
-              <div>
-                <h3>Planning a visit to Siganduru?</h3>
-
-                <p>
-                  Stay close to the temple in a comfortable
-                  and peaceful guest house.
-                </p>
-              </div>
-
-            </div>
-
-            {/* BOOK NOW BUTTON */}
-
-            <Link
-              to="/contact"
-              className="home-page-location-cta-button"
-              onClick={() => trackEvent("booking", "click", "location_book_now")}
-            >
-              Book Now
-              <span>→</span>
-            </Link>
-
-          </div>
-
         </div>
 
       </section>
 
       {/* ================= FAQ — KEEP AT END ================= */}
+
+      <section className="home-page-booking-cta" aria-label="Book your stay">
+        <div className="home-page-booking-cta-content">
+          <span>✨</span>
+          <div>
+            <h3>Plan Your Temple Visit With Us</h3>
+            <p>
+              Looking for a clean, comfortable, and affordable stay near Siganduru Chowdeshwari Temple? KRS Guest House offers family-friendly rooms, peaceful surroundings, and convenient access to the temple.
+            </p>
+          </div>
+        </div>
+
+        <div className="home-page-booking-cta-actions">
+          <Link
+            to="/contact"
+            className="home-page-booking-cta-button"
+            onClick={() => trackEvent("booking", "click", "footer_check_availability")}
+          >
+            Check Availability
+          </Link>
+          <a
+            href="tel:+919448734152"
+            className="home-page-booking-cta-button home-page-booking-cta-button-secondary"
+            onClick={() => trackEvent("contact", "click", "footer_call")}
+          >
+            Call Now
+          </a>
+        </div>
+      </section>
 
       <section className="home-page-faq">
 

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { googleReviewUrl } from "../business";
+import { trackEvent } from "../analytics";
 import "./Home.css";
 
 const Home = () => {
   const homeImages = [
     "/krs.png",
-    "https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752135436/image1_a8nu2z.jpg",
-    "https://res.cloudinary.com/dm0l1t1vk/image/upload/v1752135435/image7_1_q4pgpx.jpg",
+    "https://res.cloudinary.com/dm0l1t1vk/image/upload/f_auto,q_auto,w_1600/v1752135436/image1_a8nu2z.jpg",
+    "https://res.cloudinary.com/dm0l1t1vk/image/upload/f_auto,q_auto,w_1600/v1752135435/image7_1_q4pgpx.jpg",
   ];
 
   const homeFacilities = [
@@ -55,30 +57,6 @@ const Home = () => {
       title: "Guest Support",
       description:
         "We are available to assist guests whenever needed.",
-    },
-  ];
-
-  const homeRoomTypes = [
-    {
-      icon: "🛏️",
-      title: "2-Occupancy Room",
-      description:
-        "Perfect for couples looking for a comfortable stay.",
-      guests: "Up to 2 Guests",
-    },
-    {
-      icon: "👨‍👩‍👧‍👦",
-      title: "4-Occupancy Family Room",
-      description:
-        "A spacious choice for families and small groups traveling together.",
-      guests: "Up to 4 Guests",
-    },
-    {
-      icon: "🏡",
-      title: "6-Occupancy Room",
-      description:
-        "Ideal for larger families or groups who want to stay together.",
-      guests: "Up to 6 Guests",
     },
   ];
 
@@ -184,6 +162,11 @@ const Home = () => {
             src={homeImages[homeSelectedImage]}
             alt="K.R.S Guest House"
             className="home-page-hero-image"
+            width="1600"
+            height="900"
+            loading={homeSelectedImage === 0 ? "eager" : "lazy"}
+            fetchPriority={homeSelectedImage === 0 ? "high" : "auto"}
+            decoding="async"
           />
 
           <div className="home-page-hero-overlay">
@@ -201,29 +184,37 @@ const Home = () => {
 
               <p>
                 Clean rooms, peaceful surroundings, comfortable facilities,
-                and just 350 meters from Siganduru Chowdeshwari Temple.
+                and just 350 meters from Siganduru Chowdeshwari Temple in
+                Karnataka.
+              </p>
+
+              <p className="home-page-hero-search-copy">
+                Searching for rooms or a hotel stay near Siganduru? KRS Guest
+                House, also searched as Sigandooru accommodation, is a
+                convenient choice for temple visitors and families.
               </p>
 
               <Link
-                to="/location"
+                to="/enquiry"
                 className="home-page-hero-button"
               >
-                View Rooms
+                Check availability
               </Link>
 
-              <Link
-                to="/enquiry"
+              <a
+                href="/location"
                 className="home-page-hero-button home-page-hero-button-enquiry"
               >
-                Enquiry Now
-              </Link>
+                See room options
+              </a>
 
-              <Link
-                to="/contact"
+              <a
+                href="tel:+919448734152"
                 className="home-page-hero-button home-page-hero-button-primary"
+                onClick={() => trackEvent("contact", "click", "booking_phone_hero")}
               >
-                Book Now <span aria-hidden="true">→</span>
-              </Link>
+                Call to book <span aria-hidden="true">→</span>
+              </a>
 
 
             </div>
@@ -247,6 +238,10 @@ const Home = () => {
               <img
                 src={image}
                 alt={`Guest house ${index + 1}`}
+                width="90"
+                height="62"
+                loading="lazy"
+                decoding="async"
               />
             </button>
           ))}
@@ -254,139 +249,28 @@ const Home = () => {
       </section>
 
       <section className="home-page-trust-strip" aria-label="Why guests choose us">
-        <div><span>✓</span><strong>Verified stay</strong><small>Clean, cared-for rooms</small></div>
+        <div><span>✓</span><strong>Direct booking</strong><small>Talk to our local team</small></div>
         <div><span>♥</span><strong>Family-friendly</strong><small>Rooms for every group</small></div>
-        <div><span>◷</span><strong>24x7 support</strong><small>Help before and during your stay</small></div>
+        <div><span>◷</span><strong>Clear support hours</strong><small>Booking help from 10am to 8pm</small></div>
       </section>
 
-      {/* ================= INTRO ================= */}
-
-      <section className="home-page-intro">
-        <div className="home-page-intro-content">
-
-          <span className="home-page-section-label">
-            YOUR HOME AWAY FROM HOME
-          </span>
-
-          <h2>
-            Stay Comfortable.
-            <br />
-            Feel at Home.
-          </h2>
-
-          <p>
-            Whether you are visiting the temple, travelling with family,
-            or looking for a peaceful place to stay, K.R.S Guest House
-            offers comfortable rooms and essential facilities for a
-            pleasant stay.
-          </p>
-
-          <div className="home-page-intro-highlights">
-
-            <div>
-              <span className="home-page-highlight-icon">🛕</span>
-              <strong>350m</strong>
-              <small>From Temple</small>
-            </div>
-
-            <div>
-              <span className="home-page-highlight-icon">🛏️</span>
-              <strong>3</strong>
-              <small>Room Options</small>
-            </div>
-
-            <div>
-              <span className="home-page-highlight-icon">🚗</span>
-              <strong>Free</strong>
-              <small>Parking</small>
-            </div>
-
-            <div>
-              <span className="home-page-highlight-icon">📹</span>
-              <strong>CCTV</strong>
-              <small>Common Areas</small>
-            </div>
-
-          </div>
-
+      <section className="home-page-reviews" aria-labelledby="home-page-reviews-title">
+        <div>
+          <span className="home-page-section-label">GUEST FEEDBACK</span>
+          <h2 id="home-page-reviews-title">Planning your stay with confidence</h2>
+          <p>Read the latest guest feedback on our Google Business profile before you book.</p>
         </div>
-      </section>
-
-      {/* ================= ROOMS ================= */}
-
-      <section
-        className="home-page-rooms"
-        id="home-page-rooms"
-      >
-
-        <div className="home-page-section-heading">
-
-          <span className="home-page-section-label">
-            OUR ROOMS
-          </span>
-
-          <h2>Choose Your Room</h2>
-
-          <p>
-            Comfortable room options designed for individuals,
-            couples, families and groups.
-          </p>
-
-        </div>
-
-        <div className="home-page-rooms-grid">
-
-          {homeRoomTypes.map((room, index) => (
-            <article
-              className="home-page-room-card"
-              key={index}
-            >
-
-              <div className="home-page-room-card-top">
-
-                <div className="home-page-room-icon">
-                  {room.icon}
-                </div>
-
-                <span className="home-page-room-guests">
-                  {room.guests}
-                </span>
-
-              </div>
-
-              <div className="home-page-room-content">
-
-                <h3>{room.title}</h3>
-
-                <p>{room.description}</p>
-
-                <div className="home-page-room-features">
-
-                  <span>✓ Attached Bathroom</span>
-                  <span>✓ Hot Water</span>
-                  <span>✓ Clean & Hygienic</span>
-                  <span>✓ Peaceful Environment</span>
-
-                </div>
-
-              </div>
-
-            </article>
-          ))}
-
-        </div>
-
-        <div className="home-page-room-note">
-
-          <span>ℹ️</span>
-
-          <p>
-            Room rates may vary depending on the season and availability.
-            Contact us for the latest tariff and room availability.
-          </p>
-
-        </div>
-
+        <a
+          href={googleReviewUrl}
+          className="home-page-review-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackEvent("review", "click", "google_reviews_home")}
+        >
+          <span aria-hidden="true">★</span>
+          <span><strong>Read Google reviews</strong><small>Opens Google Business Profile</small></span>
+          <span aria-hidden="true">→</span>
+        </a>
       </section>
 
       {/* ================= FACILITIES ================= */}
@@ -634,6 +518,7 @@ const Home = () => {
             <Link
               to="/contact"
               className="home-page-location-cta-button"
+              onClick={() => trackEvent("booking", "click", "location_book_now")}
             >
               Book Now
               <span>→</span>

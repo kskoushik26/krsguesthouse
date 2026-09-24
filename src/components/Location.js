@@ -11,6 +11,12 @@ const rooms = [
     description:
       "Perfect for couples looking for a comfortable stay.",
     guests: "Up to 2 Guests",
+    facilities: [
+      "Attached Bathroom",
+      "Hot Water",
+      "Clean & Hygienic",
+      "Peaceful Environment"
+    ],
   },
   {
     icon: "👨‍👩‍👧‍👦",
@@ -18,6 +24,12 @@ const rooms = [
     description:
       "A spacious choice for families and small groups traveling together.",
     guests: "Up to 4 Guests",
+    facilities: [
+      "Attached Bathroom",
+      "Hot Water",
+      "Clean & Hygienic",
+      "Peaceful Environment"
+    ],
   },
   {
     icon: "🏡",
@@ -25,6 +37,12 @@ const rooms = [
     description:
       "Ideal for larger families or groups who want to stay together.",
     guests: "Up to 6 Guests",
+    facilities: [
+      "Attached Bathroom",
+      "Hot Water",
+      "Clean & Hygienic",
+      "Peaceful Environment"
+    ],
   },
 ];
 
@@ -130,40 +148,21 @@ const Location = () => {
                       {room.description}
                     </p>
 
+                    <div className="room-features">
+                      {room.facilities.map((facility) => (
+                        <span key={facility}>✓ {facility}</span>
+                      ))}
+                    </div>
+
                     <div className="room-footer">
                       <span className="tariff-text">
                         Seasonal tariff
-                      </span>
-
-                      <span className="arrow">
-                        →
                       </span>
                     </div>
 
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Pricing Note */}
-            <div className="pricing-note">
-
-              <div className="note-icon">
-                ℹ️
-              </div>
-
-              <div>
-                <strong>
-                  Planning your stay?
-                </strong>
-
-                <p>
-                  Room rates vary depending on the season.
-                  Contact us with your preferred dates for the
-                  latest pricing and availability.
-                </p>
-              </div>
-
             </div>
 
           </div>
@@ -240,6 +239,26 @@ const Location = () => {
                 </div>
 
               ))}
+
+            </div>
+
+            {/* Pricing Note */}
+            <div className="pricing-note">
+
+              <div className="note-icon">
+                ℹ️
+              </div>
+
+              <div>
+                <strong>
+                  Planning your stay?
+                </strong>
+
+                <p>
+                  Room rates may vary depending on the season and availability.
+                  Contact us for the latest tariff and room availability.
+                </p>
+              </div>
 
             </div>
 

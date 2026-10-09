@@ -68,7 +68,7 @@ const Home = () => {
           <div className="home-page-hero-overlay">
             <div className="home-page-hero-content">
               <p className="home-page-hero-kicker">K.R.S Guest House, Sigandur</p>
-              <h1>Sigandur Rooms Near Chowdeshwari Temple</h1>
+              <h1>Comfortable Stay Near Siganduru Chowdeshwari Temple</h1>
               <p className="home-page-hero-text">
                 KRS Guest House offers clean, family-friendly rooms with free parking,
                 350 meters from the temple. Enquire online for availability and current rates.

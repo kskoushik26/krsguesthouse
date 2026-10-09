@@ -1,58 +1,67 @@
+const SITE = "https://krsguesthouse.com";
+const DEFAULT_IMAGE = `${SITE}/bridge.jpeg`;
+
+// Keep titles under ~60 characters and descriptions under ~155.
+// "keywords" is removed on purpose: Google ignores it.
 export const pageMetadata = {
   "/": {
-    title: "KRS Guest House | Rooms Near Siganduru Temple, Karnataka",
+    title: "Rooms Near Sigandur Chowdeshwari Temple | KRS Guest House",
     description:
-      "Looking for rooms or a budget hotel stay near Siganduru Temple? KRS Guest House in Siganduru, Karnataka offers clean rooms, hot water, free parking, and family-friendly accommodation.",
-    keywords:
-      "KRS Guest House, Sigandooru, Siganduru Karnataka, rooms near Siganduru, hotels in Siganduru, hotel near Siganduru Temple, guest house near Siganduru Temple, budget stay in Karnataka",
-    image: "https://krsguesthouse.com/bridge.jpeg",
-  },
-  "/attraction": {
-    title: "Places to Visit Near Siganduru, Karnataka | KRS Guest House",
-    description:
-      "Explore temples, viewpoints, waterfalls, and local attractions near Siganduru from KRS Guest House in Karnataka.",
-    keywords:
-      "places to visit near Siganduru, attractions near Siganduru, temple near Siganduru, sightseeing in Karnataka",
-    image: "https://krsguesthouse.com/bridge.jpeg",
+      "Clean rooms with hot water and free parking, a short walk from Sigandur Chowdeshwari Temple. Check rates and availability or call +91 94487 34152.",
   },
   "/rooms": {
-    title: "KRS Guest House Location | Rooms Near Siganduru Temple",
+    title: "Rooms & Tariff | KRS Guest House, Sigandur",
     description:
-      "Find KRS Guest House near Siganduru Chowdeshwari Temple in Siganduru, Karnataka, with directions, map details, and nearby landmarks.",
-    keywords:
-      "KRS Guest House location, Siganduru map, guest house near temple, stay near Siganduru temple, Karnataka accommodation",
-    image: "https://krsguesthouse.com/bridge.jpeg",
+      "Room types, tariff and amenities at KRS Guest House, Sigandur. Family rooms, hot water, free parking. Call or enquire for your dates.",
+  },
+  "/location": {
+    title: "Location & Directions | KRS Guest House, Sigandur",
+    description:
+      "How to reach KRS Guest House from Sigandur Chowdeshwari Temple, with map, directions and nearby landmarks in Sigandur, Karnataka.",
+  },
+  "/gallery": {
+    title: "Photos | KRS Guest House, Sigandur",
+    description:
+      "See photos of rooms, parking and surroundings at KRS Guest House near Sigandur Chowdeshwari Temple before you book your stay.",
+  },
+  "/how-to-reach-sigandur": {
+    title: "How to Reach Sigandur from Bengaluru, Shivamogga, Sagar",
+    description:
+      "Route, distance and travel time to Sigandur Chowdeshwari Temple from Bengaluru, Shivamogga and Sagar, plus where to stay nearby.",
+  },
+  "/attraction": {
+    title: "Places to Visit Near Sigandur, Karnataka",
+    description:
+      "Sigandur Chowdeshwari Temple, the Sharavathi backwaters, viewpoints and other places to visit near Sigandur, from KRS Guest House.",
   },
   "/contact": {
-    title: "Contact KRS Guest House | Book Rooms in Siganduru",
+    title: "Contact KRS Guest House | Sigandur",
     description:
-      "Contact KRS Guest House to check room availability and book a comfortable stay near Siganduru Chowdeshwari Temple in Karnataka.",
-    keywords:
-      "contact KRS Guest House, book room in Siganduru, guest house booking near temple, hotel contact Siganduru",
-    image: "https://krsguesthouse.com/bridge.jpeg",
-  },
-  "/policies": {
-    title: "Rooms and Amenities | KRS Guest House, Siganduru Karnataka",
-    description:
-      "See room details and amenities at KRS Guest House, including clean rooms, hot water, free parking, and family-friendly accommodation near Siganduru Temple.",
-    keywords:
-      "rooms at KRS Guest House, guest house amenities, family rooms near Siganduru, hot water parking accommodation",
-    image: "https://krsguesthouse.com/bridge.jpeg",
+      "Call +91 94487 34152 or message KRS Guest House to check room availability near Sigandur Chowdeshwari Temple, Karnataka.",
   },
   "/enquiry": {
-    title: "Room Enquiry | KRS Guest House Near Siganduru Temple",
+    title: "Room Enquiry | KRS Guest House, Sigandur",
     description:
-      "Send a room enquiry to KRS Guest House for your visit to Siganduru Chowdeshwari Temple in Siganduru, Karnataka.",
-    keywords:
-      "room enquiry Siganduru, book guest house, KRS Guest House enquiry, Siganduru accommodation enquiry",
-    image: "https://krsguesthouse.com/bridge.jpeg",
+      "Send a room enquiry to KRS Guest House for your visit to Sigandur Chowdeshwari Temple. We reply with availability and current rates.",
+  },
+  "/policies": {
+    title: "Guest Policies | KRS Guest House, Sigandur",
+    description:
+      "Check-in and check-out times, ID requirements, cancellation and house rules at KRS Guest House, Sigandur, Karnataka.",
   },
 };
 
 export function getRouteMetadata(pathname) {
-  if (!pathname) {
-    return pageMetadata["/"];
-  }
+  const clean =
+    !pathname || pathname === "/"
+      ? "/"
+      : pathname.replace(/\/+$/, "").toLowerCase();
 
-  return pageMetadata[pathname] || pageMetadata["/"];
+  const page = pageMetadata[clean] || pageMetadata["/"];
+
+  return {
+    ...page,
+    image: page.image || DEFAULT_IMAGE,
+    canonical: `${SITE}${clean === "/" || !pageMetadata[clean] ? "/" : clean}`,
+  };
 }

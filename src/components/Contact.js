@@ -84,7 +84,7 @@ const Contact = () => {
             <h1>Plan your stay with us</h1>
             <p className="panel-lead">
               Booking your stay is simple. Follow these quick steps and get
-              ready for a comfortable stay in Siganduru.
+              ready for a comfortable stay in Sigandur.
             </p>
 
             <div className="panel-actions">
@@ -159,7 +159,7 @@ const Contact = () => {
                 <span className="ci-text">
                   <small>Location</small>
                   <strong>
-                    KRS Guest House, Siganduru,
+                    KRS Guest House, Sigandur,
                     <br />
                     Sagar, Shivamogga
                   </strong>

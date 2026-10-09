@@ -6,12 +6,12 @@ const buildDir = path.join(appRoot, 'build');
 const appHtml = fs.readFileSync(path.join(buildDir, 'index.html'), 'utf8');
 
 const routes = [
-  { path: '/', title: 'KRS Guest House | Rooms Near Siganduru Temple, Karnataka' },
-  { path: '/attraction', title: 'Places to Visit Near Siganduru, Karnataka | KRS Guest House' },
-  { path: '/rooms', title: 'KRS Guest House Location | Rooms Near Siganduru Temple' },
-  { path: '/contact', title: 'Contact KRS Guest House | Book Rooms in Siganduru' },
-  { path: '/policies', title: 'Rooms and Amenities | KRS Guest House, Siganduru Karnataka' },
-  { path: '/enquiry', title: 'Room Enquiry | KRS Guest House Near Siganduru Temple' },
+  { path: '/', title: 'KRS Guest House | Rooms Near Sigandur Temple, Karnataka' },
+  { path: '/attraction', title: 'Places to Visit Near Sigandur, Karnataka | KRS Guest House' },
+  { path: '/rooms', title: 'KRS Guest House Location | Rooms Near Sigandur Temple' },
+  { path: '/contact', title: 'Contact KRS Guest House | Book Rooms in Sigandur' },
+  { path: '/policies', title: 'Rooms and Amenities | KRS Guest House, Sigandur Karnataka' },
+  { path: '/enquiry', title: 'Room Enquiry | KRS Guest House Near Sigandur Temple' },
 ];
 
 function createPrerenderedPage(route) {
@@ -19,7 +19,7 @@ function createPrerenderedPage(route) {
     .replace(/<title>.*?<\/title>/i, `<title>${route.title}</title>`)
     .replace(
       /<meta name="description" content="[^"]*"\s*\/?>/i,
-      '<meta name="description" content="Looking for rooms or a budget hotel stay near Siganduru Temple? KRS Guest House in Siganduru, Karnataka offers clean rooms, hot water, free parking, and family-friendly accommodation." />'
+      '<meta name="description" content="Looking for rooms or a budget hotel stay near Sigandur Temple? KRS Guest House in Sigandur, Karnataka offers clean rooms, hot water, free parking, and family-friendly accommodation." />'
     )
     .replace(
       /<meta property="og:title" content="[^"]*"\s*\/?>/i,

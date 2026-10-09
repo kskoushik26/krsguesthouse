@@ -98,7 +98,7 @@ const Header = () => {
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
                 </svg>
-                Near Siganduru Chowdeshwari Temple
+                Near Sigandur Chowdeshwari Temple
               </span>
             </span>
           </Link>

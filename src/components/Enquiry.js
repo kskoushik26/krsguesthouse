@@ -513,7 +513,7 @@ const Enquiry = () => {
               Pick your dates and room. We'll reply with availability shortly.
             </p>
             <div className="highlights" aria-label="Guest house highlights">
-              <span>🛕 Near Siganduru Temple</span>
+              <span>🛕 Near Sigandur Temple</span>
               <span>🏡 Comfortable Stay</span>
               <span>🌿 Peaceful Surroundings</span>
             </div>

@@ -12,10 +12,10 @@ const IMAGES = [
 
 const PHONE = "+919448734152";
 const DIRECTIONS_URL =
-  "https://www.google.com/maps/search/?api=1&query=K.R.S+Guest+House+Siganduru";
+  "https://www.google.com/maps/search/?api=1&query=K.R.S+Guest+House+Sigandur";
 
 const FACILITIES = [
-  { icon: "🛕", title: "The temple is 350 meters away.", text: "A short walk to Siganduru Chowdeshwari Temple." },
+  { icon: "🛕", title: "The temple is 350 meters away.", text: "A short walk to Sigandur Chowdeshwari Temple." },
   { icon: "🛏️", title: "Rooms for 2, 4 or 6", text: "Comfortable rooms for families and groups." },
   { icon: "🚿", title: "Bathroom with hot water", text: "Clean bathrooms with hot water and western toilets." },
   { icon: "🚗", title: "Free parking", text: "Park at the guest house at no extra cost." },
@@ -25,14 +25,15 @@ const FACILITIES = [
 
 // Merged from 14 down to 8: removed repeats (bathroom x3, hot water, cleanliness, peaceful).
 const FAQS = [
-  { q: "How far is the guest house from the temple?", a: "About 350 meters, an easy walk to Siganduru Chowdeshwari Temple." },
+  { q: "How far is the guest house from the temple?", a: "About 350 meters, an easy walk to Sigandur Chowdeshwari Temple." },
   { q: "What room types do you have?", a: "2-occupancy rooms, 4-occupancy family rooms and 6-occupancy rooms." },
   { q: "Is it suitable for families?", a: "Yes. The 4- and 6-occupancy rooms are designed for families and small groups." },
   { q: "Do the rooms have bathrooms and hot water?", a: "Yes. Bathrooms have hot water and western-style toilets." },
   { q: "Is parking available?", a: "Yes, free parking is available for guests." },
   { q: "Is there security?", a: "CCTV cameras cover the common areas of the guest house." },
-  { q: "Do rates change with the season?", a: "Yes. Rates vary by season and availability, so please call or send an enquiry for the latest tariff." },
-  { q: "How do I book?", a: "Call us or send an enquiry to check availability and confirm your booking directly." },
+  { q: "What is the room price at KRS Guest House?", a: "Rates vary by room, season and availability. Call +91 94487 34152 or send an enquiry for the current tariff for your dates." },
+  { q: "Are there lodges near Sigandur Chowdeshwari Temple?", a: "KRS Guest House offers rooms about 350 metres from Sigandur Chowdeshwari Temple. Call +91 94487 34152 or send an online enquiry to check availability and current rates." },
+  { q: "How do I book a room at KRS Guest House?", a: "Send an online room enquiry or call +91 94487 34152 to check availability and confirm your booking directly." },
 ];
 
 const Home = () => {
@@ -66,11 +67,11 @@ const Home = () => {
           />
           <div className="home-page-hero-overlay">
             <div className="home-page-hero-content">
-              <p className="home-page-hero-kicker">K.R.S Guest House, Siganduru</p>
-              <h1>Comfortable Stay Near Siganduru Chowdeshwari Temple</h1>
+              <p className="home-page-hero-kicker">K.R.S Guest House, Sigandur</p>
+              <h1>Sigandur Rooms Near Chowdeshwari Temple</h1>
               <p className="home-page-hero-text">
-                Clean, family-friendly rooms with free parking, 350 meters from
-                the temple.
+                KRS Guest House offers clean, family-friendly rooms with free parking,
+                350 meters from the temple. Enquire online for availability and current rates.
               </p>
               <div className="home-page-hero-actions">
                 <a
@@ -139,7 +140,7 @@ const Home = () => {
         <div className="home-page-heading">
           <h2>Everything you need for a temple visit</h2>
           <p>
-            Looking for a clean, affordable stay near Siganduru? We keep things
+            Looking for a clean, affordable stay near Sigandur? We keep things
             simple, comfortable and close to the temple.
           </p>
         </div>
@@ -157,7 +158,7 @@ const Home = () => {
       {/* LOCATION */}
       <section className="home-page-section home-page-location">
         <div className="home-page-heading">
-          <h2>Find us in Siganduru</h2>
+          <h2>Find us in Sigandur</h2>
           <p>Use the map to plan your route before you travel.</p>
         </div>
         <div className="home-page-location-grid">
@@ -166,7 +167,7 @@ const Home = () => {
             <dl>
               <div>
                 <dt>Nearest landmark</dt>
-                <dd>Siganduru Chowdeshwari Temple, about 350 meters away</dd>
+                <dd>Sigandur Chowdeshwari Temple, about 350 meters away</dd>
               </div>
               <div>
                 <dt>Good to know</dt>

@@ -1,7 +1,10 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router-dom";
+import { useFormspark } from "@formspark/use-formspark";
 import "./Enquiry.css";
+
+const FORMSPARK_FORM_ID = "eyzW8m4b4";
 
 const initialFormData = {
   name: "",
@@ -144,8 +147,24 @@ const addDays = (k, n) => {
   return toKey(d.getFullYear(), d.getMonth(), d.getDate());
 };
 
+/* Matches the CSS breakpoint where the calendar switches to one month */
+const useIsMobile = (query = "(max-width: 600px)") => {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [query]);
+  return isMobile;
+};
+
 /* =========================================================
-   CALENDAR (check-in / check-out range) - one month at a time
+   CALENDAR (check-in / check-out range)
+   Desktop: two months side by side. Mobile: one month.
    ========================================================= */
 
 const Month = ({ year, month, today, maxDate, checkin, checkout, hover, onPick, onHover }) => {
@@ -206,6 +225,7 @@ const Month = ({ year, month, today, maxDate, checkin, checkout, hover, onPick, 
 
 const RangeCalendar = ({ today, maxDate, checkin, checkout, onChange }) => {
   const t = parseKey(today);
+  const isMobile = useIsMobile();
   const [view, setView] = useState({ y: t.getFullYear(), m: t.getMonth() });
   const [hover, setHover] = useState("");
 
@@ -215,9 +235,16 @@ const RangeCalendar = ({ today, maxDate, checkin, checkout, onChange }) => {
       return { y: d.getFullYear(), m: d.getMonth() };
     });
 
+  // Second month shown beside the first (desktop only)
+  const nextMonth = new Date(view.y, view.m + 1, 1);
+
   const atMin = view.y === t.getFullYear() && view.m === t.getMonth();
   const mx = parseKey(maxDate);
-  const atMax = view.y > mx.getFullYear() || (view.y === mx.getFullYear() && view.m >= mx.getMonth());
+  const maxIndex = mx.getFullYear() * 12 + mx.getMonth();
+  const lastVisible = isMobile
+    ? view.y * 12 + view.m
+    : nextMonth.getFullYear() * 12 + nextMonth.getMonth();
+  const atMax = lastVisible >= maxIndex;
 
   const pick = (key) => {
     if (!checkin || (checkin && checkout) || key <= checkin) {
@@ -239,6 +266,14 @@ const RangeCalendar = ({ today, maxDate, checkin, checkout, onChange }) => {
           checkin={checkin} checkout={checkout} hover={hover}
           onPick={pick} onHover={setHover}
         />
+        {!isMobile && (
+          <Month
+            year={nextMonth.getFullYear()} month={nextMonth.getMonth()}
+            today={today} maxDate={maxDate}
+            checkin={checkin} checkout={checkout} hover={hover}
+            onPick={pick} onHover={setHover}
+          />
+        )}
       </div>
     </div>
   );
@@ -253,6 +288,9 @@ const Enquiry = () => {
   const requestedRoom = searchParams.get("room") || "";
   const requestedKey = SINGLE_KEY[requestedRoom];
   const startGuests = requestedKey ? keyParts(requestedKey)[0][1] : 2;
+
+  // Formspark submit hook (we track our own isSubmitting state below)
+  const [submit] = useFormspark({ formId: FORMSPARK_FORM_ID });
 
   const [formData, setFormData] = useState({
     ...initialFormData,
@@ -454,23 +492,16 @@ const Enquiry = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xldjvgdp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+      await submit({
+        ...formData,
+        room: roomLabel(formData.room), // e.g. "2 × 2-Occupancy Room"
+        rooms_count: keyParts(formData.room).reduce((t, [c]) => t + c, 0),
+        nights,
+        enquiry_type: "Guest House Stay Enquiry",
+        _email: {
+          subject: `New Stay Enquiry from ${formData.name}`,
         },
-        body: JSON.stringify({
-          ...formData,
-          room: roomLabel(formData.room), // e.g. "2 × 2-Occupancy Room"
-          rooms_count: keyParts(formData.room).reduce((t, [c]) => t + c, 0),
-          nights,
-          _subject: `New Stay Enquiry from ${formData.name}`,
-          enquiry_type: "Guest House Stay Enquiry",
-        }),
       });
-
-      if (!response.ok) throw new Error("Form submission failed");
 
       // Remember the email for the popup before the form resets
       setSentEmail(formData.email);

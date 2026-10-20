@@ -5,6 +5,9 @@ import { useFormspark } from "@formspark/use-formspark";
 import "./Enquiry.css";
 
 const FORMSPARK_FORM_ID = "eyzW8m4b4";
+const GUESTHOUSE_EMAIL = "krsguesthouse26@gmail.com";
+const GUESTHOUSE_PHONE = "+919448734152";
+const GUESTHOUSE_PHONE_DISPLAY = "+91 94487 34152";
 
 const initialFormData = {
   name: "",
@@ -145,6 +148,46 @@ const addDays = (k, n) => {
   const d = parseKey(k);
   d.setDate(d.getDate() + n);
   return toKey(d.getFullYear(), d.getMonth(), d.getDate());
+};
+
+/* =========================================================
+   EMAIL HELPERS
+   ========================================================= */
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const COMMON_DOMAINS = [
+  "gmail.com",
+  "yahoo.com",
+  "yahoo.in",
+  "outlook.com",
+  "hotmail.com",
+  "icloud.com",
+  "rediffmail.com",
+];
+
+/* Edit distance between two strings (used to spot typos like "gmial.com") */
+const distance = (a, b) => {
+  const dp = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++)
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+      );
+  return dp[a.length][b.length];
+};
+
+/* Returns a corrected address (e.g. "ravi@gmail.com") or "" if nothing to fix */
+const suggestDomain = (email) => {
+  const [user, domain] = email.trim().split("@");
+  if (!user || !domain) return "";
+  const lower = domain.toLowerCase();
+  if (COMMON_DOMAINS.includes(lower)) return "";
+  const match = COMMON_DOMAINS.find((d) => distance(lower, d) <= 2);
+  return match ? `${user}@${match}` : "";
 };
 
 /* Matches the CSS breakpoint where the calendar switches to one month */
@@ -303,6 +346,7 @@ const Enquiry = () => {
   const [calOpen, setCalOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [sentEmail, setSentEmail] = useState("");
+  const [emailChecked, setEmailChecked] = useState(false); // email field has been left once
   const triggerRef = useRef(null);
   const doneRef = useRef(null);
   const touched = useRef({});
@@ -315,6 +359,13 @@ const Enquiry = () => {
     formData.checkin && formData.checkout && formData.checkout > formData.checkin
       ? nightsBetween(formData.checkin, formData.checkout)
       : 0;
+
+  // Gentle "Did you mean ...?" hint, shown only for a valid-looking address
+  const emailSuggestion = useMemo(() => {
+    if (!emailChecked) return "";
+    const value = formData.email.trim();
+    return EMAIL_REGEX.test(value) ? suggestDomain(value) : "";
+  }, [emailChecked, formData.email]);
 
   /* When arriving from the Rooms page (?room=...), select that exact room
      and set the guest count to its size. Runs whenever the param changes. */
@@ -374,16 +425,46 @@ const Enquiry = () => {
     return digits.slice(0, 10);
   };
 
+  /* ---------- VALIDATION ---------- */
+
+  const fieldError = (name, raw) => {
+    const value = raw.trim();
+    if (name === "name") {
+      return value ? "" : "Please enter your name.";
+    }
+    if (name === "phone") {
+      if (!value) return "Please enter your phone number.";
+      if (!/^\d+$/.test(value))
+        return "Enter digits only, without +91, spaces or dashes.";
+      if (value.length < 10)
+        return `Mobile number is too short: ${value.length} of 10 digits entered (don't add +91).`;
+      if (value.length > 10)
+        return "Mobile number must be exactly 10 digits (don't add +91).";
+      return "";
+    }
+    if (name === "email") {
+      if (!value) return "Please enter your email address.";
+      if (!EMAIL_REGEX.test(value))
+        return "Please enter a valid email, e.g. name@gmail.com";
+      return "";
+    }
+    return "";
+  };
+
   const handleChange = (e) => {
     const { name } = e.target;
     const value = name === "phone" ? cleanPhone(e.target.value) : e.target.value;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const next = { ...formData, [name]: value };
+    setFormData(next);
+
     // Once a field has been checked, keep checking it while the guest edits
     if (touched.current[name] || errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: fieldError(name, value) }));
     } else {
       clearError(name);
     }
+
+    if (name === "email") setEmailChecked(false); // hide old suggestion while typing
   };
 
   const setGuests = (delta) => {
@@ -408,38 +489,20 @@ const Enquiry = () => {
     clearError("checkin", "checkout");
   };
 
-  /* ---------- VALIDATION ---------- */
-
-  const fieldError = (name, raw) => {
-    const value = raw.trim();
-    if (name === "name") {
-      return value ? "" : "Please enter your name.";
-    }
-    if (name === "phone") {
-      if (!value) return "Please enter your phone number.";
-      if (!/^\d+$/.test(value))
-        return "Enter digits only, without +91, spaces or dashes.";
-      if (value.length < 10)
-        return `Mobile number is too short: ${value.length} of 10 digits entered (don't add +91).`;
-      if (value.length > 10)
-        return "Mobile number must be exactly 10 digits (don't add +91).";
-      return "";
-    }
-    if (name === "email") {
-      if (!value) return "Please enter your email address.";
-      if (!/^[^\s@]+@[^\s@]+\.com$/i.test(value))
-        return "Email must include @ and .com (e.g. name@gmail.com).";
-      return "";
-    }
-    return "";
-  };
-
   // Check these fields as soon as the guest leaves them
   const handleBlur = (e) => {
     const { name, value } = e.target;
     if (!value) return; // don't nag on an untouched field
     touched.current[name] = true;
     setErrors((prev) => ({ ...prev, [name]: fieldError(name, value) }));
+    if (name === "email") setEmailChecked(true);
+  };
+
+  // Replace the typed email with the suggested one
+  const applySuggestion = () => {
+    setFormData((prev) => ({ ...prev, email: emailSuggestion }));
+    clearError("email");
+    setEmailChecked(false);
   };
 
   const validateForm = () => {
@@ -494,6 +557,7 @@ const Enquiry = () => {
     try {
       await submit({
         ...formData,
+        email: formData.email.trim(),
         room: roomLabel(formData.room), // e.g. "2 × 2-Occupancy Room"
         rooms_count: keyParts(formData.room).reduce((t, [c]) => t + c, 0),
         nights,
@@ -504,10 +568,11 @@ const Enquiry = () => {
       });
 
       // Remember the email for the popup before the form resets
-      setSentEmail(formData.email);
+      setSentEmail(formData.email.trim());
       setPopupOpen(true);
 
       touched.current = {};
+      setEmailChecked(false);
       setFormData({
         ...initialFormData,
         members: "2",
@@ -596,7 +661,7 @@ const Enquiry = () => {
                 </div>
                 {guests >= MAX_GUESTS && (
                   <small className="hint">
-                    For more than 10 guests, call <a href="tel:+919448734152">+91 94487 34152</a> and we'll arrange it.
+                    For more than 10 guests, call <a href={`tel:${GUESTHOUSE_PHONE}`}>{GUESTHOUSE_PHONE_DISPLAY}</a> and we'll arrange it.
                   </small>
                 )}
                 {errors.members && <span className="error">{errors.members}</span>}
@@ -695,6 +760,21 @@ const Enquiry = () => {
                   aria-describedby={errors.email ? "email-error" : undefined}
                 />
                 {errors.email && <span id="email-error" className="error">{errors.email}</span>}
+
+                {!errors.email && emailSuggestion && (
+                  <div className="email-suggest" role="status">
+                    <span>Did you mean <strong>{emailSuggestion}</strong>?</span>
+                    <button type="button" className="link-button" onClick={applySuggestion}>
+                      Yes, use this
+                    </button>
+                  </div>
+                )}
+
+                {!errors.email && !emailSuggestion && (
+                  <small className="hint">
+                    Our reply with prices and booking details goes to this email.
+                  </small>
+                )}
               </div>
 
               {/* OPTIONAL MESSAGE */}
@@ -739,7 +819,8 @@ const Enquiry = () => {
 
               <p className="privacy-note">
                 🔒 We use your details only to check availability and reply.
-                Fastest: <a href="tel:+919448734152">+91 94487 34152</a>
+                Fastest: <a href={`tel:${GUESTHOUSE_PHONE}`}>{GUESTHOUSE_PHONE_DISPLAY}</a>
+                {" "}· Email: <a href={`mailto:${GUESTHOUSE_EMAIL}`}>{GUESTHOUSE_EMAIL}</a>
               </p>
             </form>
           </section>
@@ -824,13 +905,22 @@ const Enquiry = () => {
               <ul className="popup-list">
                 <li><span aria-hidden="true">💰</span> Room prices</li>
                 <li><span aria-hidden="true">🛏️</span> Availability for your dates</li>
-                <li><span aria-hidden="true">📝</span> How to book</li>
+                <li><span aria-hidden="true">📝</span> How to book and who to contact</li>
               </ul>
-              <p className="popup-spam">Can't see it? Check your spam or promotions folder.</p>
+
+              <div className="popup-sender">
+                <small>Our reply will come from</small>
+                <a href={`mailto:${GUESTHOUSE_EMAIL}`}>✉️ {GUESTHOUSE_EMAIL}</a>
+              </div>
+              <p className="popup-spam">
+                Can't see it? Check your spam or promotions folder, and mark{" "}
+                <strong>{GUESTHOUSE_EMAIL}</strong> as "Not spam".
+                Still nothing after 10 minutes? Please call us.
+              </p>
 
               <div className="popup-urgent">
                 <span>Urgent? Call us directly</span>
-                <a href="tel:+919448734152">📞 9448734152</a>
+                <a href={`tel:${GUESTHOUSE_PHONE}`}>📞 9448734152</a>
               </div>
 
               <button

@@ -530,6 +530,25 @@
 }
 .link-button:hover { text-decoration: underline; }
 
+/* ---------- EMAIL TYPO SUGGESTION ---------- */
+
+.email-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #fbf5df;
+  border: 1px dashed var(--gold);
+  border-radius: 10px;
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+.email-suggest strong { color: var(--teal-900); }
+.email-suggest .link-button { padding: 2px; font-size: 0.78rem; white-space: nowrap; }
+
 /* ---------- ERRORS / SUBMIT ---------- */
 
 .error { display: block; margin: 6px 2px 0; color: #c65353; font-size: 0.72rem; line-height: 1.3; }
@@ -565,8 +584,8 @@
 .submit-button:focus-visible { outline: 3px solid rgba(0, 166, 166, 0.3); outline-offset: 3px; }
 .submit-button:disabled { opacity: 0.65; cursor: not-allowed; }
 
-.privacy-note { grid-column: 1 / -1; margin: -6px 0 0; color: #8a9b9b; font-size: 0.7rem; text-align: center; }
-.privacy-note a { color: var(--teal-700); font-weight: 700; }
+.privacy-note { grid-column: 1 / -1; margin: -6px 0 0; color: #8a9b9b; font-size: 0.7rem; line-height: 1.6; text-align: center; }
+.privacy-note a { color: var(--teal-700); font-weight: 700; word-break: break-all; }
 
 .bottom-note {
   display: flex;
@@ -627,7 +646,7 @@
 
 .popup-list {
   list-style: none;
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   padding: 14px 16px;
   display: grid;
   gap: 10px;
@@ -640,7 +659,25 @@
   font-weight: 600;
 }
 .popup-list li { display: flex; align-items: center; gap: 10px; }
-.popup-spam { margin: 0 0 16px; color: var(--muted); font-size: 0.72rem; }
+
+.popup-sender {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 0 0 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.92rem;
+  word-break: break-all;
+}
+.popup-sender small { color: var(--muted); font-size: 0.72rem; }
+.popup-sender a { color: var(--teal-700); font-weight: 700; text-decoration: none; }
+.popup-sender a:hover { text-decoration: underline; }
+
+.popup-spam { margin: 0 0 16px; color: var(--muted); font-size: 0.72rem; line-height: 1.5; }
+.popup-spam strong { color: var(--teal-900); word-break: break-all; }
 
 .popup-urgent {
   display: flex;

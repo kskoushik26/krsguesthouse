@@ -9,6 +9,38 @@ const GUESTHOUSE_EMAIL = "krsguesthouse26@gmail.com";
 const GUESTHOUSE_PHONE = "+919448734152";
 const GUESTHOUSE_PHONE_DISPLAY = "+91 94487 34152";
 
+/* =========================================================
+   FORM PROVIDER SWITCHING
+   First 50 enquiries each month -> Formspree.
+   51st onwards -> Formspark (existing).
+   On the 1st of every month the server counter starts at 0,
+   so enquiries go back to Formspree.
+   ========================================================= */
+const FORMSPREE_URL = "https://formspree.io/f/xldjvgdp";
+const COUNTER_URL = "/api/enquiry-count";
+
+const sendToFormspree = async (payload) => {
+  const res = await fetch(FORMSPREE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error("Formspree submission failed");
+};
+
+/* Asks the server which provider to use. If the counter is unreachable,
+   we use Formspark (the existing provider) so no enquiry is lost. */
+const pickProvider = async () => {
+  try {
+    const res = await fetch(COUNTER_URL, { method: "POST" });
+    if (!res.ok) throw new Error("counter failed");
+    const { provider } = await res.json();
+    return provider === "formspree" ? "formspree" : "formspark";
+  } catch {
+    return "formspark";
+  }
+};
+
 const initialFormData = {
   name: "",
   phone: "",
@@ -332,7 +364,7 @@ const Enquiry = () => {
   const requestedKey = SINGLE_KEY[requestedRoom];
   const startGuests = requestedKey ? keyParts(requestedKey)[0][1] : 2;
 
-  // Formspark submit hook (we track our own isSubmitting state below)
+  // Formspark submit hook (used after the monthly Formspree limit, and as a fallback)
   const [submit] = useFormspark({ formId: FORMSPARK_FORM_ID });
 
   const [formData, setFormData] = useState({
@@ -555,17 +587,44 @@ const Enquiry = () => {
     setIsSubmitting(true);
 
     try {
-      await submit({
+      const base = {
         ...formData,
         email: formData.email.trim(),
         room: roomLabel(formData.room), // e.g. "2 × 2-Occupancy Room"
         rooms_count: keyParts(formData.room).reduce((t, [c]) => t + c, 0),
         nights,
         enquiry_type: "Guest House Stay Enquiry",
+      };
+
+      // Formspark payload (existing format)
+      const sparkPayload = {
+        ...base,
         _email: {
           subject: `New Stay Enquiry from ${formData.name}`,
         },
-      });
+      };
+
+      // Formspree payload (uses _subject; replies go to the "email" field)
+      const spreePayload = {
+        ...base,
+        _subject: `New Stay Enquiry from ${formData.name}`,
+      };
+
+      // Server counter decides: first 50 of the month -> Formspree, then Formspark.
+      // The counter restarts at 0 on the 1st of every month.
+      const provider = await pickProvider();
+
+      if (provider === "formspree") {
+        try {
+          await sendToFormspree(spreePayload);
+        } catch (err) {
+          // Formspree failed: fall back to Formspark so the enquiry is never lost
+          console.warn("Formspree failed, falling back to Formspark", err);
+          await submit(sparkPayload);
+        }
+      } else {
+        await submit(sparkPayload);
+      }
 
       // Remember the email for the popup before the form resets
       setSentEmail(formData.email.trim());
